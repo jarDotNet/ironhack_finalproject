@@ -16,7 +16,7 @@ export default defineStore("tasks", {
     async createTask() {
       const { data: newTask, error } = await supabase.from("tasks").insert([
         {
-          user_id: "00926a73-c722-4f1a-bc54-dcfa298c68f0",
+          user_id: "38c4d7d9-27dd-4fcd-8d87-d493aa7684b2",
           title: "NEW TASK",
         },
       ]);
