@@ -22,7 +22,7 @@
     </div>
   </form>
 </template>
-  
+
 <script>
 import { ref } from "vue";
 import { supabase } from "../supabase";
@@ -31,11 +31,15 @@ export default {
   setup() {
     const loading = ref(false);
     const email = ref("");
+    const password = ref("");
 
     const handleLogin = async () => {
       try {
         loading.value = true;
-        const { error } = await supabase.auth.signIn({ email: email.value });
+        const { user, session, error } = await supabase.auth.signIn({
+          email: email.value,
+        });
+        console.log(user, session);
         if (error) throw error;
         alert("Check your email for the login link!");
       } catch (error) {
@@ -49,6 +53,7 @@ export default {
       loading,
       email,
       handleLogin,
+      password,
     };
   },
 };

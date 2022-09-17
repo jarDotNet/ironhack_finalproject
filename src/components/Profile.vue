@@ -29,7 +29,7 @@
     </div>
   </form>
 </template>
-  
+
 <script>
 import { supabase } from "../supabase";
 import { store } from "../store/auth";
@@ -46,6 +46,8 @@ export default {
       try {
         loading.value = true;
         store.user = supabase.auth.user();
+
+        console.log(store.user);
 
         let { data, error, status } = await supabase
           .from("profiles")
@@ -83,6 +85,8 @@ export default {
         let { error } = await supabase.from("profiles").upsert(updates, {
           returning: "minimal", // Don't return the value after inserting
         });
+
+        console.log(error);
 
         if (error) throw error;
       } catch (error) {
