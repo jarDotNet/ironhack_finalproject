@@ -1,9 +1,20 @@
 <template>
-  <p>Hello world!</p>
+  <div>
+    <p>Hello world!</p>
+    <button @click="tasksStore.createTask()">New Task</button>
+  </div>
 </template>
 
 <script>
-export default {};
+import { mapStores } from "pinia";
+import useTaskStore from "../store/task";
+
+export default {
+  name: "Dashboard",
+  computed: {
+    ...mapStores(useTaskStore),
+  },
+};
 </script>
 
 <style>
