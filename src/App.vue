@@ -35,7 +35,7 @@ export default {
       return store.user !== null;
     });
 
-    if (isAuthenticated) {
+    if (isAuthenticated.value) {
       router.push("/dashboard");
     } else {
       router.push("/auth");
