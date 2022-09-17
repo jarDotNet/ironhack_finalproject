@@ -7,6 +7,23 @@ const routes = [
     name: "home",
     component: HomeView,
   },
+  {
+    path: "/auth",
+    name: "auth",
+    component: () => import(/* webpackChunkName: 'auth' */ "../pages/Auth.vue"),
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: () =>
+      import(/* webpackChunkName: 'profile' */ "../pages/Profile.vue"),
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: () =>
+      import(/* webpackChunkName: 'dashboard' */ "../pages/Dashboard.vue"),
+  },
 ];
 
 const router = createRouter({
