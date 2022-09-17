@@ -1,18 +1,56 @@
 <template>
   <div>
-    <p>Hello world!</p>
-    <button @click="tasksStore.createTask()">New Task</button>
+    <h1>To-do app</h1>
+    <input
+      type="text"
+      id="task-name"
+      class="inputField"
+      ref="taskName"
+      placeholder="Enter task name"
+    />
+    <button class="button primary block" @click="createNewTask">
+      New Task
+    </button>
+    <br />
+    <input
+      type="text"
+      id="task-id"
+      class="inputField"
+      ref="taskId"
+      placeholder="Enter task Id to delete"
+    />
+    <button class="btn btn-danger block" @click="deleteTask">
+      Delete Task
+    </button>
   </div>
 </template>
 
 <script>
-import { mapStores } from "pinia";
-import useTaskStore from "../store/task";
+import { ref } from "vue";
+import useTasksStore from "../store/task";
+import { store } from "../store/auth";
 
 export default {
   name: "Dashboard",
-  computed: {
-    ...mapStores(useTaskStore),
+
+  setup() {
+    const taskId = ref(null);
+    const taskName = ref(null);
+    const tasksStore = useTasksStore();
+
+    const createNewTask = () => {
+      const newTask = {
+        user_id: store.user.id,
+        title: taskName.value.value,
+      };
+      tasksStore.createTask(newTask);
+    };
+
+    const deleteTask = () => {
+      tasksStore.deleteTask(taskId.value.value);
+    };
+
+    return { taskId, taskName, tasksStore, createNewTask, deleteTask };
   },
 };
 </script>
