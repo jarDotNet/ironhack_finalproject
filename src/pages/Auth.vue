@@ -11,11 +11,11 @@
     </button>
   </div>
 </template>
-  
-  <script>
+
+<script>
 import { ref } from "vue";
-import SignUp from "./SignUp.vue";
-import SignIn from "./SignIn.vue";
+import SignUp from "../components/SignUp.vue";
+import SignIn from "../components/SignIn.vue";
 export default {
   components: { SignUp, SignIn },
   setup() {
@@ -27,5 +27,5 @@ export default {
   },
 };
 </script>
-  
-  <style scoped></style>
+
+<style scoped></style>

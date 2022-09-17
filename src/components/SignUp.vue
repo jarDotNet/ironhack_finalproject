@@ -33,7 +33,7 @@ export default {
         store.signUp({
           email: email.value,
           password: password.value,
-        })
+        });
       } catch (error) {
         alert(error.error_description || error.message);
       }
@@ -47,4 +47,4 @@ export default {
     };
   },
 };
-</script
+</script>
