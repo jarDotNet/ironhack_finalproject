@@ -13,18 +13,29 @@ export default defineStore("tasks", {
         .order("id", { ascending: false });
       this.tasks = tasks;
     },
-    async createTask() {
-      const { data: newTask, error } = await supabase.from("tasks").insert([
-        {
-          user_id: "38c4d7d9-27dd-4fcd-8d87-d493aa7684b2",
-          title: "NEW TASK",
-        },
-      ]);
+    async createTask(newTask) {
+      const { data: taskCreated, error } = await supabase
+        .from("tasks1")
+        .insert([newTask]);
       if (error) {
-        alert("ERROR: " + error);
         console.log(error);
+        alert("Oops, something went wrong 😬");
       } else {
-        this.tasks.push(newTask);
+        alert(`Task ${taskCreated[0].id} created!`);
+        this.tasks.push(taskCreated[0]);
+      }
+    },
+    async deleteTask(taskId) {
+      const { data, error } = await supabase
+        .from("tasks")
+        .delete()
+        .match({ id: taskId });
+      if (error) {
+        console.log(error);
+        alert("Oops, something went wrong 😬");
+      } else {
+        alert(`Task ${taskId} deleted!`);
+        this.tasks = this.tasks.filter((task) => task.id !== taskId);
       }
     },
   },
