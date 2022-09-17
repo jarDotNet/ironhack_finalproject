@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="padding: 50px 0 100px 0">
-    <nav v-if="store.user">
+    <nav v-if="isAuthenticated">
       <router-link to="/">Home</router-link> |
       <router-link to="/profile">Profile</router-link>
     </nav>
@@ -31,18 +31,18 @@ export default {
       store.user = session.user;
     });
 
-    // const isAuthenticated = computed(() => {
-    //   return store.user;
-    // });
+    const isAuthenticated = computed(() => {
+      return store.user !== null;
+    });
 
-    if (store.user) {
+    if (isAuthenticated) {
       router.push("/dashboard");
     } else {
       router.push("/auth");
     }
 
     return {
-      store,
+      isAuthenticated,
     };
   },
 };
