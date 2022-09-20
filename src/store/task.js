@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
+import { useAlertStore } from "./alert";
+
+const alertStore = useAlertStore();
 
 export default defineStore("tasks", {
   state: () => ({
@@ -19,7 +22,7 @@ export default defineStore("tasks", {
         .insert([newTask]);
       if (error) {
         console.log(error);
-        alert("Oops, something went wrong 😬");
+        alertStore.error();
       } else {
         alert(`Task ${taskCreated[0].id} created!`);
         this.tasks.push(taskCreated[0]);
@@ -32,7 +35,7 @@ export default defineStore("tasks", {
         .match({ id: taskId });
       if (error) {
         console.log(error);
-        alert("Oops, something went wrong 😬");
+        alertStore.error();
       } else {
         alert(`Task ${taskId} deleted!`);
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
