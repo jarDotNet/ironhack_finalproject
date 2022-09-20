@@ -23,6 +23,94 @@
       Delete Task
     </button>
   </div>
+
+  <h2>Kanban</h2>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+
+      <div class="columna-contenedor">
+        <div class="columna-heading">
+          <h3>Backlog</h3>
+        </div>
+ 
+        <div id="backlog">
+        <div class="kanban-card" draggable="true">
+          This is a Card 1
+
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 2
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 3
+        </div>
+
+      </div>
+
+      </div>
+
+
+    </div>
+    <div class="col">
+      
+      <div class="columna-contenedor">
+        <div class="columna-heading">
+          <h3>Doing</h3>
+        </div>
+
+        <div id="doing">
+        <div class="kanban-card" draggable="true">
+          This is a Card 1 
+
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 2
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 3
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+    <div class="col">
+      
+      <div class="columna-contenedor">
+        <div class="columna-heading">
+          <h3>Done</h3>
+        </div>
+
+        <div id="done">
+        <div class="kanban-card" draggable="true">
+          This is a Card 1
+
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 2
+        </div>
+
+        <div class="kanban-card" draggable="true">
+          This is a Card 3
+        </div>
+
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 </template>
 
 <script>
@@ -52,8 +140,11 @@ export default {
 
     return { taskId, taskName, tasksStore, createNewTask, deleteTask };
   },
-};
+}
 </script>
 
-<style>
+<style scoped>
+  .kanban-card{
+    margin: 10px;
+  }
 </style>
