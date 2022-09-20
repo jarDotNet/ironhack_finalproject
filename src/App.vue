@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/profile">Profile</router-link>
     </nav>
+    <Alert />
     <!-- <Auth v-else /> -->
     <router-view />
   </div>
@@ -15,11 +16,13 @@ import { useRouter, useRoute } from "vue-router";
 import { supabase } from "./supabase";
 import { useUserStore } from "./store/user";
 import Auth from "./components/Auth.vue";
+import Alert from "./components/Alert.vue";
 import Profile from "./pages/Profile.vue";
 
 export default {
   components: {
     Auth,
+    Alert,
     Profile,
   },
 
