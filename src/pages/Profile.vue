@@ -32,7 +32,7 @@
 
 <script>
 import { supabase } from "../supabase";
-import { store } from "../store/auth";
+import { useUserStore } from "../store/user";
 import { onMounted, ref } from "vue";
 
 export default {
@@ -41,6 +41,7 @@ export default {
     const username = ref("");
     const website = ref("");
     const avatar_url = ref("");
+    const store = useUserStore();
 
     async function getProfile() {
       try {

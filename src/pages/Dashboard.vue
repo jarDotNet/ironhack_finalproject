@@ -28,7 +28,7 @@
 <script>
 import { ref } from "vue";
 import useTasksStore from "../store/task";
-import { store } from "../store/auth";
+import { useUserStore } from "../store/user";
 
 export default {
   name: "Dashboard",
@@ -37,6 +37,7 @@ export default {
     const taskId = ref(null);
     const taskName = ref(null);
     const tasksStore = useTasksStore();
+    const store = useUserStore();
 
     const createNewTask = () => {
       const newTask = {
@@ -55,5 +56,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

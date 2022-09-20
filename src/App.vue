@@ -12,8 +12,8 @@
 <script>
 import { computed, onUpdated } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { store } from "./store/auth";
 import { supabase } from "./supabase";
+import { useUserStore } from "./store/user";
 import Auth from "./components/Auth.vue";
 import Profile from "./pages/Profile.vue";
 
@@ -25,9 +25,9 @@ export default {
 
   setup() {
     const router = useRouter();
+    const store = useUserStore();
 
     store.user = supabase.auth.user();
-    console.log(store.user);
     supabase.auth.onAuthStateChange((_, session) => {
       store.user = session.user;
     });
