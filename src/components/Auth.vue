@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { supabase } from "../supabase";
 
 export default {
@@ -54,6 +54,7 @@ export default {
       email,
       handleLogin,
       password,
+      storeTask,
     };
   },
 };

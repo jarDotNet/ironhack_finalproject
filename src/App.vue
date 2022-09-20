@@ -27,6 +27,7 @@ export default {
     const router = useRouter();
 
     store.user = supabase.auth.user();
+    console.log(store.user);
     supabase.auth.onAuthStateChange((_, session) => {
       store.user = session.user;
     });
