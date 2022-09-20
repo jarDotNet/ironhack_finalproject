@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onUpdated } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { store } from "./store/auth";
 import { supabase } from "./supabase";
@@ -41,6 +41,14 @@ export default {
     } else {
       router.push("/auth");
     }
+
+    onUpdated(() => {
+      if (isAuthenticated.value) {
+        router.push("/dashboard");
+      } else {
+        router.push("/auth");
+      }
+    });
 
     return {
       isAuthenticated,
