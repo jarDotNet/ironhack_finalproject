@@ -15,7 +15,7 @@ export default defineStore("tasks", {
     },
     async createTask(newTask) {
       const { data: taskCreated, error } = await supabase
-        .from("tasks1")
+        .from("tasks")
         .insert([newTask]);
       if (error) {
         console.log(error);
