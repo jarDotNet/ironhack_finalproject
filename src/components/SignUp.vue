@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { supabase } from "../supabase";
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
 
@@ -35,12 +34,10 @@ export default {
           email: email.value,
           password: password.value,
         });*/
-        const { error } = await supabase.auth.signUp({
+        store.signUp({
           email: email.value,
           password: password.value,
         });
-        if (error) throw error;
-        else alert("Check your email");
       } catch (error) {
         alert(error.error_description || error.message);
       }

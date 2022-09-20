@@ -3,7 +3,7 @@ import { supabase } from "../supabase";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: null,
+    user: {},
   }),
 
   actions: {
@@ -17,12 +17,12 @@ export const useUserStore = defineStore("user", {
         password: password,
       });
       if (error) throw error;
+      else alert("Check your email");
     },
     async singIn(email, password) {
       console.log(email, password);
       const { user, error } = await supabase.auth.signIn(email, password);
       if (error) throw error;
-      if (user) this.user = user;
     },
     persist: {
       enabled: true,
