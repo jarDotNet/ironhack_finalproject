@@ -30,9 +30,7 @@
   <div class="row justify-content-md-center">
     <div class="col">
 
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+      <kanbanCard />
 
     </div>
 
@@ -54,19 +52,19 @@
   </div>
 </div>
 
-<ArrowNarrowUpIcon />
-
 </template>
 
 <script>
 import { ref } from "vue";
 import useTasksStore from "../store/task";
 import { store } from "../store/auth";
-import { ArrowNarrowUpIcon } from "@vue-hero-icons/outline"
+import kanbanCard from "../components/Card.vue"
 
 export default {
   name: "Dashboard",
-  components: { ArrowNarrowUpIcon },
+  components: {
+        kanbanCard
+    },
 
   setup() {
     const taskId = ref(null);
@@ -90,27 +88,5 @@ export default {
 }
 </script>
 
-<style scoped>
- 
-  .kanban-card{
-    margin: 10px;
-    background-color:#efefef;
-  }
-
-  .heading-kanban-card{
-    display: flex;
-    justify-content: space-between;
-    color: #000;
-  }
-
-  .footer-kanban-card{
-    display: flex;
-    flex-direction: row;
-  }
-
-  .heading-kanban-card-category{
-    margin: 5px;
-    padding: 5px;
-    background-color: blue;
-  }
+<style>
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="padding: 50px 0 100px 0">
+  <div class="container">
     <nav v-if="isAuthenticated">
       <router-link to="/">Home</router-link> |
       <router-link to="/profile">Profile</router-link>
