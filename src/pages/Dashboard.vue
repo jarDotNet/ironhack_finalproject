@@ -30,86 +30,31 @@
   <div class="row justify-content-md-center">
     <div class="col">
 
-      <div class="columna-contenedor">
-        <div class="columna-heading">
-          <h3>Backlog</h3>
-        </div>
- 
-        <div id="backlog">
-        <div class="kanban-card" draggable="true">
-          This is a Card 1
-
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 2
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 3
-        </div>
-
-      </div>
-
-      </div>
-
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
 
     </div>
+
     <div class="col">
-      
-      <div class="columna-contenedor">
-        <div class="columna-heading">
-          <h3>Doing</h3>
-        </div>
 
-        <div id="doing">
-        <div class="kanban-card" draggable="true">
-          This is a Card 1 
-
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 2
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 3
-        </div>
-      </div>
-
-      </div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
 
     </div>
+
     <div class="col">
-      
-      <div class="columna-contenedor">
-        <div class="columna-heading">
-          <h3>Done</h3>
-        </div>
 
-        <div id="done">
-        <div class="kanban-card" draggable="true">
-          This is a Card 1
-
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 2
-        </div>
-
-        <div class="kanban-card" draggable="true">
-          This is a Card 3
-        </div>
-
-      </div>
-
-      </div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
 
     </div>
   </div>
 </div>
 
-
+<ArrowNarrowUpIcon />
 
 </template>
 
@@ -117,9 +62,11 @@
 import { ref } from "vue";
 import useTasksStore from "../store/task";
 import { store } from "../store/auth";
+import { ArrowNarrowUpIcon } from "@vue-hero-icons/outline"
 
 export default {
   name: "Dashboard",
+  components: { ArrowNarrowUpIcon },
 
   setup() {
     const taskId = ref(null);
@@ -144,7 +91,26 @@ export default {
 </script>
 
 <style scoped>
+ 
   .kanban-card{
     margin: 10px;
+    background-color:#efefef;
+  }
+
+  .heading-kanban-card{
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+  }
+
+  .footer-kanban-card{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .heading-kanban-card-category{
+    margin: 5px;
+    padding: 5px;
+    background-color: blue;
   }
 </style>
