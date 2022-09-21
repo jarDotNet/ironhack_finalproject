@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import piniaPersist from "pinia-plugin-persist";
 import router from "./router";
 
+import "ress/ress.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.js";
