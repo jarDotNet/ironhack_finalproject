@@ -1,5 +1,8 @@
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
+    <div v-if="avatar_url === ``">
+      <img src="../assets/defaultAvatar.jpg" alt="Profile photo" />
+    </div>
     <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="store.user.email" disabled />
@@ -55,6 +58,8 @@ export default {
           .select(`username, website, avatar_url`)
           .eq("id", store.user.id)
           .single();
+
+        console.log(data);
 
         if (error && status !== 406) throw error;
 
