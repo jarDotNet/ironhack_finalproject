@@ -68,8 +68,6 @@ export default {
           .eq("id", store.user.id)
           .single();
 
-        console.log(data);
-
         if (error && status !== 406) throw error;
 
         if (data) {
