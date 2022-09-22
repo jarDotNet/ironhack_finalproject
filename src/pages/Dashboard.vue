@@ -91,19 +91,19 @@ export default {
       const id = document.getElementById("edit-id");
       const title = document.getElementById("edit-name");
       const state = document.getElementById("edit-state");
-      const comments = document.getElementById("edit-description");
+      const description = document.getElementById("edit-description");
       id.value = taskId;
       title.value = task.title;
       state.value = task.current_state;
-      comments.value = task.comments;
+      description.value = task.description;
     };
 
     const saveTask = () => {
       const taskId = document.getElementById("edit-id").value;
       const title = document.getElementById("edit-name").value;
       const state = document.getElementById("edit-state").value;
-      const comments = document.getElementById("edit-description").value;
-      tasksStore.updateTask(taskId, title, state, comments);
+      const description = document.getElementById("edit-description").value;
+      tasksStore.updateTask(taskId, title, state, description);
     };
 
     const deleteTask = () => {
