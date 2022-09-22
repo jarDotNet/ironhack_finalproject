@@ -1,6 +1,23 @@
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
     <div>
+      <img
+        v-if="avatar_url !== ``"
+        :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+        alt="Profile photo"
+      />
+      <img v-else src="../assets/defaultAvatar.jpg" alt="Profile photo" />
+      <label for="avatar">Update your profile photo</label>
+      <input
+        type="file"
+        id="avatar"
+        name="avatar"
+        accept="image/png,
+      image/jpeg"
+        @change="updatePicture()"
+      />
+    </div>
+    <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="store.user.email" disabled />
     </div>
@@ -46,9 +63,6 @@ export default {
     async function getProfile() {
       try {
         loading.value = true;
-        store.user = supabase.auth.user();
-
-        console.log(store.user);
 
         let { data, error, status } = await supabase
           .from("profiles")
@@ -73,7 +87,6 @@ export default {
     async function updateProfile() {
       try {
         loading.value = true;
-        store.user = supabase.auth.user();
 
         const updates = {
           id: store.user.id,
@@ -95,6 +108,29 @@ export default {
       } finally {
         loading.value = false;
       }
+    }
+
+    async function updatePicture() {
+      const file = event.target.files[0];
+      const fileExt = file.name.split(".").pop();
+      const filePath = store.user.email + "." + fileExt;
+      const { error } = await supabase.storage
+        .from("avatars")
+        .upload(filePath, file);
+      if (error) {
+        console.log(error);
+      } else {
+        const { error } = await supabase
+          .from("profiles")
+          .update({ avatar_url: filePath })
+          .eq("id", store.user.id);
+        if (error) {
+          console.log(error);
+        } else {
+          alert("profile actualizado");
+        }
+      }
+      return filePath;
     }
 
     async function signOut() {
@@ -121,6 +157,7 @@ export default {
       avatar_url,
 
       updateProfile,
+      updatePicture,
       signOut,
     };
   },
