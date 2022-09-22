@@ -1,20 +1,27 @@
 <template>
 
-<div class="card border border-0" style="width: 20rem;">
-    <div class="card-header clearfix">
-        <span class="float-left">Category</span>
-        <span class="float-right">ID</span>
+<div class="card border border-0 mb-3" style="width: 100%">
+    <div class="card-header">
+        <div class="d-flex justify-content-start">
+            <div class="p-1 mr-auto"> <span class="badge text-bg-category">Coding</span></div>
+            <div class="p-1"><small class="text-muted">ID</small></div>
+            <div class="p-1"><input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div>
+        </div>
+
     </div>
-  <div class="card-body">
-    <h5 class="card-title">This is a title</h5>
+  <div class="card-body pt-1 pb-4">
+    <h3 class="card-title">This is a title</h3>
+
+   
+
     
     
   </div>
   <div class="card-footer clearfix">
         <span class="float-left"><p class="card-text"><small class="text-muted">21 Sept</small></p></span>
-        <span class="float-left ms-3"><span class="badge text-bg-warning">Low Priority</span></span>
+        <span class="float-left ms-3"><span class="badge text-bg-warning">Low</span></span>
 
-        <span class="float-right"><button type="button" class="btn btn-info"
+        <span class="float-right"><button type="button" class="btn btn-dark"
         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> 
         <font-awesome-icon icon="fa-regular fa-pen-to-square" />
         </button></span>
@@ -35,15 +42,18 @@ export default {
 </script>
 
 <style scoped>
-    
 .card-footer, .card-header{
-    border-top: none;
     border-bottom: none;
     background-color: var(--bs-card-bg);
 }
 
-.card-title h3{
-    font-size: 20px;
+.card-footer{
+    border-top: 1px solid rgb(217, 217, 217);
+}
+
+
+.card-title{
+    font-size: 16px;
 }
 
 .card-footer{
@@ -54,10 +64,45 @@ export default {
     margin: 0 10px;
 }
 
-.badge:hover{
+.badge{
     opacity: 0.7;
+}
+
+.badge:hover{
+    opacity: 1;
     transition: 0.5s ease-in-out 100ms
 }
 
+.category{
+    width: 80%;
+}
+
+.p-cat{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    border-radius: var(--custom-border-radius);
+    background-color: var(--bg-color-management);
+    color:#fff;
+}
+
+.mr-auto{
+    margin-right: auto;
+}
+
+.text-bg-category {
+    color: #000;
+    background-color: var(--bg-color-coding);
+}
+
+:deep(.fa-pen-to-square path) {
+   color: #fff;
+}
+
+.form-check-input:checked {
+    background-color: #4e94fb;
+    border-color: #4e94fb;
+}
 
 </style>

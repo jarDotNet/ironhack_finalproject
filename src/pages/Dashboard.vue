@@ -28,13 +28,25 @@
 
 <div class="container text-left">
   <div class="row">
-    <div class="col">
+    <div class="col rounded-5 col-kanban">
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+
       <kanbanCard draggable="true" />
     </div>
-    <div class="col">
+    <div class="col rounded-5 col-kanban">
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+
       <kanbanCard draggable="true" />
     </div>
-    <div class="col">
+    <div class="col rounded-5 col-kanban">
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+
       <kanbanCard draggable="true" />
     </div>
   </div>
@@ -76,5 +88,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .col-kanban {
+    width: 100%;
+    padding: 2rem;
+    margin: 0.5rem;
+    background-color: #ddd;
+    height: 90vh;
+    overflow: auto;
+  }
 </style>
