@@ -1,16 +1,30 @@
 <template>
-  
-  <div class="card">
-    <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22390%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20390%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1835fbed68f%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1835fbed68f%22%3E%3Crect%20width%3D%22390%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22143.84375%22%20y%3D%2298.88000011444092%22%3E390x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
 
+<div class="card border border-0" style="width: 20rem;">
+    <div class="card-header clearfix">
+        <span class="float-left">Category</span>
+        <span class="float-right">ID</span>
+    </div>
+  <div class="card-body">
+    <h5 class="card-title">This is a title</h5>
+    
+    
+  </div>
+  <div class="card-footer clearfix">
+        <span class="float-left"><p class="card-text"><small class="text-muted">21 Sept</small></p></span>
+        <span class="float-left ms-3"><span class="badge text-bg-warning">Low Priority</span></span>
+
+        <span class="float-right"><button type="button" class="btn btn-info"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"> 
+        <font-awesome-icon icon="fa-regular fa-pen-to-square" />
+        </button></span>
+        <span class="float-right"><img src="https://via.placeholder.com/28x28"
+                  alt="Generic placeholder image" class="img-fluid rounded-circle me-2"
+                  style="width: 28px;"></span>
+  </div>
 </div>
+
+
 
 </template>
 
@@ -21,5 +35,29 @@ export default {
 </script>
 
 <style scoped>
+    
+.card-footer, .card-header{
+    border-top: none;
+    border-bottom: none;
+    background-color: var(--bs-card-bg);
+}
+
+.card-title h3{
+    font-size: 20px;
+}
+
+.card-footer{
+    padding: 8px 16px;
+}
+
+.card-footer-item{
+    margin: 0 10px;
+}
+
+.badge:hover{
+    opacity: 0.7;
+    transition: 0.5s ease-in-out 100ms
+}
+
 
 </style>

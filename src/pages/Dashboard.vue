@@ -26,28 +26,16 @@
 
   <h2>Kanban</h2>
 
-<div class="container">
-  <div class="row justify-content-md-center">
+<div class="container text-left">
+  <div class="row">
     <div class="col">
-
-      <kanbanCard />
-
+      <kanbanCard draggable="true" />
     </div>
-
     <div class="col">
-
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-
+      <kanbanCard draggable="true" />
     </div>
-
     <div class="col">
-
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-
+      <kanbanCard draggable="true" />
     </div>
   </div>
 </div>
