@@ -33,11 +33,32 @@
     <button class="btn btn-info block" @click="markTaskAsPending">
       Mark Task as Pending
     </button>
+    <br />
+    <input type="hidden" id="edit-id" />
+    <input
+      type="text"
+      id="edit-name"
+      class="inputField"
+      placeholder="Task name"
+    />
+    <select id="edit-state" class="form-control">
+      <option value="pending" style="color: black">Pending</option>
+      <option value="in-progress" style="color: black">In progress</option>
+      <option value="completed" style="color: black">Completed</option>
+    </select>
+    <textarea
+      id="edit-description"
+      rows="4"
+      cols="50"
+      style="color: black; width: 100%"
+    />
+    <button class="button primary block" @click="saveTask">Save Task</button>
     <ul v-for="task in tasksStore.tasks" :key="task.id">
       <li>
         <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
         <b>State:</b>
         {{ task.current_state }}
+        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
       </li>
     </ul>
   </div>
@@ -65,6 +86,26 @@ export default {
       tasksStore.createTask(newTask);
     };
 
+    const editTask = (taskId) => {
+      const task = tasksStore.tasks.find((t) => t.id === taskId);
+      const id = document.getElementById("edit-id");
+      const title = document.getElementById("edit-name");
+      const state = document.getElementById("edit-state");
+      const comments = document.getElementById("edit-description");
+      id.value = taskId;
+      title.value = task.title;
+      state.value = task.current_state;
+      comments.value = task.comments;
+    };
+
+    const saveTask = () => {
+      const taskId = document.getElementById("edit-id").value;
+      const title = document.getElementById("edit-name").value;
+      const state = document.getElementById("edit-state").value;
+      const comments = document.getElementById("edit-description").value;
+      tasksStore.updateTask(taskId, title, state, comments);
+    };
+
     const deleteTask = () => {
       tasksStore.deleteTask(taskId.value.value);
     };
@@ -90,6 +131,8 @@ export default {
       taskName,
       tasksStore,
       createNewTask,
+      editTask,
+      saveTask,
       deleteTask,
       markTaskAsCompleted,
       markTaskAsInProgress,
