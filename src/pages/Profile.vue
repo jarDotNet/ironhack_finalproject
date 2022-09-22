@@ -2,9 +2,11 @@
   <form class="form-widget" @submit.prevent="updateProfile">
     <div>
       <img
+        v-if="avatar_url !== ``"
         :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
         alt="Profile photo"
       />
+      <img v-else src="../assets/defaultAvatar.jpg" alt="Profile photo" />
       <label for="avatar">Update your profile photo</label>
       <input
         type="file"
