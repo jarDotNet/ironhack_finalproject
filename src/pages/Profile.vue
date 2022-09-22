@@ -5,7 +5,7 @@
         v-if="avatar_url !== ``"
         :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
         alt="Profile photo"
-        class="img-thumbnail"
+        style="height: 200px"
       />
       <img v-else src="../assets/defaultAvatar.jpg" alt="Profile photo" />
       <label for="avatar">Update your profile photo</label>
