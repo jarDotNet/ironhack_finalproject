@@ -29,18 +29,9 @@
 <div class="container text-left">
   <div class="row">
     <div class="col rounded-5 col-kanban">
-
-      <h2>Backlog</h2>
-
-      <kanbanCard draggable="true" />
-
-      <kanbanCard draggable="true" />
-
-      <kanbanCard draggable="true" />
-    </div>
-    <div class="col rounded-5 col-kanban">
-
-      <h2>In Progress</h2>
+      
+      <h3>Backlog</h3>
+      <hr>
 
       <kanbanCard draggable="true" />
 
@@ -50,7 +41,19 @@
     </div>
     <div class="col rounded-5 col-kanban">
 
-      <h2>Done</h2>
+      <h3>In progress</h3>
+      <hr>
+
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+    </div>
+    <div class="col rounded-5 col-kanban">
+
+      <h3>done</h3>
+      <hr>
 
       <kanbanCard draggable="true" />
 
@@ -105,5 +108,21 @@ export default {
     background-color: #ddd;
     height: 90vh;
     overflow: auto;
+  }
+
+  .col-kanban h3{
+    color: var(--custom-color-secondary);
+    font-size: 22px;
+    text-transform: lowercase;
+  }
+
+  .col-kanban h3:before{
+    content: "» "
+  }
+  .col-kanban hr{
+    border-top: 3px solid var(--custom-color-secondary);
+    opacity: 0.4;
+    position: relative;
+    top: -18px;
   }
 </style>
