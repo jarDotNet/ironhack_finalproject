@@ -4,30 +4,33 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/profile">Profile</router-link>
     </nav>
+    <Alert />
     <!-- <Auth v-else /> -->
     <router-view />
   </div>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, onUpdated } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import { store } from "./store/auth";
 import { supabase } from "./supabase";
+import { useUserStore } from "./store/user";
 import Auth from "./components/Auth.vue";
+import Alert from "./components/Alert.vue";
 import Profile from "./pages/Profile.vue";
 
 export default {
   components: {
     Auth,
+    Alert,
     Profile,
   },
 
   setup() {
     const router = useRouter();
+    const store = useUserStore();
 
     store.user = supabase.auth.user();
-    console.log(store.user);
     supabase.auth.onAuthStateChange((_, session) => {
       store.user = session.user;
     });
@@ -41,6 +44,14 @@ export default {
     } else {
       router.push("/auth");
     }
+
+    onUpdated(() => {
+      if (isAuthenticated.value) {
+        router.push("/dashboard");
+      } else {
+        router.push("/auth");
+      }
+    });
 
     return {
       isAuthenticated,

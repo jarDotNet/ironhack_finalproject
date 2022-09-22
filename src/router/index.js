@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAlertStore } from "../store/alert";
 import HomeView from "../App.vue";
 
 const routes = [
@@ -29,6 +30,12 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_APP_ENV),
   routes,
+});
+
+router.beforeEach(async (to) => {
+  // clear alert on route change
+  const alertStore = useAlertStore();
+  alertStore.clear();
 });
 
 export default router;
