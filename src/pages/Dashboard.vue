@@ -29,13 +29,9 @@
 <div class="container text-left">
   <div class="row">
     <div class="col rounded-5 col-kanban">
-      <kanbanCard draggable="true" />
 
-      <kanbanCard draggable="true" />
+      <h2>Backlog</h2>
 
-      <kanbanCard draggable="true" />
-    </div>
-    <div class="col rounded-5 col-kanban">
       <kanbanCard draggable="true" />
 
       <kanbanCard draggable="true" />
@@ -43,6 +39,19 @@
       <kanbanCard draggable="true" />
     </div>
     <div class="col rounded-5 col-kanban">
+
+      <h2>In Progress</h2>
+
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+
+      <kanbanCard draggable="true" />
+    </div>
+    <div class="col rounded-5 col-kanban">
+
+      <h2>Done</h2>
+
       <kanbanCard draggable="true" />
 
       <kanbanCard draggable="true" />
