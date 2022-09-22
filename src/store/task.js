@@ -38,14 +38,13 @@ export default defineStore("tasks", {
     },
     async updateTask(taskId, title, state, comments) {
       alertStore.clear();
-      const taskToUpdate = {
-        title: title,
-        current_state: state,
-        comments: comments,
-      };
-      const { data: taskCreated, error } = await supabase
+      const { data, error } = await supabase
         .from("tasks")
-        .update(taskToUpdate)
+        .update({
+          title: title,
+          current_state: state,
+          comments: comments,
+        })
         .match({ id: taskId });
       if (error) {
         console.log(error);
@@ -53,7 +52,7 @@ export default defineStore("tasks", {
       } else {
         alertStore.success(`Task ${taskId} updated!`);
         this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? { taskToUpdate, id: taskId } : task
+          task.id == taskId ? data[0] : task
         );
       }
     },
@@ -83,11 +82,8 @@ export default defineStore("tasks", {
       } else {
         alertStore.success(`Task ${taskId} state updated!`);
         this.tasks = this.tasks.map((task) =>
-          task.id == taskId
-            ? { ...task, current_state: TaskStateEnum.PENDING }
-            : task
+          task.id == taskId ? data[0] : task
         );
-        console.table(this.tasks);
       }
     },
     async markAsCompleted(taskId) {
@@ -102,9 +98,7 @@ export default defineStore("tasks", {
       } else {
         alertStore.success(`Task ${taskId} state updated!`);
         this.tasks = this.tasks.map((task) =>
-          task.id == taskId
-            ? { ...task, current_state: TaskStateEnum.COMPLETED }
-            : task
+          task.id == taskId ? data[0] : task
         );
       }
     },
@@ -120,9 +114,7 @@ export default defineStore("tasks", {
       } else {
         alertStore.success(`Task ${taskId} state updated!`);
         this.tasks = this.tasks.map((task) =>
-          task.id == taskId
-            ? { ...task, current_state: TaskStateEnum.IN_PROGRESS }
-            : task
+          task.id == taskId ? data[0] : task
         );
       }
     },
