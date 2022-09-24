@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAlertStore } from "../store/alert";
-import HomeView from "../App.vue";
+import HomeView from "../pages/Home.vue";
+import NotFound from "../pages/NotFound.vue";
 
 const routes = [
   {
@@ -24,6 +25,16 @@ const routes = [
     name: "dashboard",
     component: () =>
       import(/* webpackChunkName: 'dashboard' */ "../pages/Dashboard.vue"),
+  },
+  {
+    path: "/404",
+    name: "NotFound",
+    component: NotFound,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 

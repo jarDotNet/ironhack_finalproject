@@ -2,7 +2,9 @@
   <div class="container" style="padding: 50px 0 100px 0">
     <nav v-if="isAuthenticated">
       <router-link to="/">Home</router-link> |
-      <router-link to="/profile">Profile</router-link>
+      <router-link to="/dashboard">Dashboard</router-link> |
+      <router-link to="/profile">Profile</router-link> |
+      <router-link to="/404">404</router-link>
     </nav>
     <Alert />
     <!-- <Auth v-else /> -->
@@ -11,8 +13,8 @@
 </template>
 
 <script>
-import { computed, onUpdated } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
 import { supabase } from "./supabase";
 import { useUserStore } from "./store/user";
 import Auth from "./components/Auth.vue";
@@ -39,19 +41,9 @@ export default {
       return store.user !== null;
     });
 
-    if (isAuthenticated.value) {
-      router.push("/dashboard");
-    } else {
+    if (!isAuthenticated.value) {
       router.push("/auth");
     }
-
-    onUpdated(() => {
-      if (isAuthenticated.value) {
-        router.push("/dashboard");
-      } else {
-        router.push("/auth");
-      }
-    });
 
     return {
       isAuthenticated,
