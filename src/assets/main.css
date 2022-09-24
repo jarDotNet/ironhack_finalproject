@@ -195,10 +195,12 @@ input {
    width: 100%;
    border-radius: 5px;
    border: var(--custom-border);
-   padding: 8px;
+   padding: 10px;
    font-size: 0.9rem;
-   background-color: var(--custom-bg-color);
+   background-color: #e0dede;
+   justify-content: center;
    color: var(--custom-color);
+   margin: 20px auto;
 }
 
 input[disabled] {
