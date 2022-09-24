@@ -1,13 +1,10 @@
 <template>
-
   <div class="vh-100">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-12 col-xl-4">
-
-          <div class="card" style="border-radius: 15px;">
+          <div class="card" style="border-radius: 15px">
             <div class="card-body text-center">
-
               <form class="form-widget" @submit.prevent="updateProfile">
                 <div>
                   <img
@@ -16,7 +13,11 @@
                     alt="Profile photo"
                     style="height: 200px"
                   />
-                  <img v-else src="../assets/defaultAvatar.jpg" alt="Profile photo" />
+                  <img
+                    v-else
+                    src="../assets/defaultAvatar.jpg"
+                    alt="Profile photo"
+                  />
                   <label for="avatar">Update your profile photo</label>
                   <input
                     type="file"
@@ -29,7 +30,12 @@
                 </div>
                 <div>
                   <label for="email">Email</label>
-                  <input id="email" type="text" :value="store.user.email" disabled />
+                  <input
+                    id="email"
+                    type="text"
+                    :value="store.user.email"
+                    disabled
+                  />
                 </div>
                 <div>
                   <label for="username">Name</label>
@@ -50,12 +56,15 @@
                 </div>
 
                 <div>
-                  <button class="button block" @click="signOut" :disabled="loading">
+                  <button
+                    class="button block"
+                    @click="signOut"
+                    :disabled="loading"
+                  >
                     Sign Out
                   </button>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
