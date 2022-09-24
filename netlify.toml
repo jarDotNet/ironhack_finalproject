@@ -1,0 +1,10 @@
+# Error page
+[[redirects]]
+  from = "/*"
+  to = "./not/foud"
+  status = 404
+# Home page
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
