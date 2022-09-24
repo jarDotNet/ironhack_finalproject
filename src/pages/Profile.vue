@@ -1,4 +1,5 @@
 <template>
+
   <form class="form-widget" @submit.prevent="updateProfile">
     <div>
       <img
@@ -164,3 +165,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>
