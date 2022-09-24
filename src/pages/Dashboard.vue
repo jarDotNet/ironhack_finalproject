@@ -53,7 +53,26 @@
       style="color: black; width: 100%"
     />
     <button class="button primary block" @click="saveTask">Save Task</button>
-    <ul v-for="task in tasksStore.tasks" :key="task.id">
+    <h2>Pending</h2>
+    <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
+      <li>
+        <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
+        <b>State:</b>
+        {{ task.current_state }}
+        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
+      </li>
+    </ul>
+    <h2>In Progress</h2>
+    <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
+      <li>
+        <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
+        <b>State:</b>
+        {{ task.current_state }}
+        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
+      </li>
+    </ul>
+    <h2>Completed</h2>
+    <ul v-for="task in tasksStore.completedTasks" :key="task.id">
       <li>
         <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
         <b>State:</b>
