@@ -46,6 +46,11 @@
       <option value="in-progress" style="color: black">In progress</option>
       <option value="completed" style="color: black">Completed</option>
     </select>
+    <select id="edit-priority" class="form-control">
+      <option value="Low" style="color: black">Low</option>
+      <option value="Medium" style="color: black">Medium</option>
+      <option value="High" style="color: black">High</option>
+    </select>
     <textarea
       id="edit-description"
       rows="4"
@@ -83,162 +88,220 @@
   </div>
 
   <div class="container">
+    <div class="container text-left">
+      <div class="row">
+        <div class="col rounded-5 col-kanban">
+          <h3>Backlog</h3>
+          <hr />
 
-  <div class="container text-left">
-    <div class="row">
-      
-      <div class="col rounded-5 col-kanban">
-
-              <h3>Backlog</h3>
-              <hr>
-
-              
-                <ul v-for="task in tasksStore.tasks" :key="task.id">
-                  <div class="card border border-0 mb-3" style="width: 100%">      
-
-                  <li>
-
-                    <div class="card-header">
-                      <div class="d-flex justify-content-start">
-                          <div class="p-1 mr-auto"> <span class="badge text-bg-category">Coding</span></div>
-                          <div class="p-1"><small class="text-muted">#{{ task.id }}</small></div>
-                          <div class="p-1"><input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div>
-                        </div>
-                      </div>
-
-                      <div class="card-body pt-1 pb-4">
-                          <h4 class="card-title">{{ task.title }}</h4>
-                        </div>
-
-                      <div class="card-footer clearfix">
-                          <span class="float-left"><p class="card-text"><small class="text-muted">21 Sept</small></p></span>
-                          <span class="float-left ms-3"><span class="badge text-bg-warning">Low</span></span>
-
-                          <span class="float-right"><button type="button" class="btn btn-dark" 
-                          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" @click="editTask(task.id)"> 
-                          <font-awesome-icon icon="fa-regular fa-pen-to-square"  />
-                          </button></span>
-                          <span class="float-right"><img src="https://via.placeholder.com/28x28"
-                                    alt="Generic placeholder image" class="img-fluid rounded-circle me-2"
-                                    style="width: 28px;"></span>
+          <ul v-for="task in tasksStore.tasks" :key="task.id">
+            <div class="card border border-0 mb-3" style="width: 100%">
+              <li>
+                <div class="card-header">
+                  <div class="d-flex justify-content-start">
+                    <div class="p-1 mr-auto">
+                      <span class="badge text-bg-category">Coding</span>
                     </div>
-
-                  </li>
-
+                    <div class="p-1">
+                      <small class="text-muted">#{{ task.id }}</small>
+                    </div>
+                    <div class="p-1">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                    </div>
                   </div>
-                </ul>
-              
+                </div>
 
-            
+                <div class="card-body pt-1 pb-4">
+                  <h4 class="card-title">{{ task.title }}</h4>
+                </div>
 
-      </div>
+                <div class="card-footer clearfix">
+                  <span class="float-left"
+                    ><p class="card-text">
+                      <small class="text-muted">21 Sept</small>
+                    </p></span
+                  >
+                  <span class="float-left ms-3"
+                    ><span class="badge text-bg-warning">Low</span></span
+                  >
 
-
-      <div class="col rounded-5 col-kanban">
-
-<h3>In Progress</h3>
-<hr>
-
-
-  <ul v-for="task in tasksStore.tasks" :key="task.id">
-    <div class="card border border-0 mb-3" style="width: 100%">      
-
-    <li>
-
-      <div class="card-header">
-        <div class="d-flex justify-content-start">
-            <div class="p-1 mr-auto"> <span class="badge text-bg-category">Coding</span></div>
-            <div class="p-1"><small class="text-muted">#{{ task.id }}</small></div>
-            <div class="p-1"><input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div>
-          </div>
+                  <span class="float-right"
+                    ><button
+                      type="button"
+                      class="btn btn-dark"
+                      style="
+                        --bs-btn-padding-y: 0.25rem;
+                        --bs-btn-padding-x: 0.5rem;
+                        --bs-btn-font-size: 0.75rem;
+                      "
+                      @click="editTask(task.id)"
+                    >
+                      <font-awesome-icon
+                        icon="fa-regular fa-pen-to-square"
+                      /></button
+                  ></span>
+                  <span class="float-right"
+                    ><img
+                      src="https://via.placeholder.com/28x28"
+                      alt="Generic placeholder image"
+                      class="img-fluid rounded-circle me-2"
+                      style="width: 28px"
+                  /></span>
+                </div>
+              </li>
+            </div>
+          </ul>
         </div>
 
-        <div class="card-body pt-1 pb-4">
-            <h4 class="card-title">{{ task.title }}</h4>
-          </div>
+        <div class="col rounded-5 col-kanban">
+          <h3>In Progress</h3>
+          <hr />
 
-        <div class="card-footer clearfix">
-            <span class="float-left"><p class="card-text"><small class="text-muted">21 Sept</small></p></span>
-            <span class="float-left ms-3"><span class="badge text-bg-warning">Low</span></span>
+          <ul v-for="task in tasksStore.tasks" :key="task.id">
+            <div class="card border border-0 mb-3" style="width: 100%">
+              <li>
+                <div class="card-header">
+                  <div class="d-flex justify-content-start">
+                    <div class="p-1 mr-auto">
+                      <span class="badge text-bg-category">Coding</span>
+                    </div>
+                    <div class="p-1">
+                      <small class="text-muted">#{{ task.id }}</small>
+                    </div>
+                    <div class="p-1">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-            <span class="float-right"><button type="button" class="btn btn-dark" 
-            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" @click="editTask(task.id)"> 
-            <font-awesome-icon icon="fa-regular fa-pen-to-square"  />
-            </button></span>
-            <span class="float-right"><img src="https://via.placeholder.com/28x28"
-                      alt="Generic placeholder image" class="img-fluid rounded-circle me-2"
-                      style="width: 28px;"></span>
-      </div>
+                <div class="card-body pt-1 pb-4">
+                  <h4 class="card-title">{{ task.title }}</h4>
+                </div>
 
-    </li>
+                <div class="card-footer clearfix">
+                  <span class="float-left"
+                    ><p class="card-text">
+                      <small class="text-muted">21 Sept</small>
+                    </p></span
+                  >
+                  <span class="float-left ms-3"
+                    ><span class="badge text-bg-warning">Low</span></span
+                  >
 
-    </div>
-  </ul>
-
-
-
-
-</div>
-
-
-<div class="col rounded-5 col-kanban">
-
-<h3>Done</h3>
-<hr>
-
-
-  <ul v-for="task in tasksStore.tasks" :key="task.id">
-    <div class="card border border-0 mb-3" style="width: 100%">      
-
-    <li>
-
-      <div class="card-header">
-        <div class="d-flex justify-content-start">
-            <div class="p-1 mr-auto"> <span class="badge text-bg-category">Coding</span></div>
-            <div class="p-1"><small class="text-muted">#{{ task.id }}</small></div>
-            <div class="p-1"><input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" /></div>
-          </div>
+                  <span class="float-right"
+                    ><button
+                      type="button"
+                      class="btn btn-dark"
+                      style="
+                        --bs-btn-padding-y: 0.25rem;
+                        --bs-btn-padding-x: 0.5rem;
+                        --bs-btn-font-size: 0.75rem;
+                      "
+                      @click="editTask(task.id)"
+                    >
+                      <font-awesome-icon
+                        icon="fa-regular fa-pen-to-square"
+                      /></button
+                  ></span>
+                  <span class="float-right"
+                    ><img
+                      src="https://via.placeholder.com/28x28"
+                      alt="Generic placeholder image"
+                      class="img-fluid rounded-circle me-2"
+                      style="width: 28px"
+                  /></span>
+                </div>
+              </li>
+            </div>
+          </ul>
         </div>
 
-        <div class="card-body pt-1 pb-4">
-            <h4 class="card-title">{{ task.title }}</h4>
-          </div>
+        <div class="col rounded-5 col-kanban">
+          <h3>Done</h3>
+          <hr />
 
-        <div class="card-footer clearfix">
-            <span class="float-left"><p class="card-text"><small class="text-muted">21 Sept</small></p></span>
-            <span class="float-left ms-3"><span class="badge text-bg-warning">Low</span></span>
+          <ul v-for="task in tasksStore.tasks" :key="task.id">
+            <div class="card border border-0 mb-3" style="width: 100%">
+              <li>
+                <div class="card-header">
+                  <div class="d-flex justify-content-start">
+                    <div class="p-1 mr-auto">
+                      <span class="badge text-bg-category">Coding</span>
+                    </div>
+                    <div class="p-1">
+                      <small class="text-muted">#{{ task.id }}</small>
+                    </div>
+                    <div class="p-1">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-            <span class="float-right"><button type="button" class="btn btn-dark" 
-            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" @click="editTask(task.id)"> 
-            <font-awesome-icon icon="fa-regular fa-pen-to-square"  />
-            </button></span>
-            <span class="float-right"><img src="https://via.placeholder.com/28x28"
-                      alt="Generic placeholder image" class="img-fluid rounded-circle me-2"
-                      style="width: 28px;"></span>
+                <div class="card-body pt-1 pb-4">
+                  <h4 class="card-title">{{ task.title }}</h4>
+                </div>
+
+                <div class="card-footer clearfix">
+                  <span class="float-left"
+                    ><p class="card-text">
+                      <small class="text-muted">21 Sept</small>
+                    </p></span
+                  >
+                  <span class="float-left ms-3"
+                    ><span class="badge text-bg-warning">Low</span></span
+                  >
+
+                  <span class="float-right"
+                    ><button
+                      type="button"
+                      class="btn btn-dark"
+                      style="
+                        --bs-btn-padding-y: 0.25rem;
+                        --bs-btn-padding-x: 0.5rem;
+                        --bs-btn-font-size: 0.75rem;
+                      "
+                      @click="editTask(task.id)"
+                    >
+                      <font-awesome-icon
+                        icon="fa-regular fa-pen-to-square"
+                      /></button
+                  ></span>
+                  <span class="float-right"
+                    ><img
+                      src="https://via.placeholder.com/28x28"
+                      alt="Generic placeholder image"
+                      class="img-fluid rounded-circle me-2"
+                      style="width: 28px"
+                  /></span>
+                </div>
+              </li>
+            </div>
+          </ul>
+        </div>
       </div>
-
-    </li>
-
     </div>
-  </ul>
-
-
-
-
-</div>
   </div>
-</div>
-
-  </div>
-
-
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
-
 
 export default {
   name: "Dashboard",
@@ -259,18 +322,21 @@ export default {
       const id = document.getElementById("edit-id");
       const title = document.getElementById("edit-name");
       const state = document.getElementById("edit-state");
+      const priority = document.getElementById("edit-priority");
       const description = document.getElementById("edit-description");
       id.value = taskId;
       title.value = task.title;
       state.value = task.current_state;
+      priority.value = task.priority;
       description.value = task.description;
     };
     const saveTask = () => {
       const taskId = document.getElementById("edit-id").value;
       const title = document.getElementById("edit-name").value;
       const state = document.getElementById("edit-state").value;
+      const priority = document.getElementById("edit-priority").value;
       const description = document.getElementById("edit-description").value;
-      tasksStore.updateTask(taskId, title, state, description);
+      tasksStore.updateTask(taskId, title, state, priority, description);
     };
     const deleteTask = () => {
       tasksStore.deleteTask(taskId.value.value);
@@ -304,103 +370,99 @@ export default {
 </script>
 
 <style scoped>
-  .col-kanban {
-    width: 100%;
-    padding: 2rem;
-    margin: 0.5rem;
-    background-color: #ddd;
-    height: 300px;
-    overflow: auto;
-  }
-
-  .col-kanban h3{
-    color: var(--custom-color-secondary);
-    font-size: 22px;
-    text-transform: capitalize;
-  }
-
-  .col-kanban h3:before{
-    content: "» "
-  }
-  .col-kanban hr{
-    border-top: 3px solid var(--custom-color-secondary);
-    opacity: 0.4;
-    position: relative;
-    top: -18px;
-  }
-
-  ul li{
-    list-style:none;
-  }
-
-  ul{
-    padding: 0;
-  }
-
-  .card-footer, .card-header{
-    border-bottom: none;
-    background-color: var(--bs-card-bg);
+.col-kanban {
+  width: 100%;
+  padding: 2rem;
+  margin: 0.5rem;
+  background-color: #ddd;
+  height: 300px;
+  overflow: auto;
 }
 
-.card-footer{
-    border-top: 1px solid rgb(217, 217, 217);
+.col-kanban h3 {
+  color: var(--custom-color-secondary);
+  font-size: 22px;
+  text-transform: capitalize;
 }
 
-
-.card-title{
-    font-size: 16px;
+.col-kanban h3:before {
+  content: "» ";
+}
+.col-kanban hr {
+  border-top: 3px solid var(--custom-color-secondary);
+  opacity: 0.4;
+  position: relative;
+  top: -18px;
 }
 
-.card-footer{
-    padding: 8px 16px;
+ul li {
+  list-style: none;
 }
 
-.card-footer-item{
-    margin: 0 10px;
+ul {
+  padding: 0;
 }
 
-.badge{
-    opacity: 0.7;
+.card-footer,
+.card-header {
+  border-bottom: none;
+  background-color: var(--bs-card-bg);
 }
 
-.badge:hover{
-    opacity: 1;
-    transition: 0.5s ease-in-out 100ms
+.card-footer {
+  border-top: 1px solid rgb(217, 217, 217);
 }
 
-.category{
-    width: 80%;
+.card-title {
+  font-size: 16px;
 }
 
-.p-cat{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    border-radius: var(--custom-border-radius);
-    background-color: var(--bg-color-management);
-    color:#fff;
+.card-footer {
+  padding: 8px 16px;
 }
 
-.mr-auto{
-    margin-right: auto;
+.card-footer-item {
+  margin: 0 10px;
+}
+
+.badge {
+  opacity: 0.7;
+}
+
+.badge:hover {
+  opacity: 1;
+  transition: 0.5s ease-in-out 100ms;
+}
+
+.category {
+  width: 80%;
+}
+
+.p-cat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  border-radius: var(--custom-border-radius);
+  background-color: var(--bg-color-management);
+  color: #fff;
+}
+
+.mr-auto {
+  margin-right: auto;
 }
 
 .text-bg-category {
-    color: #000;
-    background-color: var(--bg-color-coding);
+  color: #000;
+  background-color: var(--bg-color-coding);
 }
 
 :deep(.fa-pen-to-square path) {
-   color: #fff;
+  color: #fff;
 }
 
 .form-check-input:checked {
-    background-color: #4e94fb;
-    border-color: #4e94fb;
+  background-color: #4e94fb;
+  border-color: #4e94fb;
 }
-
-
-
-
 </style>
