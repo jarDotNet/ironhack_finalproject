@@ -197,7 +197,7 @@ input {
    border: var(--custom-border);
    padding: 10px;
    font-size: 0.9rem;
-   background-color: #e0dede;
+   background-color: #eee;
    justify-content: center;
    color: var(--custom-color);
    margin: 10px auto;

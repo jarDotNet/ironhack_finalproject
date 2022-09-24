@@ -70,7 +70,7 @@ export default {
 .footer-signup{
     background: #eee;
     border-radius: 60% / 10%;
-    background: #eee;
+    background: #e0dede;
     position: absolute;
     bottom: 0;
     width: 100%;
