@@ -4,11 +4,11 @@
     <form @submit.prevent="handleSignup">
       <div>
         <label for="email">Email</label>
-        <input id="email" type="email" v-model="email" />
+        <input id="email" type="email" v-model="email" placeholder="E-mail" />
       </div>
       <div>
         <label for="password">Password</label>
-        <input id="password" type="password" v-model="password" />
+        <input id="password" type="password" v-model="password" placeholder="Password" />
       </div>
       <div>
         <button type="submit">Sign up</button>
