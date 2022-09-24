@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <h2>Sign up for an account</h2>
-    <form @submit.prevent="handleSignup">
+    <h2 class="mb-5">Sign Up</h2>
+    <form class="w-75" @submit.prevent="handleSignup">
       <div>
         <input id="email" type="email" v-model="email" placeholder="E-mail" />
       </div>
       <div>
         <input id="password" type="password" v-model="password" placeholder="Password" />
       </div>
-      <div>
-        <button type="submit">Sign up</button>
+      
+      <div class="d-grid">
+        <button type="submit" class="btn btn-custom btn-lg btn-block mb-5">Sign up</button>
       </div>
+
     </form>
-  </div>
 </template>
 
 <script>
@@ -50,3 +50,8 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+
+</style>
