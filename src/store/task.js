@@ -9,6 +9,18 @@ export default defineStore("tasks", {
   state: () => ({
     tasks: [],
   }),
+  getters: {
+    pendingTasks: (state) =>
+      state.tasks.filter((task) => task.current_state == TaskStateEnum.PENDING),
+    inProcessTasks: (state) =>
+      state.tasks.filter(
+        (task) => task.current_state == TaskStateEnum.IN_PROGRESS
+      ),
+    completedTasks: (state) =>
+      state.tasks.filter(
+        (task) => task.current_state == TaskStateEnum.COMPLETED
+      ),
+  },
   actions: {
     async fetchTasks() {
       alertStore.clear();
