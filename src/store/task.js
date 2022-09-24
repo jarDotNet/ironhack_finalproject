@@ -48,13 +48,14 @@ export default defineStore("tasks", {
         this.tasks.push(taskCreated[0]);
       }
     },
-    async updateTask(taskId, title, state, desc) {
+    async updateTask(taskId, title, state, priority, desc) {
       alertStore.clear();
       const { data, error } = await supabase
         .from("tasks")
         .update({
           title: title,
           current_state: state,
+          priority: priority,
           description: desc,
         })
         .match({ id: taskId });
