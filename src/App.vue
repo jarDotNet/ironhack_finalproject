@@ -1,5 +1,7 @@
 <template>
-  <div class="container" style="padding: 50px 0 100px 0">
+
+<div class="container p-3">
+  
     <nav v-if="isAuthenticated">
       <router-link to="/">Home</router-link> |
       <router-link to="/dashboard">Dashboard</router-link> |
@@ -9,7 +11,9 @@
     <Alert />
     <!-- <Auth v-else /> -->
     <router-view />
+    
   </div>
+
 </template>
 
 <script>
@@ -53,24 +57,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

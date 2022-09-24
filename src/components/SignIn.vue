@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <h2>Sign in to your account</h2>
-    <form @submit.prevent="handleSignin">
+    <h2 class="mb-5">Sign In</h2>
+    <form class="w-75" @submit.prevent="handleSignin">
+
       <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" v-model="email" />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" v-model="password" />
-      </div>
-      <div>
-        <button type="submit">Sign in</button>
-      </div>
+      <input id="email" type="email" v-model="email" placeholder="E-mail" />
+    </div>
+    <div>
+      <input id="password" type="password" v-model="password" placeholder="Password" />
+    </div>
+    
+    <div class="d-grid">
+      <button type="submit" class="btn btn-custom btn-lg btn-block mb-5">Sign in</button>
+    </div>
+
     </form>
-  </div>
 </template>
+
+
+
 
 <script>
 import { ref } from "vue";
