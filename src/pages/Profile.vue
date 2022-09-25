@@ -32,11 +32,11 @@
                   <label for="email">Email</label>
                   <input
                     id="email"
-                    type="text"
+                    type="email"
                     :value="store.user.email"
                     disabled
                     required
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    :pattern="ValidationConstants.EMAIL_PATTERN"
                   />
                 </div>
                 <div>
@@ -84,8 +84,12 @@
 import { supabase } from "../supabase";
 import { useUserStore } from "../store/user";
 import { onMounted, ref } from "vue";
+import ValidationConstants from "../enums/ValidationConstants";
 
 export default {
+  created() {
+    this.ValidationConstants = ValidationConstants;
+  },
   setup() {
     const loading = ref(true);
     const username = ref("");
