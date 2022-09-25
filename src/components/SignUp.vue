@@ -2,7 +2,14 @@
   <h2 class="mb-5">Sign Up</h2>
   <form class="w-75" @submit.prevent="handleSignup">
     <div>
-      <input id="email" type="email" v-model="email" placeholder="E-mail" />
+      <input
+        id="email"
+        type="email"
+        v-model="email"
+        placeholder="E-mail"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+      />
     </div>
     <div>
       <input
@@ -10,6 +17,7 @@
         type="password"
         v-model="password"
         placeholder="Password"
+        required
       />
     </div>
 
