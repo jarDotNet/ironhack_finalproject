@@ -8,7 +8,7 @@
         v-model="email"
         placeholder="E-mail"
         required
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        :pattern="ValidationConstants.EMAIL_PATTERN"
       />
     </div>
     <div>
@@ -32,8 +32,12 @@
 <script>
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
+import ValidationConstants from "../enums/ValidationConstants";
 
 export default {
+  created() {
+    this.ValidationConstants = ValidationConstants;
+  },
   setup() {
     const email = ref("");
     const password = ref("");
