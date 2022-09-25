@@ -8,7 +8,7 @@
               <form class="form-widget" @submit.prevent="updateProfile">
                 <div>
                   <img
-                    v-if="avatar_url !== ``"
+                    v-if="avatar_url !== ''"
                     :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
                     alt="Profile photo"
                     style="height: 200px"
@@ -35,6 +35,8 @@
                     type="text"
                     :value="store.user.email"
                     disabled
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   />
                 </div>
                 <div>
@@ -43,7 +45,12 @@
                 </div>
                 <div>
                   <label for="website">Website</label>
-                  <input id="website" type="website" v-model="website" />
+                  <input
+                    id="website"
+                    type="website"
+                    v-model="website"
+                    pattern="https?://.+"
+                  />
                 </div>
 
                 <div>
