@@ -34,30 +34,9 @@
       Mark Task as Pending
     </button>
     <br />
-    <input type="hidden" id="edit-id" />
-    <input
-      type="text"
-      id="edit-name"
-      class="inputField"
-      placeholder="Task name"
-    />
-    <select id="edit-state" class="form-control">
-      <option value="pending" style="color: black">Pending</option>
-      <option value="in-progress" style="color: black">In progress</option>
-      <option value="completed" style="color: black">Completed</option>
-    </select>
-    <select id="edit-priority" class="form-control">
-      <option value="Low" style="color: black">Low</option>
-      <option value="Medium" style="color: black">Medium</option>
-      <option value="High" style="color: black">High</option>
-    </select>
-    <textarea
-      id="edit-description"
-      rows="4"
-      cols="50"
-      style="color: black; width: 100%"
-    />
-    <button class="button primary block" @click="saveTask">Save Task</button>
+
+    <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
+
     <h2>Pending</h2>
     <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
       <li>
@@ -302,12 +281,17 @@
 import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
+import CardEdition from "../components/CardEdition.vue";
 
 export default {
   name: "Dashboard",
+  components: {
+    CardEdition,
+  },
   setup() {
     const taskId = ref(null);
     const taskName = ref(null);
+    const taskToEdit = ref(null);
     const tasksStore = useTasksStore();
     const store = useUserStore();
     const createNewTask = () => {
@@ -319,24 +303,16 @@ export default {
     };
     const editTask = (taskId) => {
       const task = tasksStore.tasks.find((t) => t.id === taskId);
-      const id = document.getElementById("edit-id");
-      const title = document.getElementById("edit-name");
-      const state = document.getElementById("edit-state");
-      const priority = document.getElementById("edit-priority");
-      const description = document.getElementById("edit-description");
-      id.value = taskId;
-      title.value = task.title;
-      state.value = task.current_state;
-      priority.value = task.priority;
-      description.value = task.description;
+      taskToEdit.value = task;
     };
-    const saveTask = () => {
-      const taskId = document.getElementById("edit-id").value;
-      const title = document.getElementById("edit-name").value;
-      const state = document.getElementById("edit-state").value;
-      const priority = document.getElementById("edit-priority").value;
-      const description = document.getElementById("edit-description").value;
-      tasksStore.updateTask(taskId, title, state, priority, description);
+    const saveTask = (task) => {
+      tasksStore.updateTask(
+        task.id,
+        task.title,
+        task.current_state,
+        task.priority,
+        task.description
+      );
     };
     const deleteTask = () => {
       tasksStore.deleteTask(taskId.value.value);
@@ -352,11 +328,13 @@ export default {
     };
     onMounted(() => {
       tasksStore.fetchTasks();
+      if (tasksStore.tasks.lengt > 0) taskToEdit.value = tasksStore.tasks[0];
     });
     return {
       taskId,
       taskName,
       tasksStore,
+      taskToEdit,
       createNewTask,
       editTask,
       saveTask,
@@ -388,6 +366,7 @@ export default {
 .col-kanban h3:before {
   content: "» ";
 }
+
 .col-kanban hr {
   border-top: 3px solid var(--custom-color-secondary);
   opacity: 0.4;
