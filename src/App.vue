@@ -1,7 +1,5 @@
 <template>
-
-<div class="container p-3">
-  
+  <div class="container p-3">
     <nav v-if="isAuthenticated">
       <router-link to="/">Home</router-link> |
       <router-link to="/dashboard">Dashboard</router-link> |
@@ -11,9 +9,7 @@
     <Alert />
     <!-- <Auth v-else /> -->
     <router-view />
-    
   </div>
-
 </template>
 
 <script>
@@ -31,7 +27,6 @@ export default {
     Alert,
     Profile,
   },
-
   setup() {
     const router = useRouter();
     const store = useUserStore();
