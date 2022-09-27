@@ -14,12 +14,15 @@
                     v-if="avatar_url !== ''"
                     :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
                     alt="Profile photo"
-                    style="height: 200px"
+                    style="width: 160px"
+                    class="w-100"
                   />
                   <img
                     v-else
-                    src="../assets/defaultAvatar.jpg"
+                    src="../assets/defaultAvatar.png"
                     alt="Profile photo"
+                    class="rounded-circle"
+                    style="width: 160px; height: 160px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
                   />
                   <label for="avatar">Update your profile photo</label>
                   <input
