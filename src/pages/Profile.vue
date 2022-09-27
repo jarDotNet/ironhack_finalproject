@@ -83,21 +83,26 @@
                     v-model="website"
                     pattern="https?://.+"
                   /></div>
-                
-                  <input
+
+                  <div class="d-flex flex-row mt-4 justify-content-between">
+
+                    <input
                     type="submit"
-                    class="button primary block"
+                    class="btn btn-custom btn-lg btn-block btn-profile w-75"
                     :value="loading ? 'Loading ...' : 'Update'"
                     :disabled="loading"
                   />
                 
                   <button
-                    class="button block"
+                    class="btn btn-custom-secondary btn-lg btn-block btn-profile"
                     @click="signOut"
                     :disabled="loading"
                   >
-                    Sign Out
+                  <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
                   </button>
+
+                  </div>
+                
 
                 </div>
                 
@@ -297,6 +302,9 @@ label{
   border-color: #573b8a;
 }
 
+.btn-profile{
+  margin: 0;
+}
 
 
 </style>
