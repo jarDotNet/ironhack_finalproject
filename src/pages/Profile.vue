@@ -28,7 +28,7 @@
                     style="width: 160px; height: 160px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
                   />
 
-                  <div class="position-absolute avatar-img" style="right:20px; top: 110px">
+                  <div class="position-absolute avatar-img" style="right:40px; top: 110px">
                     <input
                     type="file"
                     id="avatar"
@@ -225,12 +225,11 @@ export default {
   width: 40px;
   height: 40px;
   background: #3D2C5B;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .avatar-img label:hover {
-  background: #f1f1f1;
-  border-color: #d6d6d6;
+  background: #79629f;
 }
 .avatar-img input + label:after {
   content: "\f382";
