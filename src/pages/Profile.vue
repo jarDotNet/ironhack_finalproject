@@ -1,7 +1,7 @@
 <template>
-  <div class="vh-100">
+
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-10 col-xl-8 text-center">
 
           <div class="card my-4" style="border-radius: 15px">
@@ -47,7 +47,7 @@
                   image/jpeg"
                     @change="updatePicture()"
                   />
-                  <label for="avatar" class="change-avatar rounded-circle"></label>
+                  <label for="avatar" title="Update Avatar" class="change-avatar rounded-circle"></label>
                   </div>
 
                   </div>
@@ -97,6 +97,7 @@
                     class="btn btn-custom-secondary btn-lg btn-block btn-profile"
                     @click="signOut"
                     :disabled="loading"
+                    title="Log Out"
                   >
                   <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
                   </button>
@@ -112,7 +113,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>
