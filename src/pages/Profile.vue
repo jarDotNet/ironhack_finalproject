@@ -18,7 +18,7 @@
               <form class="form-widget d-flex flex-row" @submit.prevent="updateProfile">
 
 
-                <div class="col-md-4 col-xl-4 p-3 align-self-center">
+                <div class="col-md-4 col-xl-4 p-2 align-self-center">
 
                   <h2 class="text-dark mb-5 card-title-text">¡Hello!</h2>
 
@@ -56,7 +56,7 @@
               
                 </div>
                 
-                <div class="col-md-8 col-xl-8 p-5 align-self-center text-start">
+                <div class="col-md-8 col-xl-8 px-5 align-self-center text-start">
                   
                   <label for="username" class="label-text text-capitalize">Name</label>
                   <div class="inputfield">
@@ -84,7 +84,7 @@
                     pattern="https?://.+"
                   /></div>
 
-                  <div class="d-flex flex-row mt-4 justify-content-between">
+                  <div class="d-flex flex-row my-4 justify-content-between">
 
                     <input
                     type="submit"
