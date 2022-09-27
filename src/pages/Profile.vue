@@ -10,7 +10,10 @@
 
                 <div class="col-md-4 col-xl-4 p-3 align-self-center">
 
-                  <img
+                  <h1 class="text-dark mb-5">¡Hello!</h1>
+
+                  <div class="position-relative">
+                    <img
                     v-if="avatar_url !== ''"
                     :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
                     alt="Profile photo"
@@ -24,8 +27,9 @@
                     class="rounded-circle"
                     style="width: 160px; height: 160px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
                   />
-                  <label for="avatar">Update your profile photo</label>
-                  <input
+
+                  <div class="position-absolute avatar-img" style="right:20px; top: 110px">
+                    <input
                     type="file"
                     id="avatar"
                     name="avatar"
@@ -33,6 +37,12 @@
                   image/jpeg"
                     @change="updatePicture()"
                   />
+                  <label for="avatar" class="change-avatar rounded-circle"></label>
+                  </div>
+
+                  </div>
+                  
+                  
               
                 </div>
                 
@@ -207,4 +217,37 @@ export default {
 </script>
 
 <style scoped>
+  .avatar-img input{
+    display:none;
+  }
+
+  .avatar-img label {
+  width: 40px;
+  height: 40px;
+  background: #3D2C5B;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.avatar-img label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-img input + label:after {
+  content: "\f382";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 16px;
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  -webkit-animation:glide 0.9s ease-in-out alternate infinite;
+}
+
+@-webkit-keyframes glide {
+    from {left:0px; top:15px;}
+    to {left:0px; top:10px;}
+}
+
 </style>
