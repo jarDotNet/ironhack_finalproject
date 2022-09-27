@@ -2,11 +2,14 @@
   <div class="vh-100">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-12 col-xl-4">
+        <div class="col-md-10 col-xl-8 text-center">
           <div class="card" style="border-radius: 15px">
             <div class="card-body text-center">
-              <form class="form-widget" @submit.prevent="updateProfile">
-                <div>
+              <form class="form-widget d-flex flex-row" @submit.prevent="updateProfile">
+
+
+                <div class="col-md-4 col-xl-4 p-3 align-self-center">
+
                   <img
                     v-if="avatar_url !== ''"
                     :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
@@ -27,8 +30,11 @@
                   image/jpeg"
                     @change="updatePicture()"
                   />
+              
                 </div>
-                <div>
+                
+                <div class="col-md-8 col-xl-8 p-5 align-self-center">
+                
                   <label for="email">Email</label>
                   <input
                     id="email"
@@ -38,12 +44,10 @@
                     required
                     :pattern="ValidationConstants.EMAIL_PATTERN"
                   />
-                </div>
-                <div>
+                
                   <label for="username">Name</label>
                   <input id="username" type="text" v-model="username" />
-                </div>
-                <div>
+                
                   <label for="website">Website</label>
                   <input
                     id="website"
@@ -51,18 +55,14 @@
                     v-model="website"
                     pattern="https?://.+"
                   />
-                </div>
-
-                <div>
+                
                   <input
                     type="submit"
                     class="button primary block"
                     :value="loading ? 'Loading ...' : 'Update'"
                     :disabled="loading"
                   />
-                </div>
-
-                <div>
+                
                   <button
                     class="button block"
                     @click="signOut"
@@ -70,7 +70,9 @@
                   >
                     Sign Out
                   </button>
+
                 </div>
+                
               </form>
             </div>
           </div>
