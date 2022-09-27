@@ -20,7 +20,7 @@
 
                 <div class="col-md-4 col-xl-4 p-3 align-self-center">
 
-                  <h1 class="text-dark mb-5">¡Hello!</h1>
+                  <h2 class="text-dark mb-5 card-title-text">¡Hello!</h2>
 
                   <div class="position-relative">
                     <img
@@ -56,10 +56,16 @@
               
                 </div>
                 
-                <div class="col-md-8 col-xl-8 p-5 align-self-center">
+                <div class="col-md-8 col-xl-8 p-5 align-self-center text-start">
+                  
+                  <label for="username" class="label-text text-capitalize">Name</label>
+                  <div class="inputfield">
+                    <input id="username" type="text" v-model="username"  />
+                  </div>
                 
-                  <label for="email">Email</label>
-                  <input
+                  <label for="email" class="label-text text-capitalize">Email</label>
+                  <div class="inputfield">
+                    <input
                     id="email"
                     type="email"
                     :value="store.user.email"
@@ -67,17 +73,16 @@
                     required
                     :pattern="ValidationConstants.EMAIL_PATTERN"
                   />
+                  </div>
                 
-                  <label for="username">Name</label>
-                  <input id="username" type="text" v-model="username" />
-                
-                  <label for="website">Website</label>
+                  <label for="website" class="label-text text-capitalize">Website</label>
+                  <div class="inputfield">
                   <input
                     id="website"
                     type="website"
                     v-model="website"
                     pattern="https?://.+"
-                  />
+                  /></div>
                 
                   <input
                     type="submit"
@@ -258,6 +263,40 @@ export default {
     from {left:0px; top:15px;}
     to {left:0px; top:10px;}
 }
+
+.card-title-text{
+  position:relative;
+}
+.card-title-text::before{
+  content: '';
+  position:absolute;
+  height: 7px;
+  width: 38px;
+  bottom: -3px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #18153b, #443f72, #5c569b);
+}
+
+label{
+  font-size:20px;
+  font-weight:600px;
+}
+
+.inputfield input{
+  width:100%;
+  outline: none;
+  font-size:16px;
+  border:1px solid #ccc; 
+  color:#000;
+  border-bottom-width:4px;
+  border-right-width:5px;
+  transition: all 0.5s ease-in-out;
+}
+
+.inputfield input:focus{
+  border-color: #573b8a;
+}
+
 
 
 </style>
