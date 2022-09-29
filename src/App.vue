@@ -2,12 +2,31 @@
 
   <div class="background" :class="{ backgroundLog: isSignIn }">
 
-      <nav v-if="isAuthenticated">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/dashboard">Dashboard</router-link> |
-        <router-link to="/profile">Profile</router-link> |
-        <router-link to="/404">404</router-link>
-      </nav>
+    <nav v-if="isAuthenticated" class="navbar navbar-expand-lg navbar-light px-5">
+      <div class="mx-3">
+        <a class="navbar-brand font-weight-bold" href="/">TrackLab</a>
+      </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse mx-5" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <router-link to="/" class="nav-link text-white">Home</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/dashboard" class="nav-link text-white">Dashboard</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/profile" class="nav-link text-white">Profile</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/404" class="nav-link text-white">404</router-link>
+      </li>
+    </ul>
+  </div>
+</nav>
+
       <Alert />
       <!-- <Auth v-else /> -->
       <router-view />
@@ -60,7 +79,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .background {
   height: 100vh;
   width: 100vw;
@@ -84,5 +103,34 @@ export default {
   bottom: 0px;
   left: 0px;
 }
+
+.navbar{
+  background-color:#8585b0;
+}
+
+.navbar-brand{
+  font-weight: bold;
+  color: #fff;
+}
+
+nav li{
+  margin-right: 7px;
+  border-radius: 15px;
+}
+
+nav li:hover,
+ nav li.router-link-active,
+ nav li.router-link-exact-active {
+   background-color: #64648d;
+   border-radius: 15px;
+   cursor: pointer;
+   transition: all 0.5s linear;
+   box-shadow: inset 0 0 10px #56567e;
+ }
+
+ .router-link-active{
+  background-color: #64648d;
+   border-radius: 15px;
+ }
 
 </style>

@@ -9,7 +9,7 @@ body {
    --custom-panel-color: #fff;
    --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
    --custom-color: #fff;
-   --custom-color-brand: #573b8a;
+   --custom-color-brand: #3D2C5B;
    --custom-color-secondary: #090f32;
    --custon-color-tertiary: #3d5a80;
    --bg-color-management: #2f80ed;
@@ -456,4 +456,8 @@ button.primary,
    --bs-btn-disabled-color: #fff;
    --bs-btn-disabled-bg: #3D2C5B;
    --bs-btn-disabled-border-color: #3D2C5B;
+}
+
+.bg-primary-custom {
+   background-color: var(--custom-color-brand);
 }
