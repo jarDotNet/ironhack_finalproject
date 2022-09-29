@@ -1,7 +1,7 @@
 <template>
 
   <div class="background" :class="{ backgroundLog: isSignIn }">
-    <div class="container p-3">
+
       <nav v-if="isAuthenticated">
         <router-link to="/">Home</router-link> |
         <router-link to="/dashboard">Dashboard</router-link> |
@@ -11,7 +11,7 @@
       <Alert />
       <!-- <Auth v-else /> -->
       <router-view />
-    </div>
+
   </div>
 
 </template>
