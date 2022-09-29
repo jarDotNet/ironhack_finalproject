@@ -55,7 +55,7 @@ export default {
   align-self: center;
   padding: 0;
   position: relative;
-  background-color:#2d27332e;
+  background-color:#7f00ff1a;
   backdrop-filter:blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
