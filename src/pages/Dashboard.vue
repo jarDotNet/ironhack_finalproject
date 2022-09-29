@@ -370,7 +370,7 @@ export default {
       tasksStore.markAsInProgress(idTask.value);
     };
     const onDropPending = () => {
-      console.log("He entrado en drop pending");
+      console.log("He entrado en drop pendin");
       tasksStore.markAsPending(idTask.value);
     };
     const onDropCompleted = () => {
