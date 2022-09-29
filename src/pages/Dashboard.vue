@@ -72,205 +72,226 @@
         <div class="col rounded-5 col-kanban">
           <h3>Backlog</h3>
           <hr />
-
-          <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
-            <div class="card border border-0 mb-3" style="width: 100%">
-              <li>
-                <div class="card-header">
-                  <div class="d-flex justify-content-start">
-                    <div class="p-1 mr-auto">
-                      <span class="badge text-bg-category">Coding</span>
-                    </div>
-                    <div class="p-1">
-                      <small class="text-muted">#{{ task.id }}</small>
-                    </div>
-                    <div class="p-1">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="flexSwitchCheckDefault"
-                      />
+          <Container
+            drag-class="card-ghost"
+            drop-class="card-ghost-drop"
+            group-name="1"
+            :get-child-payload="getChildPayload(tasksStore.tasks)"
+            @drop="onDrop('pending', $event)"
+          >
+            <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
+              <div class="card border border-0 mb-3" style="width: 100%">
+                <li>
+                  <div class="card-header">
+                    <div class="d-flex justify-content-start">
+                      <div class="p-1 mr-auto">
+                        <span class="badge text-bg-category">Coding</span>
+                      </div>
+                      <div class="p-1">
+                        <small class="text-muted">#{{ task.id }}</small>
+                      </div>
+                      <div class="p-1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="card-body pt-1 pb-4">
-                  <h4 class="card-title">{{ task.title }}</h4>
-                </div>
+                  <div class="card-body pt-1 pb-4">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                  </div>
 
-                <div class="card-footer clearfix">
-                  <span class="float-left"
-                    ><p class="card-text">
-                      <small class="text-muted">21 Sept</small>
-                    </p></span
-                  >
-                  <span class="float-left ms-3"
-                    ><span class="badge text-bg-warning">Low</span></span
-                  >
-
-                  <span class="float-right"
-                    ><button
-                      type="button"
-                      class="btn btn-dark"
-                      style="
-                        --bs-btn-padding-y: 0.25rem;
-                        --bs-btn-padding-x: 0.5rem;
-                        --bs-btn-font-size: 0.75rem;
-                      "
-                      @click="editTask(task.id)"
+                  <div class="card-footer clearfix">
+                    <span class="float-left"
+                      ><p class="card-text">
+                        <small class="text-muted">21 Sept</small>
+                      </p></span
                     >
-                      <font-awesome-icon
-                        icon="fa-regular fa-pen-to-square"
-                      /></button
-                  ></span>
-                  <span class="float-right"
-                    ><img
-                      src="https://via.placeholder.com/28x28"
-                      alt="Generic placeholder image"
-                      class="img-fluid rounded-circle me-2"
-                      style="width: 28px"
-                  /></span>
-                </div>
-              </li>
-            </div>
-          </ul>
+                    <span class="float-left ms-3"
+                      ><span class="badge text-bg-warning">Low</span></span
+                    >
+
+                    <span class="float-right"
+                      ><button
+                        type="button"
+                        class="btn btn-dark"
+                        style="
+                          --bs-btn-padding-y: 0.25rem;
+                          --bs-btn-padding-x: 0.5rem;
+                          --bs-btn-font-size: 0.75rem;
+                        "
+                        @click="editTask(task.id)"
+                      >
+                        <font-awesome-icon
+                          icon="fa-regular fa-pen-to-square"
+                        /></button
+                    ></span>
+                    <span class="float-right"
+                      ><img
+                        src="https://via.placeholder.com/28x28"
+                        alt="Generic placeholder image"
+                        class="img-fluid rounded-circle me-2"
+                        style="width: 28px"
+                    /></span>
+                  </div>
+                </li>
+              </div>
+            </Draggable>
+          </Container>
         </div>
 
         <div class="col rounded-5 col-kanban">
           <h3>In Progress</h3>
           <hr />
-
-          <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
-            <div class="card border border-0 mb-3" style="width: 100%">
-              <li>
-                <div class="card-header">
-                  <div class="d-flex justify-content-start">
-                    <div class="p-1 mr-auto">
-                      <span class="badge text-bg-category">Coding</span>
-                    </div>
-                    <div class="p-1">
-                      <small class="text-muted">#{{ task.id }}</small>
-                    </div>
-                    <div class="p-1">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="flexSwitchCheckDefault"
-                      />
+          <Container
+            drag-class="card-ghost"
+            drop-class="card-ghost-drop"
+            group-name="1"
+            :get-child-payload="getChildPayload(tasksStore.tasks)"
+            @drop="onDrop('process', $event)"
+          >
+            <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
+              <div class="card border border-0 mb-3" style="width: 100%">
+                <li>
+                  <div class="card-header">
+                    <div class="d-flex justify-content-start">
+                      <div class="p-1 mr-auto">
+                        <span class="badge text-bg-category">Coding</span>
+                      </div>
+                      <div class="p-1">
+                        <small class="text-muted">#{{ task.id }}</small>
+                      </div>
+                      <div class="p-1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="card-body pt-1 pb-4">
-                  <h4 class="card-title">{{ task.title }}</h4>
-                </div>
+                  <div class="card-body pt-1 pb-4">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                  </div>
 
-                <div class="card-footer clearfix">
-                  <span class="float-left"
-                    ><p class="card-text">
-                      <small class="text-muted">21 Sept</small>
-                    </p></span
-                  >
-                  <span class="float-left ms-3"
-                    ><span class="badge text-bg-warning">Low</span></span
-                  >
-
-                  <span class="float-right"
-                    ><button
-                      type="button"
-                      class="btn btn-dark"
-                      style="
-                        --bs-btn-padding-y: 0.25rem;
-                        --bs-btn-padding-x: 0.5rem;
-                        --bs-btn-font-size: 0.75rem;
-                      "
-                      @click="editTask(task.id)"
+                  <div class="card-footer clearfix">
+                    <span class="float-left"
+                      ><p class="card-text">
+                        <small class="text-muted">21 Sept</small>
+                      </p></span
                     >
-                      <font-awesome-icon
-                        icon="fa-regular fa-pen-to-square"
-                      /></button
-                  ></span>
-                  <span class="float-right"
-                    ><img
-                      src="https://via.placeholder.com/28x28"
-                      alt="Generic placeholder image"
-                      class="img-fluid rounded-circle me-2"
-                      style="width: 28px"
-                  /></span>
-                </div>
-              </li>
-            </div>
-          </ul>
+                    <span class="float-left ms-3"
+                      ><span class="badge text-bg-warning">Low</span></span
+                    >
+
+                    <span class="float-right"
+                      ><button
+                        type="button"
+                        class="btn btn-dark"
+                        style="
+                          --bs-btn-padding-y: 0.25rem;
+                          --bs-btn-padding-x: 0.5rem;
+                          --bs-btn-font-size: 0.75rem;
+                        "
+                        @click="editTask(task.id)"
+                      >
+                        <font-awesome-icon
+                          icon="fa-regular fa-pen-to-square"
+                        /></button
+                    ></span>
+                    <span class="float-right"
+                      ><img
+                        src="https://via.placeholder.com/28x28"
+                        alt="Generic placeholder image"
+                        class="img-fluid rounded-circle me-2"
+                        style="width: 28px"
+                    /></span>
+                  </div>
+                </li>
+              </div>
+            </Draggable>
+          </Container>
         </div>
 
         <div class="col rounded-5 col-kanban">
           <h3>Done</h3>
           <hr />
-
-          <ul v-for="task in tasksStore.completedTasks" :key="task.id">
-            <div class="card border border-0 mb-3" style="width: 100%">
-              <li>
-                <div class="card-header">
-                  <div class="d-flex justify-content-start">
-                    <div class="p-1 mr-auto">
-                      <span class="badge text-bg-category">Coding</span>
-                    </div>
-                    <div class="p-1">
-                      <small class="text-muted">#{{ task.id }}</small>
-                    </div>
-                    <div class="p-1">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        role="switch"
-                        id="flexSwitchCheckDefault"
-                      />
+          <Container
+            drag-class="card-ghost"
+            drop-class="card-ghost-drop"
+            group-name="1"
+            :get-child-payload="getChildPayload(tasksStore.tasks)"
+            @drop="onDrop('completed', $event)"
+          >
+            <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
+              <div class="card border border-0 mb-3" style="width: 100%">
+                <li>
+                  <div class="card-header">
+                    <div class="d-flex justify-content-start">
+                      <div class="p-1 mr-auto">
+                        <span class="badge text-bg-category">Coding</span>
+                      </div>
+                      <div class="p-1">
+                        <small class="text-muted">#{{ task.id }}</small>
+                      </div>
+                      <div class="p-1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="card-body pt-1 pb-4">
-                  <h4 class="card-title">{{ task.title }}</h4>
-                </div>
+                  <div class="card-body pt-1 pb-4">
+                    <h4 class="card-title">{{ task.title }}</h4>
+                  </div>
 
-                <div class="card-footer clearfix">
-                  <span class="float-left"
-                    ><p class="card-text">
-                      <small class="text-muted">21 Sept</small>
-                    </p></span
-                  >
-                  <span class="float-left ms-3"
-                    ><span class="badge text-bg-warning">Low</span></span
-                  >
-
-                  <span class="float-right"
-                    ><button
-                      type="button"
-                      class="btn btn-dark"
-                      style="
-                        --bs-btn-padding-y: 0.25rem;
-                        --bs-btn-padding-x: 0.5rem;
-                        --bs-btn-font-size: 0.75rem;
-                      "
-                      @click="editTask(task.id)"
+                  <div class="card-footer clearfix">
+                    <span class="float-left"
+                      ><p class="card-text">
+                        <small class="text-muted">21 Sept</small>
+                      </p></span
                     >
-                      <font-awesome-icon
-                        icon="fa-regular fa-pen-to-square"
-                      /></button
-                  ></span>
-                  <span class="float-right"
-                    ><img
-                      src="https://via.placeholder.com/28x28"
-                      alt="Generic placeholder image"
-                      class="img-fluid rounded-circle me-2"
-                      style="width: 28px"
-                  /></span>
-                </div>
-              </li>
-            </div>
-          </ul>
+                    <span class="float-left ms-3"
+                      ><span class="badge text-bg-warning">Low</span></span
+                    >
+
+                    <span class="float-right"
+                      ><button
+                        type="button"
+                        class="btn btn-dark"
+                        style="
+                          --bs-btn-padding-y: 0.25rem;
+                          --bs-btn-padding-x: 0.5rem;
+                          --bs-btn-font-size: 0.75rem;
+                        "
+                        @click="editTask(task.id)"
+                      >
+                        <font-awesome-icon
+                          icon="fa-regular fa-pen-to-square"
+                        /></button
+                    ></span>
+                    <span class="float-right"
+                      ><img
+                        src="https://via.placeholder.com/28x28"
+                        alt="Generic placeholder image"
+                        class="img-fluid rounded-circle me-2"
+                        style="width: 28px"
+                    /></span>
+                  </div>
+                </li>
+              </div>
+            </Draggable>
+          </Container>
         </div>
       </div>
     </div>
@@ -282,11 +303,14 @@ import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
 import CardEdition from "../components/CardEdition.vue";
+import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
   name: "Dashboard",
   components: {
     CardEdition,
+    Container,
+    Draggable,
   },
   setup() {
     const taskId = ref(null);
@@ -326,6 +350,14 @@ export default {
     const markTaskAsPending = () => {
       tasksStore.markAsPending(taskId.value.value);
     };
+
+    const getChildPayload = (array, index) => {
+      return array[index];
+    };
+
+    const onDrop = (method, dropResult) => {
+      console.log(dropResult);
+    };
     onMounted(() => {
       tasksStore.fetchTasks();
       if (tasksStore.tasks.lengt > 0) taskToEdit.value = tasksStore.tasks[0];
@@ -342,6 +374,8 @@ export default {
       markTaskAsCompleted,
       markTaskAsInProgress,
       markTaskAsPending,
+      getChildPayload,
+      onDrop,
     };
   },
 };
@@ -443,5 +477,14 @@ ul {
 .form-check-input:checked {
   background-color: #4e94fb;
   border-color: #4e94fb;
+}
+
+.card-ghost {
+  transition: transform 0.18s ease;
+  transform: rotateZ(5deg);
+}
+.card-ghost-drop {
+  transition: transform 0.18s ease-in-out;
+  transform: rotateZ(0deg);
 }
 </style>
