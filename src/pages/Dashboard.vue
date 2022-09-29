@@ -367,6 +367,7 @@ export default {
 
     const onDrop = (method) => {
       const m = method;
+      console.log(m);
       if (m == "process") {
         tasksStore.markAsInProgress(idTask.value);
       } else if (m == "completed") {
