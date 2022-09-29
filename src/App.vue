@@ -84,4 +84,5 @@ export default {
   bottom: 0px;
   left: 0px;
 }
+
 </style>
