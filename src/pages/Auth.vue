@@ -53,6 +53,9 @@ export default {
   align-self: center;
   padding: 0;
   position: relative;
+  background-color:#2d27332e;
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .form-signup {
