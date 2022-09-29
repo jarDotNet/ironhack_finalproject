@@ -76,8 +76,9 @@
             drag-class="card-ghost"
             drop-class="card-ghost-drop"
             group-name="1"
-            :get-child-payload="getChildPayload(tasksStore.tasks)"
-            @drop="onDrop('pending', $event)"
+            :get-child-payload="getChildPayload1"
+            @drop="onDrop('pending')"
+            @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -151,8 +152,9 @@
             drag-class="card-ghost"
             drop-class="card-ghost-drop"
             group-name="1"
-            :get-child-payload="getChildPayload(tasksStore.tasks)"
-            @drop="onDrop('process', $event)"
+            :get-child-payload="getChildPayload2"
+            @drop="onDrop('process')"
+            @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -226,8 +228,9 @@
             drag-class="card-ghost"
             drop-class="card-ghost-drop"
             group-name="1"
-            :get-child-payload="getChildPayload(tasksStore.tasks)"
-            @drop="onDrop('completed', $event)"
+            :get-child-payload="getChildPayload3"
+            @drop="onDrop('completed')"
+            @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -318,6 +321,7 @@ export default {
     const taskToEdit = ref(null);
     const tasksStore = useTasksStore();
     const store = useUserStore();
+    const idTask = ref(null);
     const createNewTask = () => {
       const newTask = {
         user_id: store.user.id,
@@ -351,12 +355,29 @@ export default {
       tasksStore.markAsPending(taskId.value.value);
     };
 
-    const getChildPayload = (array, index) => {
-      return array[index];
+    const getChildPayload1 = (index) => {
+      return tasksStore.pendingTasks[index];
+    };
+    const getChildPayload2 = (index) => {
+      return tasksStore.inProcessTasks[index];
+    };
+    const getChildPayload3 = (index) => {
+      return tasksStore.completedTasks[index];
     };
 
-    const onDrop = (method, dropResult) => {
-      console.log(dropResult);
+    const onDrop = (method) => {
+      const m = method;
+      if (m == "process") {
+        tasksStore.markAsInProgress(idTask.value);
+      } else if (m == "completed") {
+        tasksStore.markAsCompleted(idTask.value);
+      } else {
+        tasksStore.markAsPending(idTask.value);
+      }
+    };
+    const handleDragStart = (dragResult) => {
+      const { payload } = dragResult;
+      idTask.value = payload.id;
     };
     onMounted(() => {
       tasksStore.fetchTasks();
@@ -367,6 +388,7 @@ export default {
       taskName,
       tasksStore,
       taskToEdit,
+      idTask,
       createNewTask,
       editTask,
       saveTask,
@@ -374,8 +396,11 @@ export default {
       markTaskAsCompleted,
       markTaskAsInProgress,
       markTaskAsPending,
-      getChildPayload,
+      getChildPayload1,
+      getChildPayload2,
+      getChildPayload3,
       onDrop,
+      handleDragStart,
     };
   },
 };
