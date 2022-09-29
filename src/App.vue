@@ -1,15 +1,19 @@
 <template>
-  <div class="container p-3">
-    <nav v-if="isAuthenticated">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/dashboard">Dashboard</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <router-link to="/404">404</router-link>
-    </nav>
-    <Alert />
-    <!-- <Auth v-else /> -->
-    <router-view />
+
+  <div class="background" :class="{ backgroundLog: isSignIn }">
+    <div class="container p-3">
+      <nav v-if="isAuthenticated">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/dashboard">Dashboard</router-link> |
+        <router-link to="/profile">Profile</router-link> |
+        <router-link to="/404">404</router-link>
+      </nav>
+      <Alert />
+      <!-- <Auth v-else /> -->
+      <router-view />
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -48,8 +52,36 @@ export default {
       isAuthenticated,
     };
   },
+  computed: {
+    isSignIn() {
+      return this.$route.path === '/auth';
+    }
+  }
 };
 </script>
 
 <style>
+  .background {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
+}
+
+.backgroundLog {
+  background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
+  position:relative;
+}
+
+.backgroundLog:before {
+  content: "";
+  background-image: url('./assets/background.png');
+  background-repeat: no-repeat;
+  background-size:cover;
+  opacity: 0.1;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
 </style>
