@@ -237,7 +237,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .avatar-img input{
     display:none;
   }
