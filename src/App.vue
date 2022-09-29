@@ -2,7 +2,7 @@
 
   <div class="background" :class="{ backgroundLog: isSignIn }">
 
-    <nav v-if="isAuthenticated" class="navbar navbar-expand-lg navbar-light px-5">
+    <nav v-if="isAuthenticated" class="navbar navbar-expand-lg navbar-light px-5 py-3">
       <div class="mx-3">
         <a class="navbar-brand font-weight-bold" href="/">TrackLab</a>
       </div>
@@ -105,7 +105,7 @@ export default {
 }
 
 .navbar{
-  background-color:#8585b0;
+  background-color:#9f8cae;
 }
 
 .navbar-brand{
@@ -116,20 +116,24 @@ export default {
 nav li{
   margin-right: 7px;
   border-radius: 15px;
+  text-transform: lowercase;
+}
+
+.nav-link{
+  padding: 2px var(--bs-nav-link-padding-x);
 }
 
 nav li:hover,
  nav li.router-link-active,
  nav li.router-link-exact-active {
-   background-color: #64648d;
+   background-color: #6d0abe;
    border-radius: 15px;
    cursor: pointer;
    transition: all 0.5s linear;
-   box-shadow: inset 0 0 10px #56567e;
  }
 
  .router-link-active{
-  background-color: #64648d;
+  background-color: #6d0abe;
    border-radius: 15px;
  }
 
