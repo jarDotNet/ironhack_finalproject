@@ -29,7 +29,9 @@
 
       <Alert />
       <!-- <Auth v-else /> -->
-      <router-view />
+      <div class="w-100 vh-100" style="background-color: #3D2C5B; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
+        <router-view />
+      </div>
 
   </div>
 
@@ -83,7 +85,7 @@ export default {
   .background {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
+  background: #9f8cae;
 }
 
 .backgroundLog {
