@@ -77,7 +77,7 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload1"
-            @drop="onDrop('pending')"
+            @drop="onDropPending"
             @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
@@ -153,7 +153,7 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload2"
-            @drop="onDrop('process')"
+            @drop="onDropInProgress"
             @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
@@ -229,7 +229,7 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload3"
-            @drop="onDrop('completed')"
+            @drop="onDropCompleted"
             @drag-start="handleDragStart($event)"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
@@ -365,16 +365,17 @@ export default {
       return tasksStore.completedTasks[index];
     };
 
-    const onDrop = (method) => {
-      const m = method;
-      console.log(m);
-      if (m == "process") {
-        tasksStore.markAsInProgress(idTask.value);
-      } else if (m == "completed") {
-        tasksStore.markAsCompleted(idTask.value);
-      } else {
-        tasksStore.markAsPending(idTask.value);
-      }
+    const onDropInProgress = () => {
+      console.log("He entrado en drop Progress");
+      tasksStore.markAsInProgress(idTask.value);
+    };
+    const onDropPending = () => {
+      console.log("He entrado en drop pending");
+      tasksStore.markAsPending(idTask.value);
+    };
+    const onDropCompleted = () => {
+      console.log("he entrado en dropCompleted");
+      tasksStore.markAsCompleted(idTask.value);
     };
     const handleDragStart = (dragResult) => {
       const { payload } = dragResult;
@@ -400,7 +401,9 @@ export default {
       getChildPayload1,
       getChildPayload2,
       getChildPayload3,
-      onDrop,
+      onDropInProgress,
+      onDropPending,
+      onDropCompleted,
       handleDragStart,
     };
   },
