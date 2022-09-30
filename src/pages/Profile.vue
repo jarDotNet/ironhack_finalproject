@@ -8,105 +8,100 @@
           Profile Settings
         </h1>
         
-        <div class="col-md-10 col-xl-8">
-          <div class="card settings-card" style="border-radius: 15px">
-            <div class="card-body text-center">
-              <form class="form-widget d-flex flex-row" @submit.prevent="updateProfile">
+              <div class="col-md-12 col-xl-10">
+                <form class="form-widget d-flex flex-column flex-lg-row justify-content-center mt-5" @submit.prevent="updateProfile">
 
+                  <div class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-center">
 
-                <div class="col-md-4 col-xl-4 p-2 align-self-center">
+                    <h2 class="text-dark mb-5 card-title-text">Hey, nice work!</h2>
 
-                  <h2 class="text-dark mb-5 card-title-text">¡Hello!</h2>
-
-                  <div class="position-relative">
+                    <div class="position-relative">
+                      <img
+                      v-if="avatar_url !== ''"
+                      :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+                      alt="Profile photo"
+                      class="rounded-circle"
+                      style="width: 250px; height: 250px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
+                    />
                     <img
-                    v-if="avatar_url !== ''"
-                    :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
-                    alt="Profile photo"
-                    style="width: 160px"
-                    class="w-100"
-                  />
-                  <img
-                    v-else
-                    src="../assets/defaultAvatar.png"
-                    alt="Profile photo"
-                    class="rounded-circle"
-                    style="width: 160px; height: 160px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
-                  />
+                      v-else
+                      src="../assets/defaultAvatar.png"
+                      alt="Profile photo"
+                      class="rounded-circle"
+                      style="width: 250px; height: 250px; padding: 1px; object-fit: contain; border: 7px solid #3d2c5b; box-shadow: #895cdbc2 1px 2px 6px 0px;"
+                    />
 
-                  <div class="position-absolute avatar-img" style="right:40px; top: 110px">
+                    <div class="position-absolute avatar-img" style="right:60px; top: 170px">
+                      <input
+                      type="file"
+                      id="avatar"
+                      name="avatar"
+                      accept="image/png,
+                    image/jpeg"
+                      @change="updatePicture()"
+                    />
+                    <label for="avatar" title="Update Avatar" class="change-avatar rounded-circle"></label>
+                    </div>
+
+                    </div>
+                    
+                    
+
+                  </div>
+
+                  <div class="col-sm-12 col-md-8 col-xl-8 px-5 align-self-center text-start">
+                    
+                    <label for="username" class="label-text text-capitalize">Name</label>
+                    <div class="inputfield">
+                      <input id="username" type="text" v-model="username"  />
+                    </div>
+
+                    <label for="email" class="label-text text-capitalize">Email</label>
+                    <div class="inputfield">
+                      <input
+                      id="email"
+                      type="email"
+                      :value="store.user.email"
+                      disabled
+                      required
+                      :pattern="ValidationConstants.EMAIL_PATTERN"
+                    />
+                    </div>
+
+                    <label for="website" class="label-text text-capitalize">Website</label>
+                    <div class="inputfield">
                     <input
-                    type="file"
-                    id="avatar"
-                    name="avatar"
-                    accept="image/png,
-                  image/jpeg"
-                    @change="updatePicture()"
-                  />
-                  <label for="avatar" title="Update Avatar" class="change-avatar rounded-circle"></label>
-                  </div>
+                      id="website"
+                      type="website"
+                      v-model="website"
+                      pattern="https?://.+"
+                    /></div>
+
+                    <div class="d-flex flex-row my-4 justify-content-between">
+
+                      <input
+                      type="submit"
+                      class="btn btn-custom btn-lg btn-block btn-profile w-75"
+                      :value="loading ? 'Loading ...' : 'Update profile'"
+                      :disabled="loading"
+                    />
+
+                    <button
+                      class="btn btn-custom-secondary btn-lg btn-block btn-profile"
+                      @click="signOut"
+                      :disabled="loading"
+                      title="Log Out"
+                    >
+                    <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
+                    </button>
+
+                    </div>
+
 
                   </div>
-                  
-                  
-              
-                </div>
-                
-                <div class="col-md-8 col-xl-8 px-5 align-self-center text-start">
-                  
-                  <label for="username" class="label-text text-capitalize">Name</label>
-                  <div class="inputfield">
-                    <input id="username" type="text" v-model="username"  />
-                  </div>
-                
-                  <label for="email" class="label-text text-capitalize">Email</label>
-                  <div class="inputfield">
-                    <input
-                    id="email"
-                    type="email"
-                    :value="store.user.email"
-                    disabled
-                    required
-                    :pattern="ValidationConstants.EMAIL_PATTERN"
-                  />
-                  </div>
-                
-                  <label for="website" class="label-text text-capitalize">Website</label>
-                  <div class="inputfield">
-                  <input
-                    id="website"
-                    type="website"
-                    v-model="website"
-                    pattern="https?://.+"
-                  /></div>
 
-                  <div class="d-flex flex-row my-4 justify-content-between">
-
-                    <input
-                    type="submit"
-                    class="btn btn-custom btn-lg btn-block btn-profile w-75"
-                    :value="loading ? 'Loading ...' : 'Update'"
-                    :disabled="loading"
-                  />
-                
-                  <button
-                    class="btn btn-custom-secondary btn-lg btn-block btn-profile"
-                    @click="signOut"
-                    :disabled="loading"
-                    title="Log Out"
-                  >
-                  <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
-                  </button>
-
-                  </div>
-                
-
-                </div>
-                
-              </form>
-            </div>
-          </div>
-        </div>
+                </form>
+              </div>
       </div>
     </div>
 
@@ -239,8 +234,8 @@ export default {
   }
 
   .avatar-img label {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   background: #3D2C5B;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -252,7 +247,7 @@ export default {
   content: "\f382";
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-  font-size: 16px;
+  font-size: 24px;
   color: #fff;
   position: absolute;
   top: 15px;
@@ -262,8 +257,8 @@ export default {
 }
 
 @-webkit-keyframes glide {
-    from {left:0px; top:15px;}
-    to {left:0px; top:10px;}
+    from {left:0px; top:18px;}
+    to {left:0px; top:12px;}
 }
 
 .card-title-text{
