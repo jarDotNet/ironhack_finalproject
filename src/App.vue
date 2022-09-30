@@ -29,7 +29,7 @@
 
       <Alert />
       <!-- <Auth v-else /> -->
-      <div class="vh-100" :class="{ cardBck: !isSignIn }" style="width: 98%; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
+      <div :class="{ cardBck: !isSignIn }" style="width: 98%; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
         <router-view />
       </div>
 
