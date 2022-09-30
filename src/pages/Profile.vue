@@ -2,18 +2,14 @@
 
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-10 col-xl-8 text-center">
 
-          <div class="card my-4" style="border-radius: 15px">
-            
-                <h1 class="m-3 text-dark" style="font-weight:bold">
-                  
-                    Profile Settings
-                </h1>
 
-          </div>
-
-          <div class="card" style="border-radius: 15px">
+        <h1 class="m-3 text-dark text-center" style="font-weight:bold">
+          Profile Settings
+        </h1>
+        
+        <div class="col-md-10 col-xl-8">
+          <div class="card settings-card" style="border-radius: 15px">
             <div class="card-body text-center">
               <form class="form-widget d-flex flex-row" @submit.prevent="updateProfile">
 
@@ -305,6 +301,10 @@ label{
 
 .btn-profile{
   margin: 0;
+}
+
+.settings-card{
+  border: none;
 }
 
 
