@@ -29,7 +29,7 @@
 
       <Alert />
       <!-- <Auth v-else /> -->
-      <div class="w-100 vh-100" style="background-color: #3D2C5B; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
+      <div class="vh-100" style="width: 98%; background-color: #fff; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
         <router-view />
       </div>
 
