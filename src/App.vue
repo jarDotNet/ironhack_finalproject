@@ -90,6 +90,7 @@ export default {
 .backgroundLog {
   background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
   position:relative;
+  min-height: 100vh;
 }
 
 .backgroundLog:before {
@@ -140,5 +141,6 @@ nav li:hover,
 
 .cardBck{
   background-color: #fff;
+  min-height: calc(100vh - 62px);
 }
 </style>

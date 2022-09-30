@@ -28,18 +28,18 @@ body {
 }
 
 body::-webkit-scrollbar {
-   width: 6px; 
- }
- 
- body::-webkit-scrollbar-track {
-   background: #3d2c5b; 
- }
- 
- body::-webkit-scrollbar-thumb {
+   width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+   background: #3d2c5b;
+}
+
+body::-webkit-scrollbar-thumb {
    background-color: #ccc;
    border-radius: 20px;
    margin: 5px solid #fff;
- }
+}
 
 * {
    color: var(--custom-color);
@@ -50,10 +50,10 @@ body::-webkit-scrollbar {
 html,
 body,
 #__next {
-   height: 100vh;
-   width: 100vw;
+   height: 100%;
+   width: 100%;
    overflow-x: hidden;
-   background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
+   background: #9f8cae;
 }
 
 /* Grid */
