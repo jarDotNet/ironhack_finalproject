@@ -83,7 +83,6 @@ export default {
 
 <style scoped>
   .background {
-  height: 100vh;
   width: 100vw;
   background: #9f8cae;
 }
