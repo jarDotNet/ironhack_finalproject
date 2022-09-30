@@ -29,7 +29,7 @@
 
       <Alert />
       <!-- <Auth v-else /> -->
-      <div class="vh-100" style="width: 98%; background-color: #fff; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
+      <div class="vh-100" :class="{ cardBck: !isSignIn }" style="width: 98%; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;">
         <router-view />
       </div>
 
@@ -139,4 +139,7 @@ nav li:hover,
    border-radius: 15px;
  }
 
+.cardBck{
+  background-color: #fff;
+}
 </style>
