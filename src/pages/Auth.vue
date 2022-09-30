@@ -1,7 +1,11 @@
 <template>
   <div class="main-container">
     <div class="main container-sm">
-      <img src="../assets/Setup Wizard-pana.svg" alt="woman using her computer" class="img-box">
+      <img
+        src="../assets/Setup Wizard-pana.svg"
+        alt="woman using her computer"
+        class="img-box"
+      />
       <div class="form-signup">
         <sign-up v-if="isSignUp" />
         <sign-in v-else />
@@ -43,7 +47,7 @@ export default {
 .main-container {
   display: flex;
   height: 90vh;
-  position:relative;
+  position: relative;
 }
 
 .main {
@@ -55,13 +59,13 @@ export default {
   align-self: center;
   padding: 0;
   position: relative;
-  background-color:#7f00ff1a;
-  backdrop-filter:blur(3px);
+  background-color: #7f00ff1a;
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
-.img-box{
-  background: url('./assets/Setup Wizard-pana.svg');
+.img-box {
+  background: url("./assets/Setup Wizard-pana.svg");
   width: 250px;
   position: absolute;
   top: -230px;
