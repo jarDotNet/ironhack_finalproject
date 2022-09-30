@@ -142,7 +142,7 @@
           <hr />
 
           <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
-            <div class="card border border-0 mb-3" style="width: 100%">
+            <div class="card border border-0 mb-3" style="width: 100%;">
               <li>
                 <div class="card-header">
                   <div class="d-flex justify-content-start">
@@ -355,6 +355,10 @@ export default {
   background-color: #ddd;
   height: 300px;
   overflow: auto;
+}
+
+.col-kanban::-webkit-scrollbar {
+  display: none;
 }
 
 .col-kanban h3 {
