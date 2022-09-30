@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
 
 html,
 body {
-   --custom-font-family: 'Raleway', sans-serif;
+   --custom-font-family: "Raleway", sans-serif;
    --custom-bg-color: #ececec;
    --custom-panel-color: #fff;
    --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
    --custom-color: #fff;
-   --custom-color-brand: #3D2C5B;
+   --custom-color-brand: #3d2c5b;
    --custom-color-secondary: #090f32;
    --custon-color-tertiary: #3d5a80;
    --bg-color-management: #2f80ed;
@@ -24,6 +24,8 @@ body {
    margin: 0;
    font-family: var(--custom-font-family);
    background-color: var(--custom-bg-color);
+   scroll-behavior: smooth;
+   overflow-y: hidden;
 }
 
 * {
@@ -440,11 +442,10 @@ button.primary,
    --bs-btn-disabled-border-color: #4b3360;
 }
 
-
 .btn-custom-secondary {
    --bs-btn-color: #fff;
-   --bs-btn-bg: #3D2C5B;
-   --bs-btn-border-color: #3D2C5B;
+   --bs-btn-bg: #3d2c5b;
+   --bs-btn-border-color: #3d2c5b;
    --bs-btn-hover-color: #fff;
    --bs-btn-hover-bg: #79629f;
    --bs-btn-hover-border-color: #79629f;
@@ -454,8 +455,8 @@ button.primary,
    --bs-btn-active-border-color: #41205c;
    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
    --bs-btn-disabled-color: #fff;
-   --bs-btn-disabled-bg: #3D2C5B;
-   --bs-btn-disabled-border-color: #3D2C5B;
+   --bs-btn-disabled-bg: #3d2c5b;
+   --bs-btn-disabled-border-color: #3d2c5b;
 }
 
 .bg-primary-custom {
