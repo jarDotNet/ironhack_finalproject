@@ -82,7 +82,7 @@ const router = useRouter();
   left: 0;
   right: 0;
   bottom: 0;
-  width: 1000px;
+  width: 100%;
   height: 100%;
   background-image: linear-gradient(
     0deg,
@@ -112,7 +112,7 @@ const router = useRouter();
   height: 100%;
   width: 1000px;
   max-width: 100%;
-  padding: 4rem;
+  padding: 5rem;
   text-transform: uppercase;
 }
 

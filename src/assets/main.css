@@ -128,6 +128,7 @@ body,
 }
 
 @media only screen and (min-width: 45em) {
+
    /* 720px */
    .col-1 {
       width: 4.33%;
@@ -334,26 +335,27 @@ button.primary,
    width: 100%;
 }
 
-.footer div > img {
+.footer div>img {
    height: 20px;
    margin-left: 10px;
 }
 
-.footer > div:first-child {
+.footer>div:first-child {
    display: none;
 }
 
-.footer > div:nth-child(2) {
+.footer>div:nth-child(2) {
    justify-content: left;
 }
 
 @media only screen and (min-width: 60em) {
+
    /* 960px */
-   .footer > div:first-child {
+   .footer>div:first-child {
       display: flex;
    }
 
-   .footer > div:nth-child(2) {
+   .footer>div:nth-child(2) {
       justify-content: center;
    }
 }
@@ -391,7 +393,7 @@ button.primary,
    gap: 20px;
 }
 
-.form-widget > .button {
+.form-widget>.button {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -405,7 +407,7 @@ button.primary,
    background-color: #2a2a2a;
 }
 
-.form-widget .button > .loader {
+.form-widget .button>.loader {
    width: 17px;
    animation: spin 1s linear infinite;
    filter: invert(1);
