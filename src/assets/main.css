@@ -477,3 +477,20 @@ button.primary,
 .bg-primary-custom {
    background-color: var(--custom-color-brand);
 }
+
+.btn-danger {
+   --bs-btn-color: #fff;
+   --bs-btn-bg: #ea8993;
+   --bs-btn-border-color: #ea8993;
+   --bs-btn-hover-color: #fff;
+   --bs-btn-hover-bg: #e37a85;
+   --bs-btn-hover-border-color: #e37a85;
+   --bs-btn-focus-shadow-rgb: 225, 83, 97;
+   --bs-btn-active-color: #fff;
+   --bs-btn-active-bg: #e26975;
+   --bs-btn-active-border-color: #e26975;
+   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+   --bs-btn-disabled-color: #fff;
+   --bs-btn-disabled-bg: #ea8993;
+   --bs-btn-disabled-border-color: #ea8993;
+}
