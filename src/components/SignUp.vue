@@ -20,6 +20,15 @@
         required
       />
     </div>
+    <div>
+      <input
+        id="passwordConfirmed"
+        type="password"
+        v-model="passwordConfirmed"
+        placeholder="Confirm password"
+        required
+      />
+    </div>
 
     <div class="d-grid">
       <button type="submit" class="btn btn-custom btn-lg btn-block mb-5">
@@ -42,20 +51,25 @@ export default {
     const email = ref("");
     const password = ref("");
     const store = useUserStore();
+    const passwordConfirmed = ref("");
 
     const handleSignup = async () => {
-      try {
-        // Use the Supabase provided method to handle the signup
-        /*store.signUp({
+      if (password.value === passwordConfirmed.value) {
+        try {
+          // Use the Supabase provided method to handle the signup
+          /*store.signUp({
           email: email.value,
           password: password.value,
         });*/
-        store.signUp({
-          email: email.value,
-          password: password.value,
-        });
-      } catch (error) {
-        alert(error.error_description || error.message);
+          store.signUp({
+            email: email.value,
+            password: password.value,
+          });
+        } catch (error) {
+          alert(error.error_description || error.message);
+        }
+      } else {
+        alert("Password don't match");
       }
     };
 
@@ -63,11 +77,11 @@ export default {
       email,
       password,
       store,
+      passwordConfirmed,
       handleSignup,
     };
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
