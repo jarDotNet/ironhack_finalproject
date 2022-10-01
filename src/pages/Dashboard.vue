@@ -21,7 +21,7 @@
    <!-- Button Add -->
    <button
       type="button"
-      class="btn btn-primary text-capitalize"
+      class="btn btn-custom-secondary text-capitalize"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
    >
@@ -43,9 +43,13 @@
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title text-dark" id="exampleModalLabel">
-                  Add a new task
-               </h5>
+               <h4
+                  class="modal-title m-3 text-dark text-center card-title-text"
+                  style="font-weight: bold"
+                  id="exampleModalLabel"
+               >
+                  Add a New Task
+               </h4>
                <button
                   type="button"
                   class="btn-close"
@@ -53,17 +57,24 @@
                   aria-label="Close"
                ></button>
             </div>
-            <div class="modal-body text-dark">
-               <input
-                  type="text"
-                  id="task-name"
-                  class="inputField"
-                  ref="taskName"
-                  placeholder="Enter task name"
-               />
-               <button class="button primary block" @click="createNewTask">
-                  New Task
-               </button>
+            <div class="modal-body text-dark w-75 m-auto pb-4">
+               <div class="inputfield">
+                  <input
+                     type="text"
+                     id="task-name"
+                     class="inputField"
+                     ref="taskName"
+                     placeholder="Enter task name"
+                  />
+               </div>
+               <div class="d-grid gap-2">
+                  <button
+                     class="btn btn-custom btn-lg btn-block btn-profile"
+                     @click="createNewTask"
+                  >
+                     Add Task
+                  </button>
+               </div>
             </div>
          </div>
       </div>
@@ -81,9 +92,13 @@
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title text-dark" id="exampleModalLabel">
-                  Edit a task
-               </h5>
+               <h4
+                  class="modal-title m-3 text-dark text-center card-title-text"
+                  style="font-weight: bold"
+                  id="exampleModalLabel"
+               >
+                  Modify Your Task
+               </h4>
                <button
                   type="button"
                   class="btn-close"
@@ -173,11 +188,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModal"
                                     @click="editTask(task.id)"
-                                    >
+                                 >
                                     <font-awesome-icon
                                        icon="fa-regular fa-pen-to-square"
-                                    /></button>
-                              <button
+                                    />
+                                 </button>
+                                 <button
                                     type="button"
                                     class="btn btn-danger"
                                     style="
@@ -186,8 +202,10 @@
                                        --bs-btn-font-size: 0.75rem;
                                     "
                                     @click="deleteTask(task.id)"
-                                    >
-                                    <font-awesome-icon icon="fa-solid fa-trash-can" /></button
+                                 >
+                                    <font-awesome-icon
+                                       icon="fa-solid fa-trash-can"
+                                    /></button
                               ></span>
                               <span class="float-right"
                                  ><img
@@ -272,11 +290,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModal"
                                     @click="editTask(task.id)"
-                                    >
+                                 >
                                     <font-awesome-icon
                                        icon="fa-regular fa-pen-to-square"
-                                    /></button>
-                              <button
+                                    />
+                                 </button>
+                                 <button
                                     type="button"
                                     class="btn btn-danger"
                                     style="
@@ -285,8 +304,10 @@
                                        --bs-btn-font-size: 0.75rem;
                                     "
                                     @click="deleteTask(task.id)"
-                                    >
-                                    <font-awesome-icon icon="fa-solid fa-trash-can" /></button
+                                 >
+                                    <font-awesome-icon
+                                       icon="fa-solid fa-trash-can"
+                                    /></button
                               ></span>
                               <span class="float-right"
                                  ><img
@@ -371,11 +392,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModal"
                                     @click="editTask(task.id)"
-                                    >
+                                 >
                                     <font-awesome-icon
                                        icon="fa-regular fa-pen-to-square"
-                                    /></button>
-                              <button
+                                    />
+                                 </button>
+                                 <button
                                     type="button"
                                     class="btn btn-danger"
                                     style="
@@ -384,8 +406,10 @@
                                        --bs-btn-font-size: 0.75rem;
                                     "
                                     @click="deleteTask(task.id)"
-                                    >
-                                    <font-awesome-icon icon="fa-solid fa-trash-can" /></button
+                                 >
+                                    <font-awesome-icon
+                                       icon="fa-solid fa-trash-can"
+                                    /></button
                               ></span>
                               <span class="float-right"
                                  ><img
@@ -607,7 +631,7 @@ ul {
    background-color: var(--bg-color-coding);
 }
 
-:deep(.fa-pen-to-square path) {
+:deep(path) {
    color: #fff;
 }
 
