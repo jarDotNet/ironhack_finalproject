@@ -383,7 +383,6 @@ export default {
 
       if (addedIndex !== null) {
         tasksStore.markAs(state, payload.id);
-        tasksStore.tasks.splice(addedIndex, 0, this.draggingTask.taskData);
       }
     };
 
