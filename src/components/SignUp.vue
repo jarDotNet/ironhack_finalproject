@@ -42,6 +42,9 @@
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
 import ValidationConstants from "../enums/ValidationConstants";
+import { useAlertStore } from "../store/alert";
+
+const alertStore = useAlertStore();
 
 export default {
   created() {
@@ -69,7 +72,7 @@ export default {
           alert(error.error_description || error.message);
         }
       } else {
-        alert("Password don't match");
+        alertStore.error("Password doesn't match, please try again");
       }
     };
 

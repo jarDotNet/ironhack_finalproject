@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
+import { useAlertStore } from "./alert";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -14,7 +15,9 @@ export const useUserStore = defineStore("user", {
     async signUp(email, password) {
       const { error } = await supabase.auth.signUp(email, password);
       if (error) throw error;
-      else alert("Check your email");
+      else {
+        alert("Check your email");
+      }
     },
     async singIn(email, password) {
       const { user, error } = await supabase.auth.signIn(email, password);
