@@ -3,7 +3,7 @@ import { supabase } from "../supabase";
 import { useAlertStore } from "./alert";
 import TaskStateEnum from "../enums/TaskStateEnum";
 
-const alert = useAlertStore();
+const alertStore = useAlertStore();
 
 export default defineStore("tasks", {
   state: () => ({
@@ -11,15 +11,17 @@ export default defineStore("tasks", {
   }),
   getters: {
     pendingTasks: (state) =>
-      state.tasks.filter((task) => task.current_state == TaskStateEnum.PENDING),
+      state.tasks
+        .filter((task) => task.current_state == TaskStateEnum.PENDING)
+        .sort((t1, t2) => t1.pos - t2.pos),
     inProcessTasks: (state) =>
-      state.tasks.filter(
-        (task) => task.current_state == TaskStateEnum.IN_PROGRESS
-      ),
+      state.tasks
+        .filter((task) => task.current_state == TaskStateEnum.IN_PROGRESS)
+        .sort((t1, t2) => t1.pos - t2.pos),
     completedTasks: (state) =>
-      state.tasks.filter(
-        (task) => task.current_state == TaskStateEnum.COMPLETED
-      ),
+      state.tasks
+        .filter((task) => task.current_state == TaskStateEnum.COMPLETED)
+        .sort((t1, t2) => t1.pos - t2.pos),
   },
   actions: {
     async fetchTasks() {
@@ -27,11 +29,12 @@ export default defineStore("tasks", {
       const { data: tasks, error } = await supabase
         .from("tasks")
         .select()
-        .order("id", { ascending: false });
+        .order("pos", { ascending: true });
       if (error) {
         console.log(error);
         alertStore.error();
       } else {
+        console.table(tasks);
         this.tasks = tasks;
       }
     },
@@ -83,11 +86,11 @@ export default defineStore("tasks", {
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
       }
     },
-    async markAs(state, taskId) {
+    async markAs(state, taskId, position) {
       alertStore.clear();
       const { data, error } = await supabase
         .from("tasks")
-        .update({ current_state: state })
+        .update({ current_state: state, pos: position })
         .match({ id: taskId });
       if (error) {
         console.log(error);
