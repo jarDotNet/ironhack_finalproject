@@ -230,9 +230,9 @@ export default {
 </script>
 
 <style>
-  .avatar-img input{
-    display:none;
-  }
+.avatar-img input {
+  display: none;
+}
 
   .avatar-img label {
   width: 60px;
@@ -246,7 +246,7 @@ export default {
 }
 .avatar-img input + label:after {
   content: "\f382";
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 24px;
   color: #fff;
@@ -254,7 +254,7 @@ export default {
   top: 15px;
   left: 0;
   right: 0;
-  -webkit-animation:glide 0.9s ease-in-out alternate infinite;
+  -webkit-animation: glide 0.9s ease-in-out alternate infinite;
 }
 
 @-webkit-keyframes glide {
@@ -262,12 +262,12 @@ export default {
     to {left:0px; top:12px;}
 }
 
-.card-title-text{
-  position:relative;
+.card-title-text {
+  position: relative;
 }
-.card-title-text::before{
-  content: '';
-  position:absolute;
+.card-title-text::before {
+  content: "";
+  position: absolute;
   height: 7px;
   width: 167px;
   bottom: -3px;
@@ -275,27 +275,27 @@ export default {
   background: linear-gradient(to right, #55485f, #7d6b8a, #9f8cae);
 }
 
-label{
-  font-size:20px;
-  font-weight:600px;
+label {
+  font-size: 20px;
+  font-weight: 600px;
 }
 
-.inputfield input{
-  width:100%;
+.inputfield input {
+  width: 100%;
   outline: none;
-  font-size:16px;
-  border:1px solid #ccc; 
-  color:#000;
-  border-bottom-width:4px;
-  border-right-width:5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  color: #000;
+  border-bottom-width: 4px;
+  border-right-width: 5px;
   transition: all 0.5s ease-in-out;
 }
 
-.inputfield input:focus{
+.inputfield input:focus {
   border-color: #573b8a;
 }
 
-.btn-profile{
+.btn-profile {
   margin: 0;
 }
 
