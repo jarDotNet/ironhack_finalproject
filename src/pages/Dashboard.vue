@@ -79,6 +79,7 @@
             :get-child-payload="getChildPayload1"
             :drop-placeholder="{ className: 'drop-placeholder' }"
             @drop="handleDrop(TaskStateEnum.PENDING, $event)"
+            style="border:height: 100px"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -155,6 +156,7 @@
             :get-child-payload="getChildPayload2"
             :drop-placeholder="{ className: 'drop-placeholder' }"
             @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
+            style="border:height: 100px"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -231,7 +233,7 @@
             :get-child-payload="getChildPayload3"
             :drop-placeholder="{ className: 'drop-placeholder' }"
             @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
-            style="border: solid 1px black"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -371,6 +373,7 @@ export default {
     };
 
     const handleDrop = (state, dropResult) => {
+      const { addedIndex, removedIndex, payload } = dropResult;
       if (removedIndex === addedIndex) return;
 
       if (addedIndex !== null) {
