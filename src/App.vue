@@ -89,5 +89,6 @@ export default {
   background-color: rgb(40, 69, 31);
   min-height: calc(100vh - 62px);
   width: 100vh;
+  position:relative;
 }
 </style>
