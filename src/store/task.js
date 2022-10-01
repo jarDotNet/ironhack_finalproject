@@ -3,7 +3,7 @@ import { supabase } from "../supabase";
 import { useAlertStore } from "./alert";
 import TaskStateEnum from "../enums/TaskStateEnum";
 
-const alertStore = useAlertStore();
+const alert = useAlertStore();
 
 export default defineStore("tasks", {
   state: () => ({
