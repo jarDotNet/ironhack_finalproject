@@ -4,7 +4,7 @@
       <div class="row d-flex justify-content-center align-items-center">
 
 
-        <h1 class="m-3 text-dark text-center" style="font-weight:bold">
+        <h1 class="m-3 text-dark text-center card-title-text" style="font-weight:bold">
           Profile Settings
         </h1>
         
@@ -13,7 +13,7 @@
 
                   <div class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-center">
 
-                    <h2 class="text-dark mb-5 card-title-text">Hey, nice work!</h2>
+                    <h2 class="text-dark m-4">Hey, nice work!</h2>
 
                     <div class="position-relative">
                       <img
@@ -82,7 +82,8 @@
                       <input
                       type="submit"
                       class="btn btn-custom btn-lg btn-block btn-profile w-75"
-                      :value="loading ? 'Loading ...' : 'Update profile'"
+                      style="margin-right:8px;"
+                      :value="loading ? 'Loading ...' : 'Update'"
                       :disabled="loading"
                     />
 
@@ -268,10 +269,10 @@ export default {
   content: '';
   position:absolute;
   height: 7px;
-  width: 38px;
+  width: 167px;
   bottom: -3px;
   border-radius: 5px;
-  background: linear-gradient(to right, #18153b, #443f72, #5c569b);
+  background: linear-gradient(to right, #55485f, #7d6b8a, #9f8cae);
 }
 
 label{
