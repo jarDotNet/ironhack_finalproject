@@ -306,39 +306,6 @@ export default {
   }
 }
 
-.card-title-text {
-  position: relative;
-}
-.card-title-text::before {
-  content: "";
-  position: absolute;
-  height: 7px;
-  width: 167px;
-  bottom: -3px;
-  border-radius: 5px;
-  background: linear-gradient(to right, #55485f, #7d6b8a, #9f8cae);
-}
-
-label {
-  font-size: 20px;
-  font-weight: 600px;
-}
-
-.inputfield input {
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  color: #000;
-  border-bottom-width: 4px;
-  border-right-width: 5px;
-  transition: all 0.5s ease-in-out;
-}
-
-.inputfield input:focus {
-  border-color: #573b8a;
-}
-
 .btn-profile {
   margin: 0;
 }
