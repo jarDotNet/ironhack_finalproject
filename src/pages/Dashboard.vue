@@ -116,7 +116,7 @@
       </div>
    </div>
 
-   <div class="container">
+   <div class="container-fluid h-100">
       <div class="text-left">
          <div class="row">
             <div class="col rounded-5 col-kanban">
@@ -135,7 +135,7 @@
                      v-for="task in tasksStore.pendingTasks"
                      :key="task.id"
                   >
-                     <div class="card border border-0 mb-3" style="width: 100%">
+                     <ul class="card border border-0 mb-3" style="width: 100%">
                         <li>
                            <div class="card-header">
                               <div class="d-flex justify-content-start">
@@ -216,7 +216,7 @@
                               /></span>
                            </div>
                         </li>
-                     </div>
+                     </ul>
                   </Draggable>
                </Container>
             </div>
@@ -237,7 +237,7 @@
                      v-for="task in tasksStore.inProcessTasks"
                      :key="task.id"
                   >
-                     <div class="card border border-0 mb-3" style="width: 100%">
+                     <ul class="card border border-0 mb-3" style="width: 100%">
                         <li>
                            <div class="card-header">
                               <div class="d-flex justify-content-start">
@@ -318,7 +318,7 @@
                               /></span>
                            </div>
                         </li>
-                     </div>
+                     </ul>
                   </Draggable>
                </Container>
             </div>
@@ -339,7 +339,7 @@
                      v-for="task in tasksStore.completedTasks"
                      :key="task.id"
                   >
-                     <div class="card border border-0 mb-3" style="width: 100%">
+                     <ul class="card border border-0 mb-3" style="width: 100%">
                         <li>
                            <div class="card-header">
                               <div class="d-flex justify-content-start">
@@ -420,7 +420,7 @@
                               /></span>
                            </div>
                         </li>
-                     </div>
+                     </ul>
                   </Draggable>
                </Container>
             </div>
@@ -544,7 +544,6 @@ export default {
    padding: 2rem;
    margin: 0.5rem;
    background-color: #ddd;
-   height: 300px;
    overflow: auto;
 }
 
@@ -651,5 +650,9 @@ ul {
 .drop-preview {
    background-color: rgba(blue);
    margin: 1rem 2rem 1rem 0.3rem;
+}
+
+.card ul li {
+   list-style: none;
 }
 </style>
