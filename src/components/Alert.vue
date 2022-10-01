@@ -1,6 +1,6 @@
 <template>
-  <div v-if="alert" class="container">
-    <div class="m-3">
+  <div v-if="alert" class="container mx-auto">
+    <div class="position-fixed m-3" style="right: 30px"> 
       <div class="alert alert-dismissable" :class="alert.type">
         {{ alert.message }}
         <button
@@ -9,6 +9,7 @@
           class="close"
           data-dismiss="alert"
           aria-label="Close"
+          style="padding: 3px"
         >
           <span aria-hidden="true">&times;</span>
         </button>

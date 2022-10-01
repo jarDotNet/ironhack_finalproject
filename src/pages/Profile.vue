@@ -1,125 +1,146 @@
 <template>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-md-10 col-xl-8 text-center">
-        <div class="card my-4" style="border-radius: 15px">
-          <h1 class="m-3 text-dark" style="font-weight: bold">
-            Profile Settings
-          </h1>
-        </div>
+      <h1
+        class="m-3 text-dark text-center card-title-text"
+        style="font-weight: bold"
+      >
+        Profile Settings
+      </h1>
 
-        <div class="card" style="border-radius: 15px">
-          <div class="card-body text-center">
-            <form
-              class="form-widget d-flex flex-row"
-              @submit.prevent="updateProfile"
-            >
-              <div class="col-md-4 col-xl-4 p-2 align-self-center">
-                <h2 class="text-dark mb-5 card-title-text">¡Hello!</h2>
+      <div class="col-md-12 col-xl-10">
+        <form
+          class="
+            form-widget
+            d-flex
+            flex-column flex-lg-row
+            justify-content-center
+            mt-5
+          "
+          @submit.prevent="updateProfile"
+        >
+          <div
+            class="
+              col-sm-12 col-md-4 col-xl-4
+              p-2
+              justify-content-center
+              text-center
+            "
+          >
+            <h2 class="text-dark m-4">Hey, nice work!</h2>
 
-                <div class="position-relative">
-                  <img
-                    v-if="avatar_url !== ''"
-                    :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
-                    alt="Profile photo"
-                    style="width: 160px"
-                    class="w-100"
-                  />
-                  <img
-                    v-else
-                    src="../assets/defaultAvatar.png"
-                    alt="Profile photo"
-                    class="rounded-circle"
-                    style="
-                      width: 160px;
-                      height: 160px;
-                      padding: 1px;
-                      object-fit: contain;
-                      border: 7px solid #3d2c5b;
-                      box-shadow: #895cdbc2 1px 2px 6px 0px;
-                    "
-                  />
+            <div class="position-relative">
+              <img
+                v-if="avatar_url !== ''"
+                :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+                alt="Profile photo"
+                class="rounded-circle"
+                style="
+                  width: 250px;
+                  height: 250px;
+                  padding: 1px;
+                  object-fit: contain;
+                  border: 7px solid #3d2c5b;
+                  box-shadow: #895cdbc2 1px 2px 6px 0px;
+                "
+              />
+              <img
+                v-else
+                src="../assets/defaultAvatar.png"
+                alt="Profile photo"
+                class="rounded-circle"
+                style="
+                  width: 250px;
+                  height: 250px;
+                  padding: 1px;
+                  object-fit: contain;
+                  border: 7px solid #3d2c5b;
+                  box-shadow: #895cdbc2 1px 2px 6px 0px;
+                "
+              />
 
-                  <div
-                    class="position-absolute avatar-img"
-                    style="right: 40px; top: 110px"
-                  >
-                    <input
-                      type="file"
-                      id="avatar"
-                      name="avatar"
-                      accept="image/png,
-                  image/jpeg"
-                      @change="updatePicture()"
-                    />
-                    <label
-                      for="avatar"
-                      title="Update Avatar"
-                      class="change-avatar rounded-circle"
-                    ></label>
-                  </div>
-                </div>
+              <div
+                class="position-absolute avatar-img"
+                style="right: 60px; top: 170px"
+              >
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  accept="image/png,
+                    image/jpeg"
+                  @change="updatePicture()"
+                />
+                <label
+                  for="avatar"
+                  title="Update Avatar"
+                  class="change-avatar rounded-circle"
+                ></label>
               </div>
-
-              <div class="col-md-8 col-xl-8 px-5 align-self-center text-start">
-                <label for="username" class="label-text text-capitalize"
-                  >Name</label
-                >
-                <div class="inputfield">
-                  <input id="username" type="text" v-model="username" />
-                </div>
-
-                <label for="email" class="label-text text-capitalize"
-                  >Email</label
-                >
-                <div class="inputfield">
-                  <input
-                    id="email"
-                    type="email"
-                    :value="store.user.email"
-                    disabled
-                    required
-                    :pattern="ValidationConstants.EMAIL_PATTERN"
-                  />
-                </div>
-
-                <label for="website" class="label-text text-capitalize"
-                  >Website</label
-                >
-                <div class="inputfield">
-                  <input
-                    id="website"
-                    type="website"
-                    v-model="website"
-                    pattern="https?://.+"
-                  />
-                </div>
-
-                <div class="d-flex flex-row my-4 justify-content-between">
-                  <input
-                    type="submit"
-                    class="btn btn-custom btn-lg btn-block btn-profile w-75"
-                    :value="loading ? 'Loading ...' : 'Update'"
-                    :disabled="loading"
-                  />
-
-                  <button
-                    class="
-                      btn btn-custom-secondary btn-lg btn-block btn-profile
-                    "
-                    @click="signOut"
-                    :disabled="loading"
-                    title="Log Out"
-                  >
-                    <font-awesome-icon
-                      icon="fa-solid fa-arrow-right-from-bracket"
-                    />
-                  </button>
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
+
+          <div
+            class="
+              col-sm-12 col-md-8 col-xl-8
+              px-5
+              align-self-center
+              text-start
+            "
+          >
+            <label for="username" class="label-text text-capitalize"
+              >Name</label
+            >
+            <div class="inputfield">
+              <input id="username" type="text" v-model="username" />
+            </div>
+
+            <label for="email" class="label-text text-capitalize">Email</label>
+            <div class="inputfield">
+              <input
+                id="email"
+                type="email"
+                :value="store.user.email"
+                disabled
+                required
+                :pattern="ValidationConstants.EMAIL_PATTERN"
+              />
+            </div>
+
+            <label for="website" class="label-text text-capitalize"
+              >Website</label
+            >
+            <div class="inputfield">
+              <input
+                id="website"
+                type="website"
+                v-model="website"
+                pattern="https?://.+"
+              />
+            </div>
+
+            <div class="d-flex flex-row my-4 justify-content-between">
+              <input
+                type="submit"
+                class="btn btn-custom btn-lg btn-block btn-profile w-75"
+                style="margin-right: 8px"
+                :value="loading ? 'Loading ...' : 'Update'"
+                :disabled="loading"
+              />
+
+              <button
+                class="btn btn-custom-secondary btn-lg btn-block btn-profile"
+                @click="signOut"
+                :disabled="loading"
+                title="Log Out"
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-arrow-right-from-bracket"
+                />
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -129,7 +150,7 @@
 import { supabase } from "../supabase";
 import { useUserStore } from "../store/user";
 import { onMounted, ref } from "vue";
-import ValidationConstants from "../enums/ValidationConstants";
+import ValidationConstants from "../utils/ValidationConstants";
 
 export default {
   created() {
@@ -252,8 +273,8 @@ export default {
 }
 
 .avatar-img label {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   background: #3d2c5b;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -265,7 +286,7 @@ export default {
   content: "\f382";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 16px;
+  font-size: 24px;
   color: #fff;
   position: absolute;
   top: 15px;
@@ -277,48 +298,19 @@ export default {
 @-webkit-keyframes glide {
   from {
     left: 0px;
-    top: 15px;
+    top: 18px;
   }
   to {
     left: 0px;
-    top: 10px;
+    top: 12px;
   }
-}
-
-.card-title-text {
-  position: relative;
-}
-.card-title-text::before {
-  content: "";
-  position: absolute;
-  height: 7px;
-  width: 38px;
-  bottom: -3px;
-  border-radius: 5px;
-  background: linear-gradient(to right, #18153b, #443f72, #5c569b);
-}
-
-label {
-  font-size: 20px;
-  font-weight: 600px;
-}
-
-.inputfield input {
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  color: #000;
-  border-bottom-width: 4px;
-  border-right-width: 5px;
-  transition: all 0.5s ease-in-out;
-}
-
-.inputfield input:focus {
-  border-color: #573b8a;
 }
 
 .btn-profile {
   margin: 0;
+}
+
+.settings-card {
+  border: none;
 }
 </style>

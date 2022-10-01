@@ -71,6 +71,7 @@ const router = useRouter();
   );
   background-size: auto 4px;
   z-index: 1;
+  border-radius: 32px 32px 0 0;
 }
 
 .overlay::before {

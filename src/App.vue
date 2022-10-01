@@ -1,18 +1,15 @@
 <template>
   <div class="background" :class="{ backgroundLog: isSignIn }">
     <Navbar :visible="isAuthenticated" />
-    <Alert />
     <!-- <Auth v-else /> -->
-    <div
-      class="w-100 vh-100"
-      style="
-        background-color: #3d2c5b;
-        border-top-left-radius: 2rem;
-        border-top-right-radius: 2rem;
-      "
+    <div 
+    :class="{ cardBck: !isSignIn, cardErr: isErr }" 
+    style="width: 98%; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;"
     >
-      <router-view />
+    <Alert />
+        <router-view />
     </div>
+
   </div>
 </template>
 
@@ -25,7 +22,6 @@ import Navbar from "./components/Navbar.vue";
 import Auth from "./components/Auth.vue";
 import Alert from "./components/Alert.vue";
 import Profile from "./pages/Profile.vue";
-
 export default {
   components: {
     Auth,
@@ -36,20 +32,16 @@ export default {
   setup() {
     const router = useRouter();
     const store = useUserStore();
-
     store.user = supabase.auth.user();
     supabase.auth.onAuthStateChange((_, session) => {
       store.user = session.user;
     });
-
     const isAuthenticated = computed(() => {
       return store.user !== null;
     });
-
     if (!isAuthenticated.value) {
       router.push("/auth");
     }
-
     return {
       isAuthenticated,
     };
@@ -57,6 +49,9 @@ export default {
   computed: {
     isSignIn() {
       return this.$route.path === "/auth";
+    },
+    isErr() {
+      return this.$route.path === "/404";
     },
   },
 };
@@ -68,12 +63,10 @@ export default {
   width: 100vw;
   background: #9f8cae;
 }
-
 .backgroundLog {
   background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
   position: relative;
 }
-
 .backgroundLog:before {
   content: "";
   background-image: url("./assets/background.png");
@@ -85,5 +78,17 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.cardBck{
+  background-color: #fff;
+  min-height: calc(100vh - 62px);
+}
+
+.cardErr{
+  background-color: rgb(40, 69, 31);
+  min-height: calc(100vh - 62px);
+  width: 100vh;
+  position:relative;
 }
 </style>
