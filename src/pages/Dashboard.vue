@@ -156,8 +156,9 @@ ________________________________________
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload1"
-            @drop="onDropPending"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="dropPlaceholderOptions"
+            @drop="handleDrop(TaskStateEnum.PENDING, $event)"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -234,8 +235,9 @@ ________________________________________
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload2"
-            @drop="onDropInProgress"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="dropPlaceholderOptions"
+            @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -313,8 +315,9 @@ ________________________________________
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload3"
-            @drop="onDropCompleted"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="dropPlaceholderOptions"
+            @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -392,6 +395,7 @@ import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
 import CardEdition from "../components/CardEdition.vue";
+import TaskStateEnum from "../enums/TaskStateEnum";
 import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
@@ -401,6 +405,9 @@ export default {
     Container,
     Draggable,
   },
+  created() {
+    this.TaskStateEnum = TaskStateEnum;
+  },
   setup() {
     const taskId = ref(null);
     const taskName = ref(null);
@@ -408,6 +415,11 @@ export default {
     const tasksStore = useTasksStore();
     const store = useUserStore();
     const idTask = ref(null);
+    const dropPlaceholderOptions = ref({
+      className: "drop-preview",
+      animationDuration: "150",
+      showOnTop: false,
+    });
     const createNewTask = () => {
       const newTask = {
         user_id: store.user.id,
@@ -432,13 +444,13 @@ export default {
       tasksStore.deleteTask(taskId.value.value);
     };
     const markTaskAsCompleted = () => {
-      tasksStore.markAsCompleted(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.COMPLETED, taskId.value.value);
     };
     const markTaskAsInProgress = () => {
-      tasksStore.markAsInProgress(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.IN_PROGRESS, taskId.value.value);
     };
     const markTaskAsPending = () => {
-      tasksStore.markAsPending(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.PENDING, taskId.value.value);
     };
 
     const getChildPayload1 = (index) => {
@@ -451,22 +463,15 @@ export default {
       return tasksStore.completedTasks[index];
     };
 
-    const onDropInProgress = () => {
-      console.log("He entrado en drop Progress");
-      tasksStore.markAsInProgress(idTask.value);
+    const handleDrop = (state, dropResult) => {
+      const { removedIndex, addedIndex, payload } = dropResult;
+      if (removedIndex === addedIndex) return;
+
+      if (addedIndex !== null) {
+        tasksStore.markAs(state, payload.id);
+      }
     };
-    const onDropPending = () => {
-      console.log("He entrado en drop pendin");
-      tasksStore.markAsPending(idTask.value);
-    };
-    const onDropCompleted = () => {
-      console.log("he entrado en dropCompleted");
-      tasksStore.markAsCompleted(idTask.value);
-    };
-    const handleDragStart = (dragResult) => {
-      const { payload } = dragResult;
-      idTask.value = payload.id;
-    };
+
     onMounted(() => {
       tasksStore.fetchTasks();
       if (tasksStore.tasks.lengt > 0) taskToEdit.value = tasksStore.tasks[0];
@@ -477,6 +482,7 @@ export default {
       tasksStore,
       taskToEdit,
       idTask,
+      dropPlaceholderOptions,
       createNewTask,
       editTask,
       saveTask,
@@ -487,10 +493,7 @@ export default {
       getChildPayload1,
       getChildPayload2,
       getChildPayload3,
-      onDropInProgress,
-      onDropPending,
-      onDropCompleted,
-      handleDragStart,
+      handleDrop,
     };
   },
 };
@@ -605,5 +608,9 @@ ul {
 .card-ghost-drop {
   transition: transform 0.18s ease-in-out;
   transform: rotateZ(0deg);
+}
+.drop-preview {
+  background-color: rgba(blue);
+  margin: 1rem 2rem 1rem 0.3rem;
 }
 </style>
