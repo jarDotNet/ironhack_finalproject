@@ -41,7 +41,7 @@
 <script>
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
-import ValidationConstants from "../enums/ValidationConstants";
+import ValidationConstants from "../utils/ValidationConstants";
 import { useAlertStore } from "../store/alert";
 
 const alertStore = useAlertStore();
