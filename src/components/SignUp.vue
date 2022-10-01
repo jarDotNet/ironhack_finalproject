@@ -32,7 +32,7 @@
 <script>
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
-import ValidationConstants from "../enums/ValidationConstants";
+import ValidationConstants from "../utils/ValidationConstants";
 
 export default {
   created() {
