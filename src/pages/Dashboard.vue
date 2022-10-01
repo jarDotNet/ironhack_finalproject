@@ -77,8 +77,8 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload1"
-            @drop="onDropPending"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="{ className: 'drop-placeholder' }"
+            @drop="handleDrop(TaskStateEnum.PENDING, $event)"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -153,8 +153,8 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload2"
-            @drop="onDropInProgress"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="{ className: 'drop-placeholder' }"
+            @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -229,8 +229,9 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload3"
-            @drop="onDropCompleted"
-            @drag-start="handleDragStart($event)"
+            :drop-placeholder="{ className: 'drop-placeholder' }"
+            @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
+            style="border: solid 1px black"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -306,6 +307,7 @@ import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
 import CardEdition from "../components/CardEdition.vue";
+import TaskStateEnum from "../enums/TaskStateEnum";
 import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
@@ -314,6 +316,9 @@ export default {
     CardEdition,
     Container,
     Draggable,
+  },
+  created() {
+    this.TaskStateEnum = TaskStateEnum;
   },
   setup() {
     const taskId = ref(null);
@@ -346,13 +351,13 @@ export default {
       tasksStore.deleteTask(taskId.value.value);
     };
     const markTaskAsCompleted = () => {
-      tasksStore.markAsCompleted(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.COMPLETED, taskId.value.value);
     };
     const markTaskAsInProgress = () => {
-      tasksStore.markAsInProgress(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.IN_PROGRESS, taskId.value.value);
     };
     const markTaskAsPending = () => {
-      tasksStore.markAsPending(taskId.value.value);
+      tasksStore.markAs(TaskStateEnum.PENDING, taskId.value.value);
     };
 
     const getChildPayload1 = (index) => {
@@ -365,22 +370,14 @@ export default {
       return tasksStore.completedTasks[index];
     };
 
-    const onDropInProgress = () => {
-      console.log("He entrado en drop Progress");
-      tasksStore.markAsInProgress(idTask.value);
+    const handleDrop = (state, dropResult) => {
+      if (removedIndex === addedIndex) return;
+
+      if (addedIndex !== null) {
+        tasksStore.markAs(state, payload.id);
+      }
     };
-    const onDropPending = () => {
-      console.log("He entrado en drop pendin");
-      tasksStore.markAsPending(idTask.value);
-    };
-    const onDropCompleted = () => {
-      console.log("he entrado en dropCompleted");
-      tasksStore.markAsCompleted(idTask.value);
-    };
-    const handleDragStart = (dragResult) => {
-      const { payload } = dragResult;
-      idTask.value = payload.id;
-    };
+
     onMounted(() => {
       tasksStore.fetchTasks();
       if (tasksStore.tasks.lengt > 0) taskToEdit.value = tasksStore.tasks[0];
@@ -401,10 +398,7 @@ export default {
       getChildPayload1,
       getChildPayload2,
       getChildPayload3,
-      onDropInProgress,
-      onDropPending,
-      onDropCompleted,
-      handleDragStart,
+      handleDrop,
     };
   },
 };
@@ -474,6 +468,14 @@ ul {
 .badge:hover {
   opacity: 1;
   transition: 0.5s ease-in-out 100ms;
+}
+
+.drop-placeholder {
+  background-color: rgba(170, 170, 170, 0.4);
+  padding: 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
 }
 
 .category {
