@@ -378,11 +378,12 @@ export default {
     };
 
     const handleDrop = (state, dropResult) => {
-      const { addedIndex, removedIndex, payload } = dropResult;
+      const { removedIndex, addedIndex, payload } = dropResult;
       if (removedIndex === addedIndex) return;
 
       if (addedIndex !== null) {
         tasksStore.markAs(state, payload.id);
+        tasksStore.tasks.splice(addedIndex, 0, this.draggingTask.taskData);
       }
     };
 
