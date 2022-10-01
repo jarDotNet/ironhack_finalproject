@@ -69,53 +69,6 @@
       </div>
    </div>
 
-   <!-- Button Delete Task -->
-   <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#deleteModal"
-   >
-      Delete Task
-   </button>
-
-   <!-- Modal Delete Task -->
-   <div
-      class="modal fade"
-      id="deleteModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-   >
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h5 class="modal-title text-dark" id="exampleModalLabel">
-                  Delete a task
-               </h5>
-               <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-               ></button>
-            </div>
-            <div class="modal-body text-dark">
-               <input
-                  type="text"
-                  id="task-id"
-                  class="inputField"
-                  ref="taskId"
-                  placeholder="Enter task Id"
-               />
-               <button class="btn btn-danger block" @click="deleteTask">
-                  Delete Task
-               </button>
-            </div>
-         </div>
-      </div>
-   </div>
-
    <!-- Modal Edit Task -->
 
    <div
