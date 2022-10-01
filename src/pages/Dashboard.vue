@@ -79,7 +79,7 @@
             :get-child-payload="getChildPayload1"
             :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-            style="border:height: 100px"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -156,7 +156,7 @@
             :get-child-payload="getChildPayload2"
             :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
-            style="border:height: 100px"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
