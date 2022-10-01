@@ -77,8 +77,9 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload1"
-            :drop-placeholder="{ className: 'drop-placeholder' }"
+            :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.PENDING, $event)"
+            style="border:height: 100px"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -153,8 +154,9 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload2"
-            :drop-placeholder="{ className: 'drop-placeholder' }"
+            :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
+            style="border:height: 100px"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -229,9 +231,9 @@
             drop-class="card-ghost-drop"
             group-name="1"
             :get-child-payload="getChildPayload3"
-            :drop-placeholder="{ className: 'drop-placeholder' }"
+            :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
-            style="border: solid 1px black"
+            style="height: 100px"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -327,6 +329,11 @@ export default {
     const tasksStore = useTasksStore();
     const store = useUserStore();
     const idTask = ref(null);
+    const dropPlaceholderOptions = ref({
+      className: "drop-preview",
+      animationDuration: "150",
+      showOnTop: false,
+    });
     const createNewTask = () => {
       const newTask = {
         user_id: store.user.id,
@@ -372,7 +379,6 @@ export default {
 
     const handleDrop = (state, dropResult) => {
       const { removedIndex, addedIndex, payload } = dropResult;
-
       if (removedIndex === addedIndex) return;
 
       if (addedIndex !== null) {
@@ -391,6 +397,7 @@ export default {
       tasksStore,
       taskToEdit,
       idTask,
+      dropPlaceholderOptions,
       createNewTask,
       editTask,
       saveTask,
@@ -473,14 +480,6 @@ ul {
   transition: 0.5s ease-in-out 100ms;
 }
 
-.drop-placeholder {
-  background-color: rgba(170, 170, 170, 0.4);
-  padding: 0.7rem;
-  border-radius: 6px;
-  margin-bottom: 0.6rem;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-}
-
 .category {
   width: 80%;
 }
@@ -520,5 +519,9 @@ ul {
 .card-ghost-drop {
   transition: transform 0.18s ease-in-out;
   transform: rotateZ(0deg);
+}
+.drop-preview {
+  background-color: rgba(blue);
+  margin: 1rem 2rem 1rem 0.3rem;
 }
 </style>
