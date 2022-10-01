@@ -83,43 +83,11 @@ export default defineStore("tasks", {
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
       }
     },
-    async markAsPending(taskId) {
+    async markAs(state, taskId) {
       alertStore.clear();
       const { data, error } = await supabase
         .from("tasks")
-        .update({ current_state: TaskStateEnum.PENDING })
-        .match({ id: taskId });
-      if (error) {
-        console.log(error);
-        alertStore.error();
-      } else {
-        alertStore.success(`Task ${taskId} state updated!`);
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
-      }
-    },
-    async markAsCompleted(taskId) {
-      alertStore.clear();
-      const { data, error } = await supabase
-        .from("tasks")
-        .update({ current_state: TaskStateEnum.COMPLETED })
-        .match({ id: taskId });
-      if (error) {
-        console.log(error);
-        alertStore.error();
-      } else {
-        alertStore.success(`Task ${taskId} state updated!`);
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
-      }
-    },
-    async markAsInProgress(taskId) {
-      alertStore.clear();
-      const { data, error } = await supabase
-        .from("tasks")
-        .update({ current_state: TaskStateEnum.IN_PROGRESS })
+        .update({ current_state: state })
         .match({ id: taskId });
       if (error) {
         console.log(error);
