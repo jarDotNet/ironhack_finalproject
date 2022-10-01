@@ -1,29 +1,7 @@
 <template>
   <div>
     <h1>To-do app</h1>
-    <input
-      type="text"
-      id="task-name"
-      class="inputField"
-      ref="taskName"
-      placeholder="Enter task name"
-    />
-    <button class="button primary block" @click="createNewTask">
-      New Task
-    </button>
-    <br />
-    <br />
-    <input
-      type="text"
-      id="task-id"
-      class="inputField"
-      ref="taskId"
-      placeholder="Enter task Id"
-    />
-    <button class="btn btn-danger block" @click="deleteTask">
-      Delete Task
-    </button>
-    <br />
+    
     <button class="btn btn-success block" @click="markTaskAsCompleted">
       Mark Task as Completed
     </button>
@@ -35,39 +13,140 @@
     </button>
     <br />
 
-    <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
-
-    <h2>Pending</h2>
-    <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
-      <li>
-        <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
-        <b>State:</b>
-        {{ task.current_state }}
-        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
-      </li>
-    </ul>
-    <h2>In Progress</h2>
-    <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
-      <li>
-        <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
-        <b>State:</b>
-        {{ task.current_state }}
-        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
-      </li>
-    </ul>
-    <h2>Completed</h2>
-    <ul v-for="task in tasksStore.completedTasks" :key="task.id">
-      <li>
-        <b>Id:</b> {{ task.id }} - <b>Title:</b> {{ task.title }} -
-        <b>State:</b>
-        {{ task.current_state }}
-        <button class="btn btn-light" @click="editTask(task.id)">Edit</button>
-      </li>
-    </ul>
   </div>
 
+
+A partir de aquí<br>
+________________________________________
+<br><br>
+
+   <!-- Button Add -->
+   <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+   >
+      New Task
+   </button>
+
+   <!-- Modal Add Task -->
+   <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title text-dark" id="exampleModalLabel">
+                  Add a new task
+               </h5>
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+               ></button>
+            </div>
+            <div class="modal-body text-dark">
+               <input
+                  type="text"
+                  id="task-name"
+                  class="inputField"
+                  ref="taskName"
+                  placeholder="Enter task name"
+               />
+               <button class="button primary block" @click="createNewTask">
+                  New Task
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   
+   <!-- Button Delete Task -->
+   <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#deleteModal"
+   >
+      Delete Task
+   </button>
+
+   <!-- Modal Delete Task -->
+   <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title text-dark" id="exampleModalLabel">
+                  Delete a task
+               </h5>
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+               ></button>
+            </div>
+            <div class="modal-body text-dark">
+              <input
+         type="text"
+         id="task-id"
+         class="inputField"
+         ref="taskId"
+         placeholder="Enter task Id"
+      />
+      <button class="btn btn-danger block" @click="deleteTask">
+         Delete Task
+      </button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+      <!-- Modal Edit Task -->
+
+      <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+   >
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title text-dark" id="exampleModalLabel">
+                  Edit a task
+               </h5>
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+               ></button>
+            </div>
+            <div class="modal-body text-dark">
+              <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
+            </div>
+         </div>
+      </div>
+   </div>
+
+
   <div class="container">
-    <div class="container text-left">
+    <div class="text-left">
       <div class="row">
         <div class="col rounded-5 col-kanban">
           <h3>Backlog</h3>
@@ -125,6 +204,8 @@
                           --bs-btn-padding-x: 0.5rem;
                           --bs-btn-font-size: 0.75rem;
                         "
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
                         @click="editTask(task.id)"
                       >
                         <font-awesome-icon
@@ -201,7 +282,10 @@
                           --bs-btn-padding-x: 0.5rem;
                           --bs-btn-font-size: 0.75rem;
                         "
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
                         @click="editTask(task.id)"
+                      >
                       >
                         <font-awesome-icon
                           icon="fa-regular fa-pen-to-square"
@@ -277,6 +361,8 @@
                           --bs-btn-padding-x: 0.5rem;
                           --bs-btn-font-size: 0.75rem;
                         "
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
                         @click="editTask(task.id)"
                       >
                         <font-awesome-icon
