@@ -1,49 +1,53 @@
 <template>
   <div class="background" :class="{ backgroundLog: isSignIn }">
-    <Navbar :visible="isAuthenticated" />
-    <!-- <Auth v-else /> -->
-    <div 
-    :class="{ cardBck: !isSignIn, cardErr: isErr }" 
-    style="width: 98%; margin: auto; border-top-left-radius: 2rem; border-top-right-radius: 2rem;"
+    <Navbar :visible="state.isAuthenticated" />
+    <div
+      :class="{ cardBck: !isSignIn, cardErr: isErr }"
+      style="
+        width: 98%;
+        margin: auto;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+      "
     >
-    <Alert />
-        <router-view />
+      <Alert />
+      <router-view />
     </div>
-
   </div>
 </template>
 
 <script>
-import { computed } from "vue";
+import { reactive, onUpdated } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "./supabase";
 import { useUserStore } from "./store/user";
 import Navbar from "./components/Navbar.vue";
-import Auth from "./components/Auth.vue";
 import Alert from "./components/Alert.vue";
-import Profile from "./pages/Profile.vue";
+
 export default {
   components: {
-    Auth,
     Navbar,
     Alert,
-    Profile,
   },
   setup() {
     const router = useRouter();
     const store = useUserStore();
-    store.user = supabase.auth.user();
-    supabase.auth.onAuthStateChange((_, session) => {
-      store.user = session.user;
+
+    const state = reactive({
+      isAuthenticated: false,
     });
-    const isAuthenticated = computed(() => {
-      return store.user !== null;
+
+    onUpdated(() => {
+      store.user = supabase.auth.user();
+      state.isAuthenticated = store.isAuthenticated;
+
+      if (!state.isAuthenticated) {
+        router.push("/auth");
+      }
     });
-    if (!isAuthenticated.value) {
-      router.push("/auth");
-    }
+
     return {
-      isAuthenticated,
+      state,
     };
   },
   computed: {
@@ -80,15 +84,15 @@ export default {
   left: 0px;
 }
 
-.cardBck{
+.cardBck {
   background-color: #fff;
   min-height: calc(100vh - 62px);
 }
 
-.cardErr{
+.cardErr {
   background-color: rgb(40, 69, 31);
   min-height: calc(100vh - 62px);
   width: 100vh;
-  position:relative;
+  position: relative;
 }
 </style>
