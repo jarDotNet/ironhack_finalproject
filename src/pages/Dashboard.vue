@@ -666,7 +666,7 @@ ul {
    padding: 0 15px 30px 15px;
    margin-bottom: 24px;
    border-radius: 0 0 15px 15px;
-   background: #f6f4f8;
+   background: #f5f4f8;
    vertical-align: top;
 }
 
@@ -678,7 +678,8 @@ ul {
    padding: 1rem;
    margin: 0 -1rem;
    color: #fff;
-   background: #9f8cae;
+   background: #635e94ed;
+   font-size:1em;
 }
 
 .board-tasks {

@@ -1,5 +1,5 @@
 <template>
-  <h2 class="mb-5">Sign In</h2>
+  <h2 class="mb-5 text-white">Sign In</h2>
   <form class="w-75" @submit.prevent="handleSignin">
     <div>
       <input
