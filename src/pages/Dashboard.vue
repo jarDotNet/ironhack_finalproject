@@ -107,6 +107,28 @@
          </button>
       </div>
 
+      <div class="row">
+         <div class="col-12">
+            <div class="board">
+               <div class="board-col">
+                  <h3 class="mt-0 board-header backlog">Backlog</h3>
+               </div>
+               <div class="board-col">
+                  <h3 class="mt-0 board-header in-progress">In Progress</h3>
+               </div>
+               <div class="board-col">
+                  <h3 class="mt-0 board-header done">Done</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="row d-flex gap-2 justify-content-between">
+         <div class="col" style="min-width: 350px">Columna 1</div>
+         <div class="col" style="min-width: 350px">Columna 2</div>
+         <div class="col" style="min-width: 350px">Columna 3</div>
+      </div>
+
       <div class="text-left">
          <div class="row">
             <div class="col rounded-5 col-kanban">
@@ -650,5 +672,53 @@ ul {
 .drop-preview {
    background-color: rgba(blue);
    margin: 1rem 2rem 1rem 0.3rem;
+}
+
+.board {
+   display: block;
+   overflow-x: auto;
+}
+
+.board-col {
+   display: inline-block;
+   width: 24em;
+   padding: 0 15px 15px 15px;
+   margin-bottom: 24px;
+   border-radius: 0.25rem;
+   border: 1px solid #ccc;
+}
+
+.board-col:not(:last-child) {
+   margin-right: 2em;
+}
+
+.board-header {
+   padding: 1rem;
+   margin: 0 -1rem;
+   color: #fff;
+}
+
+.backlog {
+   background: linear-gradient(
+      90deg,
+      rgba(159, 140, 174, 1) 0%,
+      rgba(142, 109, 168, 1) 100%
+   );
+}
+
+.in-progress {
+   background: linear-gradient(
+      90deg,
+      rgba(142, 109, 168, 1) 0%,
+      rgba(133, 89, 167, 1) 100%
+   );
+}
+
+.done {
+   background: linear-gradient(
+      90deg,
+      rgba(133, 89, 167, 1) 0%,
+      rgba(112, 67, 147, 1) 100%
+   );
 }
 </style>
