@@ -34,7 +34,6 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
-        console.table(tasks);
         this.tasks = tasks;
       }
     },

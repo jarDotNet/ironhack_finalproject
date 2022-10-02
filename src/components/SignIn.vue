@@ -29,11 +29,9 @@
   </form>
 </template>
 
-
-
-
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useUserStore } from "../store/user";
 import ValidationConstants from "../utils/ValidationConstants";
 
@@ -44,15 +42,18 @@ export default {
   setup() {
     const email = ref("");
     const password = ref("");
+    const router = useRouter();
     const store = useUserStore();
 
     const handleSignin = async () => {
       try {
         // Use the Supabase provided method to handle the signin
-        store.singIn({
+        await store.singIn({
           email: email.value,
           password: password.value,
         });
+
+        router.push("/dashboard");
       } catch (error) {
         alert(error.error_description || error.message);
       }

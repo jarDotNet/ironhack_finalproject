@@ -2,10 +2,6 @@ import TaskPositionEnum from "../enums/TaskPositionEnum";
 
 const seed = 32000;
 
-// export const CardPosition = {
-// export default CardPosition = {
-//   methods: {
-//     ChangePos(tasks, pos) {
 export const cardPosition = (tasks, pos) => {
   if (tasks.length === 0) {
     return seed;
@@ -28,8 +24,6 @@ export const cardPosition = (tasks, pos) => {
   }
 
   return (firstItem.pos + secondItem.pos) / 2;
-  //     },
-  //   },
 };
 
 export default {

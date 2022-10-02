@@ -41,10 +41,8 @@
 <script>
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
-import ValidationConstants from "../utils/ValidationConstants";
 import { useAlertStore } from "../store/alert";
-
-const alertStore = useAlertStore();
+import ValidationConstants from "../utils/ValidationConstants";
 
 export default {
   created() {
@@ -55,16 +53,13 @@ export default {
     const password = ref("");
     const store = useUserStore();
     const passwordConfirmed = ref("");
+    const alertStore = useAlertStore();
 
     const handleSignup = async () => {
       if (password.value === passwordConfirmed.value) {
         try {
           // Use the Supabase provided method to handle the signup
-          /*store.signUp({
-          email: email.value,
-          password: password.value,
-        });*/
-          store.signUp({
+          await store.signUp({
             email: email.value,
             password: password.value,
           });
