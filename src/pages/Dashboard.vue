@@ -1,36 +1,5 @@
 <template>
-  <div>
-    <h1>To-do app</h1>
-
-    <button class="btn btn-success block" @click="markTaskAsCompleted">
-      Mark Task as Completed
-    </button>
-    <button class="btn btn-secondary block" @click="markTaskAsInProgress">
-      Mark Task as In Progress
-    </button>
-    <button class="btn btn-info block" @click="markTaskAsPending">
-      Mark Task as Pending
-    </button>
-    <br />
-  </div>
-
-  A partir de aquí<br />
-  ________________________________________
-  <br /><br />
-
-  <!-- Button Add -->
-  <button
-    type="button"
-    class="btn btn-custom-secondary text-capitalize"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-  >
-    <font-awesome-icon
-      icon="fa-solid fa-circle-plus"
-      style="margin-right: 8px"
-    />
-    New Task
-  </button>
+  <h1 class="text-center">To-do app</h1>
 
   <!-- Modal Add Task -->
   <div
@@ -114,6 +83,20 @@
   </div>
 
   <div class="container">
+    <!-- Button Add -->
+    <button
+      type="button"
+      class="btn btn-custom-secondary text-capitalize"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      <font-awesome-icon
+        icon="fa-solid fa-circle-plus"
+        style="margin-right: 8px"
+      />
+      New Task
+    </button>
+
     <div class="text-left">
       <div class="row">
         <div class="col rounded-5 col-kanban">
@@ -126,7 +109,7 @@
             :get-child-payload="getChildPayload1"
             :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-            style="height: 100px"
+            style="height: 300px"
           >
             <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -217,7 +200,7 @@
             :get-child-payload="getChildPayload2"
             :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
-            style="height: 100px"
+            style="height: 300px"
           >
             <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -308,7 +291,7 @@
             :get-child-payload="getChildPayload3"
             :drop-placeholder="dropPlaceholderOptions"
             @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
-            style="height: 100px"
+            style="height: 300px"
           >
             <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
               <div class="card border border-0 mb-3" style="width: 100%">
@@ -531,7 +514,7 @@ export default {
   padding: 2rem;
   margin: 0.5rem;
   background-color: #ddd;
-  height: 300px;
+  height: 80vh;
   overflow: auto;
 }
 
