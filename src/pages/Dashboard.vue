@@ -127,90 +127,85 @@
                            v-for="task in tasksStore.pendingTasks"
                            :key="task.id"
                         >
-                           <div
-                              class="card border border-0 mb-3"
-                              style="width: 100%"
-                           >
-                                 <div class="card-header">
-                                    <div class="d-flex justify-content-start">
-                                       <div class="p-1 mr-auto">
-                                          <span class="badge text-bg-category"
-                                             >Coding</span
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <small class="text-muted"
-                                             >#{{ task.id }}</small
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <input
-                                             class="form-check-input"
-                                             type="checkbox"
-                                             role="switch"
-                                             id="flexSwitchCheckDefault"
-                                          />
-                                       </div>
+                           <div class="card border my-3" style="width: 100%">
+                              <div class="card-header">
+                                 <div class="d-flex justify-content-start">
+                                    <div class="p-1 mr-auto">
+                                       <span class="badge text-bg-category"
+                                          >Coding</span
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <small class="text-muted"
+                                          >#{{ task.id }}</small
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <input
+                                          class="form-check-input"
+                                          type="checkbox"
+                                          role="switch"
+                                          id="flexSwitchCheckDefault"
+                                       />
                                     </div>
                                  </div>
+                              </div>
 
-                                 <div class="card-body pt-1 pb-4">
-                                    <h4 class="card-title">{{ task.title }}</h4>
-                                 </div>
+                              <div class="card-body pt-1 pb-4">
+                                 <h4 class="card-title">{{ task.title }}</h4>
+                              </div>
 
-                                 <div class="card-footer clearfix">
-                                    <span class="float-left"
-                                       ><p class="card-text">
-                                          <small class="text-muted"
-                                             >21 Sept</small
-                                          >
-                                       </p></span
+                              <div class="card-footer clearfix">
+                                 <span class="float-left"
+                                    ><p class="card-text">
+                                       <small class="text-muted">21 Sept</small>
+                                    </p></span
+                                 >
+                                 <span class="float-left ms-3"
+                                    ><span class="badge text-bg-warning"
+                                       >Low</span
+                                    ></span
+                                 >
+
+                                 <span class="float-right d-flex gap-1"
+                                    ><button
+                                       type="button"
+                                       class="btn btn-dark"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#editModal"
+                                       @click="editTask(task.id)"
                                     >
-                                    <span class="float-left ms-3"
-                                       ><span class="badge text-bg-warning"
-                                          >Low</span
-                                       ></span
+                                       <font-awesome-icon
+                                          icon="fa-regular fa-pen-to-square"
+                                       />
+                                    </button>
+                                    <button
+                                       type="button"
+                                       class="btn btn-danger"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       @click="deleteTask(task.id)"
                                     >
-
-                                    <span class="float-right d-flex gap-1"
-                                       ><button
-                                          type="button"
-                                          class="btn btn-dark"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#editModal"
-                                          @click="editTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-regular fa-pen-to-square"
-                                          />
-                                       </button>
-                                       <button
-                                          type="button"
-                                          class="btn btn-danger"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          @click="deleteTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-solid fa-trash-can"
-                                          /></button
-                                    ></span>
-                                    <span class="float-right"
-                                       ><img
-                                          src="https://via.placeholder.com/28x28"
-                                          alt="Generic placeholder image"
-                                          class="img-fluid rounded-circle me-2"
-                                          style="width: 28px"
-                                    /></span>
-                                 </div>
+                                       <font-awesome-icon
+                                          icon="fa-solid fa-trash-can"
+                                       /></button
+                                 ></span>
+                                 <span class="float-right"
+                                    ><img
+                                       src="https://via.placeholder.com/28x28"
+                                       alt="Generic placeholder image"
+                                       class="img-fluid rounded-circle me-2"
+                                       style="width: 28px"
+                                 /></span>
+                              </div>
                            </div>
                         </Draggable>
                      </Container>
@@ -234,90 +229,85 @@
                            v-for="task in tasksStore.inProcessTasks"
                            :key="task.id"
                         >
-                           <div
-                              class="card border border-0 mb-3"
-                              style="width: 100%"
-                           >
-                                 <div class="card-header">
-                                    <div class="d-flex justify-content-start">
-                                       <div class="p-1 mr-auto">
-                                          <span class="badge text-bg-category"
-                                             >Coding</span
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <small class="text-muted"
-                                             >#{{ task.id }}</small
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <input
-                                             class="form-check-input"
-                                             type="checkbox"
-                                             role="switch"
-                                             id="flexSwitchCheckDefault"
-                                          />
-                                       </div>
+                           <div class="card border my-3" style="width: 100%">
+                              <div class="card-header">
+                                 <div class="d-flex justify-content-start">
+                                    <div class="p-1 mr-auto">
+                                       <span class="badge text-bg-category"
+                                          >Coding</span
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <small class="text-muted"
+                                          >#{{ task.id }}</small
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <input
+                                          class="form-check-input"
+                                          type="checkbox"
+                                          role="switch"
+                                          id="flexSwitchCheckDefault"
+                                       />
                                     </div>
                                  </div>
+                              </div>
 
-                                 <div class="card-body pt-1 pb-4">
-                                    <h4 class="card-title">{{ task.title }}</h4>
-                                 </div>
+                              <div class="card-body pt-1 pb-4">
+                                 <h4 class="card-title">{{ task.title }}</h4>
+                              </div>
 
-                                 <div class="card-footer clearfix">
-                                    <span class="float-left"
-                                       ><p class="card-text">
-                                          <small class="text-muted"
-                                             >21 Sept</small
-                                          >
-                                       </p></span
+                              <div class="card-footer clearfix">
+                                 <span class="float-left"
+                                    ><p class="card-text">
+                                       <small class="text-muted">21 Sept</small>
+                                    </p></span
+                                 >
+                                 <span class="float-left ms-3"
+                                    ><span class="badge text-bg-warning"
+                                       >Low</span
+                                    ></span
+                                 >
+
+                                 <span class="float-right d-flex gap-1"
+                                    ><button
+                                       type="button"
+                                       class="btn btn-dark"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#editModal"
+                                       @click="editTask(task.id)"
                                     >
-                                    <span class="float-left ms-3"
-                                       ><span class="badge text-bg-warning"
-                                          >Low</span
-                                       ></span
+                                       <font-awesome-icon
+                                          icon="fa-regular fa-pen-to-square"
+                                       />
+                                    </button>
+                                    <button
+                                       type="button"
+                                       class="btn btn-danger"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       @click="deleteTask(task.id)"
                                     >
-
-                                    <span class="float-right d-flex gap-1"
-                                       ><button
-                                          type="button"
-                                          class="btn btn-dark"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#editModal"
-                                          @click="editTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-regular fa-pen-to-square"
-                                          />
-                                       </button>
-                                       <button
-                                          type="button"
-                                          class="btn btn-danger"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          @click="deleteTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-solid fa-trash-can"
-                                          /></button
-                                    ></span>
-                                    <span class="float-right"
-                                       ><img
-                                          src="https://via.placeholder.com/28x28"
-                                          alt="Generic placeholder image"
-                                          class="img-fluid rounded-circle me-2"
-                                          style="width: 28px"
-                                    /></span>
-                                 </div>
+                                       <font-awesome-icon
+                                          icon="fa-solid fa-trash-can"
+                                       /></button
+                                 ></span>
+                                 <span class="float-right"
+                                    ><img
+                                       src="https://via.placeholder.com/28x28"
+                                       alt="Generic placeholder image"
+                                       class="img-fluid rounded-circle me-2"
+                                       style="width: 28px"
+                                 /></span>
+                              </div>
                            </div>
                         </Draggable>
                      </Container>
@@ -341,91 +331,86 @@
                            v-for="task in tasksStore.completedTasks"
                            :key="task.id"
                         >
-                           <div
-                              class="card border border-0 mb-3"
-                              style="width: 100%"
-                           >
-                                 <div class="card-header">
-                                    <div class="d-flex justify-content-start">
-                                       <div class="p-1 mr-auto">
-                                          <span class="badge text-bg-category"
-                                             >Coding</span
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <small class="text-muted"
-                                             >#{{ task.id }}</small
-                                          >
-                                       </div>
-                                       <div class="p-1">
-                                          <input
-                                             class="form-check-input"
-                                             type="checkbox"
-                                             role="switch"
-                                             id="flexSwitchCheckDefault"
-                                          />
-                                       </div>
+                           <div class="card border my-3" style="width: 100%">
+                              <div class="card-header">
+                                 <div class="d-flex justify-content-start">
+                                    <div class="p-1 mr-auto">
+                                       <span class="badge text-bg-category"
+                                          >Coding</span
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <small class="text-muted"
+                                          >#{{ task.id }}</small
+                                       >
+                                    </div>
+                                    <div class="p-1">
+                                       <input
+                                          class="form-check-input"
+                                          type="checkbox"
+                                          role="switch"
+                                          id="flexSwitchCheckDefault"
+                                       />
                                     </div>
                                  </div>
-
-                                 <div class="card-body pt-1 pb-4">
-                                    <h4 class="card-title">{{ task.title }}</h4>
-                                 </div>
-
-                                 <div class="card-footer clearfix">
-                                    <span class="float-left"
-                                       ><p class="card-text">
-                                          <small class="text-muted"
-                                             >21 Sept</small
-                                          >
-                                       </p></span
-                                    >
-                                    <span class="float-left ms-3"
-                                       ><span class="badge text-bg-warning"
-                                          >Low</span
-                                       ></span
-                                    >
-
-                                    <span class="float-right d-flex gap-1"
-                                       ><button
-                                          type="button"
-                                          class="btn btn-dark"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#editModal"
-                                          @click="editTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-regular fa-pen-to-square"
-                                          />
-                                       </button>
-                                       <button
-                                          type="button"
-                                          class="btn btn-danger"
-                                          style="
-                                             --bs-btn-padding-y: 0.25rem;
-                                             --bs-btn-padding-x: 0.5rem;
-                                             --bs-btn-font-size: 0.75rem;
-                                          "
-                                          @click="deleteTask(task.id)"
-                                       >
-                                          <font-awesome-icon
-                                             icon="fa-solid fa-trash-can"
-                                          /></button
-                                    ></span>
-                                    <span class="float-right"
-                                       ><img
-                                          src="https://via.placeholder.com/28x28"
-                                          alt="Generic placeholder image"
-                                          class="img-fluid rounded-circle me-2"
-                                          style="width: 28px"
-                                    /></span>
-                                 </div>
                               </div>
+
+                              <div class="card-body pt-1 pb-4">
+                                 <h4 class="card-title">{{ task.title }}</h4>
+                              </div>
+
+                              <div class="card-footer clearfix">
+                                 <span class="float-left"
+                                    ><p class="card-text">
+                                       <small class="text-muted">21 Sept</small>
+                                    </p></span
+                                 >
+                                 <span class="float-left ms-3"
+                                    ><span class="badge text-bg-warning"
+                                       >Low</span
+                                    ></span
+                                 >
+
+                                 <span class="float-right d-flex gap-1"
+                                    ><button
+                                       type="button"
+                                       class="btn btn-dark"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#editModal"
+                                       @click="editTask(task.id)"
+                                    >
+                                       <font-awesome-icon
+                                          icon="fa-regular fa-pen-to-square"
+                                       />
+                                    </button>
+                                    <button
+                                       type="button"
+                                       class="btn btn-danger"
+                                       style="
+                                          --bs-btn-padding-y: 0.25rem;
+                                          --bs-btn-padding-x: 0.5rem;
+                                          --bs-btn-font-size: 0.75rem;
+                                       "
+                                       @click="deleteTask(task.id)"
+                                    >
+                                       <font-awesome-icon
+                                          icon="fa-solid fa-trash-can"
+                                       /></button
+                                 ></span>
+                                 <span class="float-right"
+                                    ><img
+                                       src="https://via.placeholder.com/28x28"
+                                       alt="Generic placeholder image"
+                                       class="img-fluid rounded-circle me-2"
+                                       style="width: 28px"
+                                 /></span>
+                              </div>
+                           </div>
                         </Draggable>
                      </Container>
                   </div>
@@ -678,10 +663,10 @@ ul {
 .board-col {
    display: inline-block;
    width: 24em;
-   padding: 0 15px 15px 15px;
+   padding: 0 15px 30px 15px;
    margin-bottom: 24px;
-   border-radius: 0.25rem;
-   border: 1px solid #ccc;
+   border-radius: 0 0 15px 15px;
+   background: #f6f4f8;
    vertical-align: top;
 }
 
@@ -693,30 +678,7 @@ ul {
    padding: 1rem;
    margin: 0 -1rem;
    color: #fff;
-}
-
-.backlog {
-   background: linear-gradient(
-      90deg,
-      rgba(159, 140, 174, 1) 0%,
-      rgba(142, 109, 168, 1) 100%
-   );
-}
-
-.in-progress {
-   background: linear-gradient(
-      90deg,
-      rgba(142, 109, 168, 1) 0%,
-      rgba(133, 89, 167, 1) 100%
-   );
-}
-
-.done {
-   background: linear-gradient(
-      90deg,
-      rgba(133, 89, 167, 1) 0%,
-      rgba(112, 67, 147, 1) 100%
-   );
+   background: #9f8cae;
 }
 
 .board-tasks {
