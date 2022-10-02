@@ -127,11 +127,10 @@
                            v-for="task in tasksStore.pendingTasks"
                            :key="task.id"
                         >
-                           <ul
+                           <div
                               class="card border border-0 mb-3"
                               style="width: 100%"
                            >
-                              <li>
                                  <div class="card-header">
                                     <div class="d-flex justify-content-start">
                                        <div class="p-1 mr-auto">
@@ -212,8 +211,7 @@
                                           style="width: 28px"
                                     /></span>
                                  </div>
-                              </li>
-                           </ul>
+                           </div>
                         </Draggable>
                      </Container>
                   </div>
@@ -236,11 +234,10 @@
                            v-for="task in tasksStore.inProcessTasks"
                            :key="task.id"
                         >
-                           <ul
+                           <div
                               class="card border border-0 mb-3"
                               style="width: 100%"
                            >
-                              <li>
                                  <div class="card-header">
                                     <div class="d-flex justify-content-start">
                                        <div class="p-1 mr-auto">
@@ -321,8 +318,7 @@
                                           style="width: 28px"
                                     /></span>
                                  </div>
-                              </li>
-                           </ul>
+                           </div>
                         </Draggable>
                      </Container>
                   </div>
@@ -345,11 +341,10 @@
                            v-for="task in tasksStore.completedTasks"
                            :key="task.id"
                         >
-                           <ul
+                           <div
                               class="card border border-0 mb-3"
                               style="width: 100%"
                            >
-                              <li>
                                  <div class="card-header">
                                     <div class="d-flex justify-content-start">
                                        <div class="p-1 mr-auto">
@@ -430,8 +425,7 @@
                                           style="width: 28px"
                                     /></span>
                                  </div>
-                              </li>
-                           </ul>
+                              </div>
                         </Draggable>
                      </Container>
                   </div>
