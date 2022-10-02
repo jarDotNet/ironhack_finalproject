@@ -505,7 +505,7 @@ button.primary,
    width: 167px;
    bottom: -3px;
    border-radius: 5px;
-   background: linear-gradient(to right, #55485f, #7d6b8a, #9f8cae);
+   background: linear-gradient(90deg, rgba(15,11,59,1) 0%, rgba(47,42,100,1) 48%, rgba(86,81,142,1) 100%);
 }
 
 label {
