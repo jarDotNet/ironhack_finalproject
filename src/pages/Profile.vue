@@ -54,7 +54,7 @@
                   height: 250px;
                   padding: 1px;
                   object-fit: contain;
-                  border: 7px solid #3d2c5b;
+                  border: 7px solid #2f2a64;
                   box-shadow: #895cdbc2 1px 2px 6px 0px;
                 "
               />
@@ -270,7 +270,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  :deep(path) {
+   fill: #fff;
+}
 .avatar-img input {
   display: none;
 }
@@ -278,7 +281,7 @@ export default {
 .avatar-img label {
   width: 60px;
   height: 60px;
-  background: #3d2c5b;
+  background: #2f2a64;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }

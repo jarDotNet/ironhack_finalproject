@@ -65,7 +65,6 @@ export default {
 .background {
   height: 100vh;
   width: 100vw;
-  background: #9f8cae;
 }
 .backgroundLog {
   background: linear-gradient(to bottom, #0f0c2b, #2f2a64, #272745);
