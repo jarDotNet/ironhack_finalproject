@@ -7,8 +7,8 @@
         class="img-box"
       />
       <div class="form-signup">
-        <sign-up v-if="isSignUp" />
-        <sign-in v-else />
+        <sign-in v-if="isSignIn" />
+        <sign-up v-else />
 
         <div class="footer-signup pt-2">
           <button
@@ -31,13 +31,14 @@
 import { ref } from "vue";
 import SignUp from "../components/SignUp.vue";
 import SignIn from "../components/SignIn.vue";
+
 export default {
   components: { SignUp, SignIn },
   setup() {
-    const isSignUp = ref(true);
+    const isSignIn = ref(true);
 
     return {
-      isSignUp,
+      isSignIn,
     };
   },
 };

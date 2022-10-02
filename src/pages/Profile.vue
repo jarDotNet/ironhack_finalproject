@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 import { supabase } from "../supabase";
 import { useUserStore } from "../store/user";
 import { onMounted, ref } from "vue";
@@ -161,6 +162,7 @@ export default {
     const username = ref("");
     const website = ref("");
     const avatar_url = ref("");
+    const router = useRouter();
     const store = useUserStore();
 
     async function getProfile() {
@@ -245,6 +247,7 @@ export default {
         alert(error.message);
       } finally {
         loading.value = false;
+        router.push("/");
       }
     }
 

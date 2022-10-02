@@ -1,28 +1,30 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
+import { useAlertStore } from "./alert";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: {},
+    user: null,
   }),
-
+  getters: {
+    isAuthenticated: (state) => state.user !== null,
+  },
   actions: {
     async fetchUser() {
       const user = await supabase.auth.user();
       this.user = user;
     },
-    async signUp(email, password) {
-      const { error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
+    async signUp(credentials) {
+      const { user, session, error } = await supabase.auth.signUp(credentials);
       if (error) throw error;
-      else alert("Check your email");
+      else {
+        alert("Check your email");
+      }
     },
-    async singIn(email, password) {
-      console.log(email, password);
-      const { user, error } = await supabase.auth.signIn(email, password);
+    async singIn(credentials) {
+      const { user, session, error } = await supabase.auth.signIn(credentials);
       if (error) throw error;
+      this.user = user;
     },
     persist: {
       enabled: true,
