@@ -107,17 +107,20 @@
          </button>
       </div>
 
-      <div class="row">
+      <div class="row mt-5">
          <div class="col-12">
             <div class="board">
                <div class="board-col">
                   <h3 class="mt-0 board-header backlog">Backlog</h3>
+                  <div class="board-tasks"></div>
                </div>
                <div class="board-col">
                   <h3 class="mt-0 board-header in-progress">In Progress</h3>
+                  <div class="board-tasks"></div>
                </div>
                <div class="board-col">
                   <h3 class="mt-0 board-header done">Done</h3>
+                  <div class="board-tasks"></div>
                </div>
             </div>
          </div>
@@ -720,5 +723,19 @@ ul {
       rgba(133, 89, 167, 1) 0%,
       rgba(112, 67, 147, 1) 100%
    );
+}
+
+.board-tasks {
+   min-height: 90px;
+   position: relative;
+}
+
+.board-tasks:before {
+   content: "No tasks in here!";
+   color: rgb(112, 112, 112);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 </style>
