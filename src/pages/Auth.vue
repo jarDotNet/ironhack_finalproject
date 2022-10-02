@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="main container-sm">
       <img
-        src="../assets/Setup Wizard-pana.svg"
+        src="../assets/Setup-Wizard-pana.svg"
         alt="woman using her computer"
         class="img-box"
       />
@@ -13,12 +13,12 @@
         <div class="footer-signup pt-2">
           <button
             class="btn btn-link text-capitalize text-dark text-form mb-2"
-            @click="isSignUp = !isSignUp"
+            @click="isSignIn = !isSignIn"
           >
             {{
-              isSignUp
-                ? "Already have an account? Sign In"
-                : "Don't have an account yet? Sign Up"
+              isSignIn
+                ? "Don't have an account yet? Sign Up"
+                : "Already have an account? Sign In"
             }}
           </button>
         </div>
@@ -66,7 +66,7 @@ export default {
 }
 
 .img-box {
-  background: url("./assets/Setup Wizard-pana.svg");
+  background: url("./assets/Setup-Wizard-pana.svg");
   width: 250px;
   position: absolute;
   top: -230px;
