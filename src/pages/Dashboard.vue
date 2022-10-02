@@ -403,7 +403,6 @@ export default {
     const taskToEdit = ref(null);
     const tasksStore = useTasksStore();
     const store = useUserStore();
-    const idTask = ref(null);
     const dropPlaceholderOptions = ref({
       className: "drop-preview",
       animationDuration: "150",
@@ -436,15 +435,6 @@ export default {
     };
     const deleteTask = (taskId) => {
       tasksStore.deleteTask(taskId);
-    };
-    const markTaskAsCompleted = () => {
-      tasksStore.markAs(TaskStateEnum.COMPLETED, taskId.value.value);
-    };
-    const markTaskAsInProgress = () => {
-      tasksStore.markAs(TaskStateEnum.IN_PROGRESS, taskId.value.value);
-    };
-    const markTaskAsPending = () => {
-      tasksStore.markAs(TaskStateEnum.PENDING, taskId.value.value);
     };
 
     const getChildPayload1 = (index) => {
@@ -490,15 +480,11 @@ export default {
       taskName,
       tasksStore,
       taskToEdit,
-      idTask,
       dropPlaceholderOptions,
       createNewTask,
       editTask,
       saveTask,
       deleteTask,
-      markTaskAsCompleted,
-      markTaskAsInProgress,
-      markTaskAsPending,
       getChildPayload1,
       getChildPayload2,
       getChildPayload3,
