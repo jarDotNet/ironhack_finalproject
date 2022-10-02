@@ -86,7 +86,7 @@
    <div class="container">
       <div class="col-12 d-flex pt-5 gap-4 align-items-center">
          <h1
-            class="text-center text-uppercase"
+            class="text-center text-capitalize"
             style="font-size: 1.5em; margin: 0"
          >
             To-Do Board
@@ -121,7 +121,7 @@
                         :get-child-payload="getChildPayload1"
                         :drop-placeholder="dropPlaceholderOptions"
                         @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-                        style="height: 300px"
+                        style="height: 120px"
                      >
                         <Draggable
                            v-for="task in tasksStore.pendingTasks"
