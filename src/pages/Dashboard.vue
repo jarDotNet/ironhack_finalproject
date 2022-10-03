@@ -164,9 +164,9 @@
                                     </p></span
                                  >
                                  <span class="float-left ms-3"
-                                    ><span class="badge text-bg-warning"
-                                       >Low</span
-                                    ></span
+                                    ><span class="badge text-bg-warning">{{
+                                       task.priority
+                                    }}</span></span
                                  >
 
                                  <span class="float-right d-flex gap-1"
@@ -268,9 +268,9 @@
                                     </p></span
                                  >
                                  <span class="float-left ms-3"
-                                    ><span class="badge text-bg-warning"
-                                       >Low</span
-                                    ></span
+                                    ><span class="badge text-bg-warning">{{
+                                       task.priority
+                                    }}</span></span
                                  >
 
                                  <span class="float-right d-flex gap-1"
@@ -372,9 +372,9 @@
                                     </p></span
                                  >
                                  <span class="float-left ms-3"
-                                    ><span class="badge text-bg-warning"
-                                       >Low</span
-                                    ></span
+                                    ><span class="badge text-bg-warning">{{
+                                       task.priority
+                                    }}</span></span
                                  >
 
                                  <span class="float-right d-flex gap-1"
