@@ -130,38 +130,27 @@
                            :key="task.id"
                         >
                            <div class="card border my-3" style="width: 100%">
-                              <div class="card-header">
-                                 <div class="d-flex justify-content-start">
-                                    <div class="p-1 mr-auto">
-                                       <span class="badge text-bg-category"
-                                          >Coding</span
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <small class="text-muted"
-                                          >#{{ task.id }}</small
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          role="switch"
-                                          id="flexSwitchCheckDefault"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div class="card-body pt-1 pb-4">
-                                 <h4 class="card-title">{{ task.title }}</h4>
+                              <div
+                                 class="card-body d-flex justify-content-start pb-1"
+                              >
+                                 <h4
+                                    class="card-title kanban-card-title mr-auto"
+                                 >
+                                    {{ task.title }}
+                                 </h4>
+                                 <input
+                                    class="form-check-input check-input-card m-0"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchCheckDefault"
+                                 />
                               </div>
 
                               <div class="card-footer clearfix">
                                  <span class="float-left"
-                                    ><p class="card-text">
-                                       <small class="text-muted">21 Sept</small>
-                                    </p></span
+                                    ><span class="badge text-bg-category"
+                                       >Coding</span
+                                    ></span
                                  >
                                  <span class="float-left ms-3"
                                     ><span class="badge text-bg-warning">{{
@@ -234,38 +223,27 @@
                            :key="task.id"
                         >
                            <div class="card border my-3" style="width: 100%">
-                              <div class="card-header">
-                                 <div class="d-flex justify-content-start">
-                                    <div class="p-1 mr-auto">
-                                       <span class="badge text-bg-category"
-                                          >Coding</span
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <small class="text-muted"
-                                          >#{{ task.id }}</small
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          role="switch"
-                                          id="flexSwitchCheckDefault"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div class="card-body pt-1 pb-4">
-                                 <h4 class="card-title">{{ task.title }}</h4>
+                              <div
+                                 class="card-body d-flex justify-content-start"
+                              >
+                                 <h4
+                                    class="card-title kanban-card-title mr-auto"
+                                 >
+                                    {{ task.title }}
+                                 </h4>
+                                 <input
+                                    class="form-check-input check-input-card m-0"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchCheckDefault"
+                                 />
                               </div>
 
                               <div class="card-footer clearfix">
                                  <span class="float-left"
-                                    ><p class="card-text">
-                                       <small class="text-muted">21 Sept</small>
-                                    </p></span
+                                    ><span class="badge text-bg-category"
+                                       >Coding</span
+                                    ></span
                                  >
                                  <span class="float-left ms-3"
                                     ><span class="badge text-bg-warning">{{
@@ -338,38 +316,27 @@
                            :key="task.id"
                         >
                            <div class="card border my-3" style="width: 100%">
-                              <div class="card-header">
-                                 <div class="d-flex justify-content-start">
-                                    <div class="p-1 mr-auto">
-                                       <span class="badge text-bg-category"
-                                          >Coding</span
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <small class="text-muted"
-                                          >#{{ task.id }}</small
-                                       >
-                                    </div>
-                                    <div class="p-1">
-                                       <input
-                                          class="form-check-input"
-                                          type="checkbox"
-                                          role="switch"
-                                          id="flexSwitchCheckDefault"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div class="card-body pt-1 pb-4">
-                                 <h4 class="card-title">{{ task.title }}</h4>
+                              <div
+                                 class="card-body d-flex justify-content-start"
+                              >
+                                 <h4
+                                    class="card-title kanban-card-title mr-auto"
+                                 >
+                                    {{ task.title }}
+                                 </h4>
+                                 <input
+                                    class="form-check-input check-input-card m-0"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchCheckDefault"
+                                 />
                               </div>
 
                               <div class="card-footer clearfix">
                                  <span class="float-left"
-                                    ><p class="card-text">
-                                       <small class="text-muted">21 Sept</small>
-                                    </p></span
+                                    ><span class="badge text-bg-category"
+                                       >Coding</span
+                                    ></span
                                  >
                                  <span class="float-left ms-3"
                                     ><span class="badge text-bg-warning">{{
@@ -524,7 +491,8 @@ export default {
 
       onMounted(() => {
          tasksStore.fetchTasks();
-         if (tasksStore.tasks.lengt > 0) taskToEdit.value = tasksStore.tasks[0];
+         if (tasksStore.tasks.length > 0)
+            taskToEdit.value = tasksStore.tasks[0];
       });
       return {
          taskId,
@@ -707,5 +675,16 @@ ul {
    font-weight: 900;
    color: #fff;
    margin: 0.5em;
+}
+
+.check-input-card {
+   padding: 6px;
+   float: right;
+}
+
+.kanban-card-title {
+   max-width: 285px;
+   white-space: break-spaces;
+   line-height: 1.5em;
 }
 </style>
