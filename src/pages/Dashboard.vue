@@ -111,7 +111,9 @@
          <div class="col-12">
             <div class="board">
                <div class="board-col">
-                  <h3 class="mt-0 board-header backlog">Backlog</h3>
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span> Backlog
+                  </h3>
 
                   <div class="board-tasks">
                      <Container
@@ -213,7 +215,9 @@
                </div>
 
                <div class="board-col">
-                  <h3 class="mt-0 board-header backlog">In Progress</h3>
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span> In Progress
+                  </h3>
 
                   <div class="board-tasks">
                      <Container
@@ -315,7 +319,9 @@
                </div>
 
                <div class="board-col">
-                  <h3 class="mt-0 board-header backlog">Done</h3>
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span>Done
+                  </h3>
 
                   <div class="board-tasks">
                      <Container
@@ -679,7 +685,7 @@ ul {
    margin: 0 -1rem;
    color: #fff;
    background: #635e94ed;
-   font-size:1em;
+   font-size: 1em;
 }
 
 .board-tasks {
@@ -693,5 +699,13 @@ ul {
    position: absolute;
    line-height: 6em;
    text-align: center;
+}
+
+.icon-back:before {
+   content: "\f0ae";
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   color: #fff;
+   margin: 0.5em;
 }
 </style>
