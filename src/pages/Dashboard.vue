@@ -224,7 +224,7 @@
                         >
                            <div class="card border my-3" style="width: 100%">
                               <div
-                                 class="card-body d-flex justify-content-start"
+                                 class="card-body d-flex justify-content-start pb-1"
                               >
                                  <h4
                                     class="card-title kanban-card-title mr-auto"
@@ -317,7 +317,7 @@
                         >
                            <div class="card border my-3" style="width: 100%">
                               <div
-                                 class="card-body d-flex justify-content-start"
+                                 class="card-body d-flex justify-content-start pb-1"
                               >
                                  <h4
                                     class="card-title kanban-card-title mr-auto"
