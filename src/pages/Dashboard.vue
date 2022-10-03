@@ -687,4 +687,9 @@ ul {
    white-space: break-spaces;
    line-height: 1.5em;
 }
+
+.card-footer{
+   border:none;
+   padding: 0 16px 6px;
+}
 </style>
