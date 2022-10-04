@@ -107,7 +107,7 @@
          </button>
       </div>
 
-      <div class="row mt-5">
+      <div class="row mt-4">
          <div class="col-12">
             <div class="board">
                <div class="board-col">
