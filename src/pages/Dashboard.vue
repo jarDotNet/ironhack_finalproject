@@ -47,39 +47,6 @@
     </div>
   </div>
 
-  <!-- Modal Edit Task -->
-
-  <div
-    class="modal fade"
-    id="editModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4
-            class="modal-title m-3 text-dark text-center card-title-text"
-            style="font-weight: bold"
-            id="exampleModalLabel"
-          >
-            Modify Your Task
-          </h4>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body text-dark">
-          <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <div class="col-12 d-flex pt-5 gap-4 align-items-center">
       <h1
@@ -118,11 +85,16 @@
                 drop-class="card-ghost-drop"
                 group-name="1"
                 :get-child-payload="getChildPayload1"
-                :drop-placeholder="dropPlaceholderOptions"
+                drop-placeholder="dropPlaceholderOptions"
                 @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-                style="height: 120px"
+                style="height: 300px"
               >
-                <Card :tasks="tasksStore.pendingTasks"> </Card>
+                <Card
+                  v-for="task in tasksStore.pendingTasks"
+                  :tasks="task"
+                  :key="task.id"
+                >
+                </Card>
               </Container>
             </div>
           </div>
@@ -138,11 +110,16 @@
                 drop-class="card-ghost-drop"
                 group-name="1"
                 :get-child-payload="getChildPayload2"
-                :drop-placeholder="dropPlaceholderOptions"
+                drop-placeholder="dropPlaceholderOptions"
                 @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
                 style="height: 300px"
               >
-                <Card :tasks="tasksStore.inProcessTasks"> </Card>
+                <Card
+                  v-for="task in tasksStore.inProcessTasks"
+                  :tasks="task"
+                  :key="task.id"
+                >
+                </Card>
               </Container>
             </div>
           </div>
@@ -158,11 +135,16 @@
                 drop-class="card-ghost-drop"
                 group-name="1"
                 :get-child-payload="getChildPayload3"
-                :drop-placeholder="dropPlaceholderOptions"
+                drop-placeholder="dropPlaceholderOptions"
                 @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
                 style="height: 300px"
               >
-                <Card :tasks="tasksStore.completedTasks"> </Card>
+                <Card
+                  v-for="task in tasksStore.completedTasks"
+                  :tasks="task"
+                  :key="task.id"
+                >
+                </Card>
               </Container>
             </div>
           </div>
@@ -218,19 +200,7 @@ export default {
       };
       tasksStore.createTask(newTask);
     };
-    const editTask = (taskId) => {
-      const task = tasksStore.tasks.find((t) => t.id === taskId);
-      taskToEdit.value = task;
-    };
-    const saveTask = (task) => {
-      tasksStore.updateTask(
-        task.id,
-        task.title,
-        task.current_state,
-        task.priority,
-        task.description
-      );
-    };
+
     const deleteTask = (taskId) => {
       tasksStore.deleteTask(taskId);
     };
@@ -280,8 +250,6 @@ export default {
       taskToEdit,
       dropPlaceholderOptions,
       createNewTask,
-      editTask,
-      saveTask,
       deleteTask,
       getChildPayload1,
       getChildPayload2,
@@ -293,107 +261,9 @@ export default {
 </script>
 
 <style scoped>
-.col-kanban {
-  width: 100%;
-  padding: 2rem;
-  margin: 0.5rem;
-  background-color: #ddd;
-  height: 80vh;
-  overflow: auto;
-}
-
-.col-kanban::-webkit-scrollbar {
-  display: none;
-}
-
-.col-kanban h3 {
-  color: var(--custom-color-secondary);
-  font-size: 22px;
-  text-transform: capitalize;
-}
-
-.col-kanban h3:before {
-  content: "» ";
-}
-
-.col-kanban hr {
-  border-top: 3px solid var(--custom-color-secondary);
-  opacity: 0.4;
-  position: relative;
-  top: -18px;
-}
-
-ul li {
-  list-style: none;
-}
-
-ul {
-  padding: 0;
-}
-
-.card-footer,
-.card-header {
-  border-bottom: none;
-  background-color: var(--bs-card-bg);
-}
-
-.card-footer {
-  border-top: 1px solid rgb(217, 217, 217);
-}
-
-.card-title {
-  font-size: 16px;
-}
-
-.card-footer {
-  padding: 8px 16px;
-}
-
-.card-footer-item {
-  margin: 0 10px;
-}
-
-.badge {
-  opacity: 0.7;
-}
-
-.badge:hover {
-  opacity: 1;
-  transition: 0.5s ease-in-out 100ms;
-}
-
-.category {
-  width: 80%;
-}
-
-.p-cat {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  border-radius: var(--custom-border-radius);
-  background-color: var(--bg-color-management);
-  color: #fff;
-}
-
-.mr-auto {
-  margin-right: auto;
-}
-
-.text-bg-category {
-  color: #000;
-  background-color: var(--bg-color-coding);
-}
-
 :deep(path) {
   color: #fff;
 }
-
-.form-check-input:checked {
-  background-color: #4e94fb;
-  border-color: #4e94fb;
-}
-
 .card-ghost {
   transition: transform 0.18s ease;
   transform: rotateZ(5deg);
@@ -434,7 +304,6 @@ ul {
   background: #635e94ed;
   font-size: 1em;
 }
-
 .board-tasks {
   position: relative;
 }
@@ -447,23 +316,11 @@ ul {
   line-height: 6em;
   text-align: center;
 }
-
 .icon-back:before {
   content: "\f0ae";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #fff;
   margin: 0.5em;
-}
-
-.check-input-card {
-  padding: 6px;
-  float: right;
-}
-
-.kanban-card-title {
-  max-width: 285px;
-  white-space: break-spaces;
-  line-height: 1.5em;
 }
 </style>
