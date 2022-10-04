@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { supabase } from "../supabase";
 
 export default {
@@ -39,7 +39,6 @@ export default {
         const { user, session, error } = await supabase.auth.signIn({
           email: email.value,
         });
-        console.log(user, session);
         if (error) throw error;
         alert("Check your email for the login link!");
       } catch (error) {

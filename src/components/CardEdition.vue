@@ -75,13 +75,7 @@
 </template>
 
 <script>
-import {
-  reactive,
-  defineComponent,
-  onUpdated,
-  onMounted,
-  onBeforeMount,
-} from "vue";
+import { reactive, defineComponent, onUpdated } from "vue";
 import TaskStateEnum from "../enums/TaskStateEnum";
 import TaskPriorityEnum from "../enums/TaskPriorityEnum";
 
@@ -109,7 +103,6 @@ export default defineComponent({
 
     onUpdated(() => {
       state.task = props.editTask;
-      console.table(state.task);
     });
 
     return { state, capitalize };
