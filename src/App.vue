@@ -85,12 +85,12 @@ export default {
 
 .cardBck {
   background-color: #fff;
-  min-height: calc(100vh - 62px);
+  min-height: calc(100vh - 72px);
 }
 
 .cardErr {
   background-color: rgb(40, 69, 31);
-  min-height: calc(100vh - 62px);
+  min-height: calc(100vh - 72px);
   width: 100vh;
   position: relative;
 }
