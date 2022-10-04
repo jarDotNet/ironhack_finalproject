@@ -79,9 +79,9 @@ export default {
       tasksStore.deleteTask(taskId);
     };
     return {
+      taskToEdit,
       editTask,
       deleteTask,
-      taskToEdit,
     };
   },
 };
