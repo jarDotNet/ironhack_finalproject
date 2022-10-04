@@ -47,14 +47,14 @@
       </div>
    </div>
 
-  <div class="container">
-    <div class="col-12 d-flex pt-5 gap-4 align-items-center">
-      <h1
-        class="text-center text-capitalize"
-        style="font-size: 1.5em; margin: 0"
-      >
-        To-Do Board
-      </h1>
+   <div class="container">
+      <div class="col-12 d-flex pt-5 gap-4 align-items-center">
+         <h1
+            class="text-center text-capitalize"
+            style="font-size: 1.5em; margin: 0"
+         >
+            To-Do Board
+         </h1>
 
          <!-- Button Add -->
          <button
@@ -71,87 +71,87 @@
          </button>
       </div>
 
-    <div class="row mt-5">
-      <div class="col-12">
-        <div class="board">
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span> Backlog
-            </h3>
+      <div class="row mt-4">
+         <div class="col-12">
+            <div class="board">
+               <div class="board-col">
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span> Backlog
+                  </h3>
 
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload1"
-                drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.pendingTasks"
-                  :tasks="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
+                  <div class="board-tasks">
+                     <Container
+                        drag-class="card-ghost"
+                        drop-class="card-ghost-drop"
+                        group-name="1"
+                        :get-child-payload="getChildPayload1"
+                        drop-placeholder="dropPlaceholderOptions"
+                        @drop="handleDrop(TaskStateEnum.PENDING, $event)"
+                        style="height: 300px"
+                     >
+                        <Card
+                           v-for="task in tasksStore.pendingTasks"
+                           :tasks="task"
+                           :key="task.id"
+                        >
+                        </Card>
+                     </Container>
+                  </div>
+               </div>
+
+               <div class="board-col">
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span> In Progress
+                  </h3>
+
+                  <div class="board-tasks">
+                     <Container
+                        drag-class="card-ghost"
+                        drop-class="card-ghost-drop"
+                        group-name="1"
+                        :get-child-payload="getChildPayload2"
+                        drop-placeholder="dropPlaceholderOptions"
+                        @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
+                        style="height: 300px"
+                     >
+                        <Card
+                           v-for="task in tasksStore.inProcessTasks"
+                           :tasks="task"
+                           :key="task.id"
+                        >
+                        </Card>
+                     </Container>
+                  </div>
+               </div>
+
+               <div class="board-col">
+                  <h3 class="mt-0 board-header">
+                     <span class="icon-back"></span>Done
+                  </h3>
+
+                  <div class="board-tasks">
+                     <Container
+                        drag-class="card-ghost"
+                        drop-class="card-ghost-drop"
+                        group-name="1"
+                        :get-child-payload="getChildPayload3"
+                        drop-placeholder="dropPlaceholderOptions"
+                        @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
+                        style="height: 300px"
+                     >
+                        <Card
+                           v-for="task in tasksStore.completedTasks"
+                           :tasks="task"
+                           :key="task.id"
+                        >
+                        </Card>
+                     </Container>
+                  </div>
+               </div>
             </div>
-          </div>
-
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span> In Progress
-            </h3>
-
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload2"
-                drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.inProcessTasks"
-                  :tasks="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
-            </div>
-          </div>
-
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span>Done
-            </h3>
-
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload3"
-                drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.completedTasks"
-                  :tasks="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
-            </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </template>
 
 <script>
@@ -166,44 +166,44 @@ import { Container, Draggable } from "vue3-smooth-dnd";
 import Card from "../components/Card.vue";
 
 export default {
-  name: "Dashboard",
-  components: {
-    CardEdition,
-    Container,
-    Draggable,
-    Card,
-  },
-  created() {
-    this.TaskStateEnum = TaskStateEnum;
-    this.TaskPositionEnum = TaskPositionEnum;
-  },
-  setup() {
-    const taskId = ref(null);
-    const taskName = ref(null);
-    const taskToEdit = ref(null);
-    const tasksStore = useTasksStore();
-    const store = useUserStore();
-    const dropPlaceholderOptions = ref({
-      className: "drop-preview",
-      animationDuration: "150",
-      showOnTop: false,
-    });
-    const createNewTask = () => {
-      const position = cardPosition(
-        tasksStore.pendingTasks,
-        TaskPositionEnum.BOTTOM
-      );
-      const newTask = {
-        user_id: store.user.id,
-        title: taskName.value.value,
-        pos: position,
+   name: "Dashboard",
+   components: {
+      CardEdition,
+      Container,
+      Draggable,
+      Card,
+   },
+   created() {
+      this.TaskStateEnum = TaskStateEnum;
+      this.TaskPositionEnum = TaskPositionEnum;
+   },
+   setup() {
+      const taskId = ref(null);
+      const taskName = ref(null);
+      const taskToEdit = ref(null);
+      const tasksStore = useTasksStore();
+      const store = useUserStore();
+      const dropPlaceholderOptions = ref({
+         className: "drop-preview",
+         animationDuration: "150",
+         showOnTop: false,
+      });
+      const createNewTask = () => {
+         const position = cardPosition(
+            tasksStore.pendingTasks,
+            TaskPositionEnum.BOTTOM
+         );
+         const newTask = {
+            user_id: store.user.id,
+            title: taskName.value.value,
+            pos: position,
+         };
+         tasksStore.createTask(newTask);
       };
-      tasksStore.createTask(newTask);
-    };
 
-    const deleteTask = (taskId) => {
-      tasksStore.deleteTask(taskId);
-    };
+      const deleteTask = (taskId) => {
+         tasksStore.deleteTask(taskId);
+      };
 
       const getChildPayload1 = (index) => {
          return tasksStore.pendingTasks[index];
@@ -239,42 +239,43 @@ export default {
          }
       };
 
-    onMounted(() => {
-      tasksStore.fetchTasks();
-      if (tasksStore.tasks.length > 0) taskToEdit.value = tasksStore.tasks[0];
-    });
-    return {
-      taskId,
-      taskName,
-      tasksStore,
-      taskToEdit,
-      dropPlaceholderOptions,
-      createNewTask,
-      deleteTask,
-      getChildPayload1,
-      getChildPayload2,
-      getChildPayload3,
-      handleDrop,
-    };
-  },
+      onMounted(() => {
+         tasksStore.fetchTasks();
+         if (tasksStore.tasks.length > 0)
+            taskToEdit.value = tasksStore.tasks[0];
+      });
+      return {
+         taskId,
+         taskName,
+         tasksStore,
+         taskToEdit,
+         dropPlaceholderOptions,
+         createNewTask,
+         deleteTask,
+         getChildPayload1,
+         getChildPayload2,
+         getChildPayload3,
+         handleDrop,
+      };
+   },
 };
 </script>
 
 <style scoped>
 :deep(path) {
-  color: #fff;
+   color: #fff;
 }
 .card-ghost {
-  transition: transform 0.18s ease;
-  transform: rotateZ(5deg);
+   transition: transform 0.18s ease;
+   transform: rotateZ(5deg);
 }
 .card-ghost-drop {
-  transition: transform 0.18s ease-in-out;
+   transition: transform 0.18s ease-in-out;
    transform: rotateZ(0deg);
 }
 .drop-preview {
-  background-color: rgba(blue);
-  margin: 1rem 2rem 1rem 0.3rem;
+   background-color: rgba(blue);
+   margin: 1rem 2rem 1rem 0.3rem;
 }
 
 .board {
@@ -327,4 +328,3 @@ export default {
    margin: 0.5em;
 }
 </style>
-
