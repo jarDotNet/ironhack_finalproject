@@ -61,11 +61,29 @@
 </template>
 <script>
 import { Draggable } from "vue3-smooth-dnd";
+import { ref } from "vue";
 export default {
   components: {
     Draggable,
   },
-  setup() {},
+  props: ["tasks"],
+  setup() {
+    const taskToEdit = ref(null);
+
+    const editTask = (taskId) => {
+      const task = tasksStore.tasks.find((t) => t.id === taskId);
+      taskToEdit.value = task;
+    };
+
+    const deleteTask = (taskId) => {
+      tasksStore.deleteTask(taskId);
+    };
+    return {
+      editTask,
+      deleteTask,
+      taskToEdit,
+    };
+  },
 };
 </script>
 <style scoped>
