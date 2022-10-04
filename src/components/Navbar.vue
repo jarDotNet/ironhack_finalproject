@@ -13,7 +13,10 @@
          >
             <font-awesome-icon icon="fa-solid fa-bars" />
          </button>
-         <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+         <div
+            class="collapse navbar-collapse justify-content-between"
+            id="collapsibleNavbar"
+         >
             <ul class="navbar-nav">
                <li class="nav-item active">
                   <router-link to="/" class="nav-link text-white"
@@ -38,23 +41,25 @@
             </ul>
 
             <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
-              <a href="/profile">
-            <img
-               src="../assets/defaultAvatar.png"
-               alt="Profile photo"
-               class="rounded-circle"
-               style="width: 30px; height: 30px; object-fit: contain"
-            /></a>
+               <a href="/profile">
+                  <img
+                     src="../assets/defaultAvatar.png"
+                     alt="Profile photo"
+                     class="rounded-circle"
+                     style="width: 30px; height: 30px; object-fit: contain"
+               /></a>
 
-            <button
-               class="btn btn-custom btn-sm btn-block btn-profile my-0"
-               @click="signOut"
-               :disabled="loading"
-               title="Log Out"
-            >
-               <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
-            </button>
-         </div>
+               <button
+                  class="btn btn-custom btn-sm btn-block btn-profile my-0"
+                  @click="signOut"
+                  :disabled="loading"
+                  title="Log Out"
+               >
+                  <font-awesome-icon
+                     icon="fa-solid fa-arrow-right-from-bracket"
+                  />
+               </button>
+            </div>
          </div>
       </div>
    </nav>
