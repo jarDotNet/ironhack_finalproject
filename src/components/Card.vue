@@ -133,11 +133,11 @@ export default {
     };
 
     const deleteTask = (taskId) => {
-      tasksStore.deleteTask(taskId);
+      store.deleteTask(taskId);
     };
 
     const saveTask = (task) => {
-      tasksStore.updateTask(
+      store.updateTask(
         task.id,
         task.title,
         task.current_state,
