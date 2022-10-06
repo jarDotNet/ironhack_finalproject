@@ -58,11 +58,64 @@
   </nav>
 </template>
 
-<script setup>
+<script>
+import { useRouter } from "vue-router";
+import { defineComponent } from "@vue/runtime-core";
+import { supabase } from "../supabase";
+export default defineComponent({
+  name: "Navbar",
+  props: {
+    visible: {
+      type: Boolean,
+    },
+  },
+  setup() {
+    const router = useRouter();
+    const signOut = async () => {
+      try {
+        let { error } = await supabase.auth.signOut();
+        if (error) throw error;
+      } catch (error) {
+        alert(error.message);
+      } finally {
+        router.push("/");
+      }
+    };
+
+    return {
+      signOut,
+    };
+  },
+});
+</script>
+
+<!---
+
+script setup>
+import { supabase } from "../supabase";
 const props = defineProps({
   visible: Boolean,
 });
+
+const signOut = async () => {
+  try {
+    loading.value = true;
+    let { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    loading.value = false;
+    router.push("/");
+  }
+};
+
+return {
+  signOut,
+};
 </script>
+
+-->
 
 <style scoped>
 :deep(path) {
