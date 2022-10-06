@@ -11,7 +11,7 @@
         :pattern="ValidationConstants.EMAIL_PATTERN"
       />
     </div>
-    <div>
+    <div class="text-start">
       <input
         id="password"
         type="password"
@@ -19,6 +19,11 @@
         placeholder="Password"
         required
       />
+      <i
+        class="bi bi-eye-slash"
+        id="togglePassword"
+        @click="toggleSignInPassword"
+      ></i>
     </div>
 
     <div class="d-grid">
@@ -33,6 +38,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/user";
+import { togglePassword } from "../utils/TogglePassword";
 import ValidationConstants from "../utils/ValidationConstants";
 
 export default {
@@ -44,6 +50,13 @@ export default {
     const password = ref("");
     const router = useRouter();
     const store = useUserStore();
+
+    const toggleSignInPassword = () => {
+      const password = document.querySelector("#password");
+      const icon = document.querySelector("#togglePassword");
+
+      togglePassword(password, icon);
+    };
 
     const handleSignin = async () => {
       try {
@@ -63,8 +76,16 @@ export default {
       email,
       password,
       store,
+      toggleSignInPassword,
       handleSignin,
     };
   },
 };
 </script>
+
+<style scoped>
+form i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+</style>
