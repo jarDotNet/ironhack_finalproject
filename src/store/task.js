@@ -30,11 +30,10 @@ export default defineStore("tasks", {
         .from("tasks")
         .select()
         .order("pos", { ascending: true });
+      this.tasks = tasks;
       if (error) {
         console.log(error);
         alertStore.error();
-      } else {
-        this.tasks = tasks;
       }
     },
     async createTask(newTask) {

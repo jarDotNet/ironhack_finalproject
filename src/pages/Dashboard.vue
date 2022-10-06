@@ -91,7 +91,7 @@
               >
                 <Card
                   v-for="task in tasksStore.pendingTasks"
-                  :taskCard="task"
+                  :task="task"
                   :key="task.id"
                 >
                 </Card>
@@ -116,7 +116,7 @@
               >
                 <Card
                   v-for="task in tasksStore.inProcessTasks"
-                  :taskCard="task"
+                  :task="task"
                   :key="task.id"
                 >
                 </Card>
@@ -141,7 +141,7 @@
               >
                 <Card
                   v-for="task in tasksStore.completedTasks"
-                  :taskCard="task"
+                  :task="task"
                   :key="task.id"
                 >
                 </Card>
