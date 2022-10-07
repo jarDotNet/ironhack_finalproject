@@ -32,6 +32,7 @@
               class="inputField"
               ref="newTaskName"
               placeholder="Enter task name"
+              :maxlength="ValidationConstants.NEW_TASK_MAX_LENGTH"
             />
           </div>
           <div class="d-grid gap-2">
@@ -141,6 +142,7 @@ import CardList from "../components/CardList.vue";
 import TaskStateEnum from "../enums/TaskStateEnum";
 import TaskPositionEnum from "../enums/TaskPositionEnum";
 import { cardPosition } from "../utils/CardPosition";
+import ValidationConstants from "../utils/ValidationConstants";
 import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
@@ -154,6 +156,7 @@ export default {
   created() {
     this.TaskStateEnum = TaskStateEnum;
     this.TaskPositionEnum = TaskPositionEnum;
+    this.ValidationConstants = ValidationConstants;
   },
   setup() {
     const newTaskName = ref(null);
