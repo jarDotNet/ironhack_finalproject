@@ -40,10 +40,22 @@
           <a href="/profile">
             <img
               src="../assets/defaultAvatar.png"
-              alt="Profile photo"
+              alt="Profile
+            photo"
               class="rounded-circle"
               style="width: 30px; height: 30px; object-fit: contain"
-          /></a>
+              v-if="avatar_url.value === null"
+            />
+
+            <img
+              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+              alt="Profile
+            photo"
+              class="rounded-circle"
+              style="width: 30px; height: 30px; object-fit: contain"
+              v-else
+            />
+          </a>
 
           <button
             class="btn btn-custom btn-sm btn-block btn-profile my-0"
@@ -60,8 +72,9 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, onMounted, ref } from "@vue/runtime-core";
 import { supabase } from "../supabase";
+import { useUserStore } from "../store/user";
 export default defineComponent({
   name: "Navbar",
   props: {
@@ -71,51 +84,51 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+    const store = useUserStore();
+    const username = ref(null);
+    const website = ref(null);
+    const avatar_url = ref("");
+
     const signOut = async () => {
       try {
         let { error } = await supabase.auth.signOut();
         if (error) throw error;
-      } catch (error) {
-        alert(error.message);
       } finally {
         router.push("/");
       }
     };
 
+    async function getProfile() {
+      try {
+        let { data, error, status } = await supabase
+          .from("profiles")
+          .select(`username, website, avatar_url`)
+          .eq("id", store.user.id)
+          .single();
+
+        if (error && status !== 406) throw error;
+        console.log(data);
+        if (data) {
+          username.value = data.username;
+          website.value = data.website;
+          avatar_url.value = data.avatar_url;
+        }
+      } catch {}
+    }
+
+    onMounted(() => {
+      getProfile();
+    });
+
     return {
       signOut,
+      username,
+      avatar_url,
+      website,
     };
   },
 });
 </script>
-
-<!---
-
-script setup>
-import { supabase } from "../supabase";
-const props = defineProps({
-  visible: Boolean,
-});
-
-const signOut = async () => {
-  try {
-    loading.value = true;
-    let { error } = await supabase.auth.signOut();
-    if (error) throw error;
-  } catch (error) {
-    alert(error.message);
-  } finally {
-    loading.value = false;
-    router.push("/");
-  }
-};
-
-return {
-  signOut,
-};
-</script>
-
--->
 
 <style scoped>
 :deep(path) {
