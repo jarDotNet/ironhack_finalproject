@@ -50,9 +50,7 @@
                            <div
                               class="d-flex justify-content-between align-items-center"
                            >
-                              <font-awesome-icon
-                                 icon="fa-solid fa-clock-rotate-left"
-                              />
+                              <font-awesome-icon icon="fa-regular fa-clock" />
                               <div class="text-right">
                                  <h3 class="fw-bolder">
                                     {{ taskStore.pendingTasks.length }}
@@ -70,7 +68,9 @@
                            <div
                               class="d-flex justify-content-between align-items-center"
                            >
-                              <font-awesome-icon icon="fa-solid fa-pencil" />
+                              <font-awesome-icon
+                                 icon="fa-regular fa-pen-to-square"
+                              />
                               <div class="text-right">
                                  <h3 class="fw-bolder">
                                     {{ taskStore.inProcessTasks.length }}
@@ -129,9 +129,7 @@
                            <div
                               class="d-flex justify-content-between align-items-center"
                            >
-                              <font-awesome-icon
-                                 icon="fa-solid fa-clock-rotate-left"
-                              />
+                              <font-awesome-icon icon="fa-regular fa-clock" />
                               <div class="text-right">
                                  <h3 class="fw-bolder">
                                     {{ taskStore.pendingTasks.length }}
@@ -149,7 +147,9 @@
                            <div
                               class="d-flex justify-content-between align-items-center"
                            >
-                              <font-awesome-icon icon="fa-solid fa-pencil" />
+                              <font-awesome-icon
+                                 icon="fa-regular fa-pen-to-square"
+                              />
                               <div class="text-right">
                                  <h3 class="fw-bolder">
                                     {{ taskStore.inProcessTasks.length }}
@@ -261,7 +261,7 @@ export default {
 }
 
 .home-card h3 {
-   color: #2f2a64;
+   color: #470abe;
 }
 
 .home-card .svg-inline--fa {
@@ -270,6 +270,6 @@ export default {
 }
 
 :deep(path) {
-   fill: #2f2a64;
+   fill: #470abe;
 }
 </style>
