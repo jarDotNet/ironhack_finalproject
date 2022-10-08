@@ -72,6 +72,7 @@ import { useRouter } from "vue-router";
 import { defineComponent, onMounted, ref } from "@vue/runtime-core";
 import { supabase } from "../supabase";
 import { useUserStore } from "../store/user";
+
 export default defineComponent({
   name: "Navbar",
   props: {

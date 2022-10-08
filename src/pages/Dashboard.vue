@@ -139,10 +139,8 @@
 import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
-import CardEdition from "../components/CardEdition.vue";
-import CardList from "../components/CardList.vue";
-import TaskStateEnum from "../enums/TaskStateEnum";
-import TaskPositionEnum from "../enums/TaskPositionEnum";
+import { CardEdition, CardList } from "../components/";
+import { TaskStateEnum, TaskPositionEnum } from "../enums/";
 import { cardPosition } from "../utils/CardPosition";
 import ValidationConstants from "../utils/ValidationConstants";
 import { Container, Draggable } from "vue3-smooth-dnd";
