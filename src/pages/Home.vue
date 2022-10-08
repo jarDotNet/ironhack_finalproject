@@ -28,20 +28,21 @@
                </p>
 
                <img src="../assets/img-tasks.svg" alt="" />
-
-               <router-link to="/dashboard">Dashboard</router-link>
             </div>
 
             <div class="col-sm-12 col-md-8 col-xl-8 px-5 text-start p-2">
-               <div v-if="taskStore.length === 0"></div>
-
-               <div v-else class="d-flex flex-column align-items-center">
-                  <h2
-                     class="text-center fw-bolder mb-3 p-2"
-                     style="font-size: 2.5em"
-                  >
+               <div
+                  v-if="taskStore.tasks"
+                  class="d-flex flex-column align-items-center text-center"
+               >
+                  <h2 class="fw-bolder mb-3 p-2" style="font-size: 2.5em">
                      Let's take a look!
                   </h2>
+
+                  <p class="w-75">
+                     How's your assignments going? it looks like you've got
+                     everything under control, keep it up!
+                  </p>
 
                   <div class="card home-card">
                      <div class="card-content">
@@ -100,6 +101,91 @@
                         </div>
                      </div>
                   </div>
+
+                  <router-link to="/dashboard"
+                     ><button type="submit" class="btn btn-custom btn-lg mt-4">
+                        Go To Dashboard
+                     </button></router-link
+                  >
+               </div>
+
+               <div
+                  v-else
+                  class="d-flex flex-column align-items-center text-center"
+               >
+                  <h2 class="fw-bolder mb-3 p-2" style="font-size: 2.5em">
+                     Seems like a good start!
+                  </h2>
+
+                  <p class="w-75">
+                     It looks like you still have no tasks to take care of....
+                     How about creating your first task and increasing this
+                     counter? Follow the link at the end!
+                  </p>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-solid fa-clock-rotate-left"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.pendingTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Pending Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon icon="fa-solid fa-pencil" />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.inProcessTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">In Progress Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-circle-check"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.completedTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Closed Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <router-link to="/dashboard"
+                     ><button type="submit" class="btn btn-custom btn-lg mt-4">
+                        Go To Dashboard
+                     </button></router-link
+                  >
                </div>
             </div>
          </div>
