@@ -95,7 +95,6 @@ import { cardPosition } from "../utils/CardPosition";
 import { Container, Draggable } from "vue3-smooth-dnd";
 import { TaskStateEnum, TaskCategoryEnum } from "../enums/";
 import useTasksStore from "../store/task";
-import { faStaffSnake } from "@fortawesome/free-solid-svg-icons";
 
 export default defineComponent({
   name: "CardList",
