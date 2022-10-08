@@ -1,5 +1,5 @@
 <template>
-   <div class="container py-5 h-100">
+   <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center">
          <div
             class="col-md-12 col-xl-10 d-flex flex-column flex-lg-row justify-content-center mt-5"
