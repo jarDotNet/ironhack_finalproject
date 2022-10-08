@@ -165,12 +165,6 @@ export default {
     const tasksStore = useTasksStore();
     const store = useUserStore();
 
-    const dropPlaceholderOptions = ref({
-      className: "drop-preview",
-      animationDuration: "150",
-      showOnTop: false,
-    });
-
     const createNewTask = () => {
       const position = cardPosition(
         tasksStore.pendingTasks,
@@ -199,6 +193,7 @@ export default {
         task.title,
         task.current_state,
         task.priority,
+        task.category,
         task.description
       );
 
@@ -220,7 +215,6 @@ export default {
       tasksStore,
       taskToEdit,
       editModal,
-      dropPlaceholderOptions,
       createNewTask,
       editTask,
       cancelEdit,

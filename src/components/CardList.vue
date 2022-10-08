@@ -10,9 +10,7 @@
         drop-class="card-ghost-drop"
         group-name="tracklab"
         :get-child-payload="getChildPayload"
-        :drop-placeholder="dropPlaceholderOptions"
         @drop="handleDrop($event)"
-        style="height: 300px"
       >
         <Draggable v-for="task in state.tasks" :key="task.id">
           <div class="card border my-3" style="width: 100%">
@@ -32,10 +30,18 @@
             </div>
 
             <div class="card-footer clearfix">
-              <span class="float-left"
-                ><span class="badge text-bg-category">Coding</span></span
+              <span v-if="task.category" class="float-left"
+                ><span
+                  class="badge text-bg-category"
+                  :style="{
+                    'background-color': colorFromCategoryName(task.category),
+                  }"
+                >
+                  {{ task.category }}</span
+                ></span
               >
-              <span class="float-left ms-3"
+
+              <span :class="['float-left', { 'ms-3': task.category }]"
                 ><span class="badge text-bg-warning">{{
                   task.priority
                 }}</span></span
@@ -87,8 +93,9 @@
 import { defineComponent, ref, reactive, onUpdated } from "vue";
 import { cardPosition } from "../utils/CardPosition";
 import { Container, Draggable } from "vue3-smooth-dnd";
-import TaskStateEnum from "../enums/TaskStateEnum";
+import { TaskStateEnum, TaskCategoryEnum } from "../enums/";
 import useTasksStore from "../store/task";
+import { faStaffSnake } from "@fortawesome/free-solid-svg-icons";
 
 export default defineComponent({
   name: "CardList",
@@ -114,6 +121,7 @@ export default defineComponent({
   },
   created() {
     this.TaskStateEnum = TaskStateEnum;
+    this.TaskCategoryEnum = TaskCategoryEnum;
   },
   setup(props, { emit }) {
     const tasksStore = useTasksStore();
@@ -123,11 +131,15 @@ export default defineComponent({
       title: "",
     });
 
-    const dropPlaceholderOptions = ref({
-      className: "drop-preview",
-      animationDuration: "150",
-      showOnTop: false,
-    });
+    const colorFromCategoryName = (name) => {
+      const categories = Object.values(TaskCategoryEnum);
+
+      const category = categories.find(
+        (cat) => cat.name.toLowerCase() === name.toLowerCase()
+      );
+
+      return category?.hex;
+    };
 
     const editTask = (task) => {
       emit("editTask", task);
@@ -161,7 +173,7 @@ export default defineComponent({
 
     return {
       state,
-      dropPlaceholderOptions,
+      colorFromCategoryName,
       editTask,
       deleteTask,
       changeStatus,
@@ -176,6 +188,7 @@ export default defineComponent({
 .board-col {
   display: inline-block;
   width: 24em;
+  height: 70vh;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;

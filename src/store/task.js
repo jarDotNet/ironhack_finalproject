@@ -37,7 +37,7 @@ export default defineStore("tasks", {
       }
     },
     async createTask(newTask) {
-      alertStore.clear();
+      //alertStore.clear();
       const { data: taskCreated, error } = await supabase
         .from("tasks")
         .insert([newTask]);
@@ -49,48 +49,50 @@ export default defineStore("tasks", {
         //alertStore.success(`Task ${taskCreated[0].id} created!`);
       }
     },
-    async updateTask(taskId, title, state, priority, desc) {
-      alertStore.clear();
+    async updateTask(taskId, title, state, priority, category, desc) {
+      //alertStore.clear();
+      if (category.length === 0) category = null;
       const { data, error } = await supabase
         .from("tasks")
         .update({
           title: title,
           current_state: state,
           priority: priority,
+          category: category,
           description: desc,
         })
         .match({ id: taskId });
       if (error) {
         console.log(error);
-        alertStore.error();
+        // alertStore.error();
       } else {
         this.updateStoredTask(data[0]);
-        //alertStore.success(`Task ${taskId} updated!`);
+        // alertStore.success(`Task ${taskId} updated!`);
       }
     },
     async deleteTask(taskId) {
-      alertStore.clear();
+      //alertStore.clear();
       const { data, error } = await supabase
         .from("tasks")
         .delete()
         .match({ id: taskId });
       if (error) {
         console.log(error);
-        alertStore.error();
+        //alertStore.error();
       } else {
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
         //alertStore.success(`Task ${taskId} deleted!`);
       }
     },
     async markAs(state, taskId, position) {
-      alertStore.clear();
+      //alertStore.clear();
       const { data, error } = await supabase
         .from("tasks")
         .update({ current_state: state, pos: position })
         .match({ id: taskId });
       if (error) {
         console.log(error);
-        alertStore.error();
+        //alertStore.error();
       } else {
         this.updateStoredTask(data[0]);
         //alertStore.success(`Task ${taskId} state updated!`);
