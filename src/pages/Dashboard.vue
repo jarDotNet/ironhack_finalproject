@@ -52,6 +52,7 @@
   <div
     class="modal fade"
     id="editModal"
+    ref="editModal"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
@@ -71,10 +72,11 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="cancelEdit"
           ></button>
         </div>
         <div class="modal-body text-dark">
-          <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
+          <CardEdition :editTask="taskToEdit" @saveTask="saveTask" />
         </div>
       </div>
     </div>
@@ -144,6 +146,7 @@ import TaskPositionEnum from "../enums/TaskPositionEnum";
 import { cardPosition } from "../utils/CardPosition";
 import ValidationConstants from "../utils/ValidationConstants";
 import { Container, Draggable } from "vue3-smooth-dnd";
+import { Modal } from "bootstrap";
 
 export default {
   name: "Dashboard",
@@ -159,8 +162,10 @@ export default {
     this.ValidationConstants = ValidationConstants;
   },
   setup() {
+    const editModal = ref(null);
     const newTaskName = ref(null);
     let taskToEdit = ref(null);
+    let originalTaskToEdit = null;
     const tasksStore = useTasksStore();
     const store = useUserStore();
 
@@ -185,6 +190,11 @@ export default {
 
     const editTask = (task) => {
       taskToEdit.value = task;
+      originalTaskToEdit = { ...task };
+    };
+
+    const cancelEdit = () => {
+      tasksStore.updateStoredTask(originalTaskToEdit);
     };
 
     const saveTask = (task) => {
@@ -195,6 +205,14 @@ export default {
         task.priority,
         task.description
       );
+
+      Modal.getInstance(editModal.value)?.hide();
+
+      // HACK: remove .modal-backdrop remaining div
+      var elements = document.getElementsByClassName(
+        "modal-backdrop fade show"
+      );
+      if (elements.length > 0) elements[0].parentNode.removeChild(elements[0]);
     };
 
     onMounted(() => {
@@ -205,9 +223,11 @@ export default {
       newTaskName,
       tasksStore,
       taskToEdit,
+      editModal,
       dropPlaceholderOptions,
       createNewTask,
       editTask,
+      cancelEdit,
       saveTask,
     };
   },
