@@ -7,10 +7,15 @@
             <div
                class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-start"
             >
-               <h1 class="text-center fw-bolder mb-3 p-2" style="color:#fff; background-color: #635e94ed">TrackLab</h1>
+               <h1
+                  class="text-center fw-bolder mb-3 p-2"
+                  style="color: #fff; background-color: #635e94ed"
+               >
+                  TrackLab
+               </h1>
 
-               <h2 v-if="taskStore.length === 0">Welcome, {{ username }}!</h2>
-               <h2 v-else>Welcome back, {{ username }}!</h2>
+               <h2 v-if="taskStore.length === 0" class="mt-5">Welcome!></h2>
+               <h2 v-else class="mt-5">Welcome back, {{ username }}!</h2>
 
                <p>
                   Are you ready? Start managing your tasks easily through our
@@ -27,52 +32,79 @@
                <router-link to="/dashboard">Dashboard</router-link>
             </div>
 
-            <div class="col-sm-12 col-md-8 col-xl-8 px-5 text-start align-self-center">
+            <div class="col-sm-12 col-md-8 col-xl-8 px-5 text-start p-2">
                <div v-if="taskStore.length === 0"></div>
 
-               <div v-else>
-                  <h2>Let's take a look!</h2>
+               <div v-else class="d-flex flex-column align-items-center">
+                  <h2
+                     class="text-center fw-bolder mb-3 p-2"
+                     style="font-size: 2.5em"
+                  >
+                     Let's take a look!
+                  </h2>
 
-                  <div class="col-12">
-                     <div class="card border my-3" style="width: 100%">
-                        <div
-                           class="card-body d-flex justify-content-start pb-1"
-                        >
-                           Hola
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-solid fa-clock-rotate-left"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.pendingTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Pending Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon icon="fa-solid fa-pencil" />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.inProcessTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">In Progress Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-circle-check"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.completedTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Closed Tasks</p>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
                </div>
-
-               Actualmente tienes
-               <b>{{ taskStore.pendingTasks.length }}</b> tareas activas, tienes
-               <b>{{ taskStore.inProcessTasks.length }}</b> tareas en proceso,
-               tienes <b>{{ taskStore.completedTasks.length }}</b> tareas
-               completadas
             </div>
          </div>
       </div>
    </div>
-
-   <h2>
-      Hola {{ username }}, bienvenido a TrackLab, aplicación web donde podra
-      gestionar sus tareas
-   </h2>
-   <div v-if="taskStore.tasks">
-      <p>
-         Actualmente tienes <b>{{ taskStore.pendingTasks.length }}</b> tareas
-         activas, tienes <b>{{ taskStore.inProcessTasks.length }}</b> tareas en
-         proceso, tienes <b>{{ taskStore.completedTasks.length }}</b> tareas
-         completadas
-      </p>
-   </div>
-   <div v-else>
-      <p>
-         Actualmente no tienes ninguna tarea creada, si deseas crear una,
-         dirijete a tu dashboard
-      </p>
-   </div>
-   <router-link to="/dashboard"> Ir a dashboard</router-link>
 </template>
 
 <script>
@@ -123,4 +155,35 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.home-card {
+   max-width: 320px;
+   border-radius: 0.5em;
+   box-shadow: 0 10px 40px 0 rgb(62 57 107 / 7%),
+      0 2px 9px 0 rgb(62 57 107 / 6%);
+   border: 1px solid #00000012;
+   opacity: 0.8;
+   transition: all 0.8s ease;
+}
+
+.home-card:hover {
+   opacity: 1;
+}
+
+.home-card:not(:first-child) {
+   margin-top: 1em;
+}
+
+.home-card h3 {
+   color: #2f2a64;
+}
+
+.home-card .svg-inline--fa {
+   height: 3em;
+   padding: 0 1em;
+}
+
+:deep(path) {
+   fill: #2f2a64;
+}
+</style>
