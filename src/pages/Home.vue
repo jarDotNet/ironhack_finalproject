@@ -4,27 +4,51 @@
          <div
             class="col-md-12 col-xl-10 d-flex flex-column flex-lg-row justify-content-center mt-5"
          >
-            <div class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center">
-               <h1 class="text-center fw-bolder mb-5">TrackLab</h1>
+            <div
+               class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-start"
+            >
+               <h1 class="text-center fw-bolder mb-3 p-2" style="color:#fff; background-color: #635e94ed">TrackLab</h1>
 
-               <h2>Welcome back, {{ username }}!</h2>
+               <h2 v-if="taskStore.length === 0">Welcome, {{ username }}!</h2>
+               <h2 v-else>Welcome back, {{ username }}!</h2>
 
                <p>
                   Are you ready? Start managing your tasks easily through our
                   customized dashboard.
                </p>
 
-               <img src="../assets/img-tasks.svg" alt="" />
+               <p class="text-center">
+                  <strong>Simpler</strong>, <strong>Easier</strong> and
+                  <strong>Faster</strong>!
+               </p>
 
-               <p class="text-center">Simpler, Easier and Faster!</p>
+               <img src="../assets/img-tasks.svg" alt="" />
 
                <router-link to="/dashboard">Dashboard</router-link>
             </div>
 
-            <div
-               class="col-sm-12 col-md-8 col-xl-8 px-5 align-self-center text-start"
-            >
-               Hey
+            <div class="col-sm-12 col-md-8 col-xl-8 px-5 text-start align-self-center">
+               <div v-if="taskStore.length === 0"></div>
+
+               <div v-else>
+                  <h2>Let's take a look!</h2>
+
+                  <div class="col-12">
+                     <div class="card border my-3" style="width: 100%">
+                        <div
+                           class="card-body d-flex justify-content-start pb-1"
+                        >
+                           Hola
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               Actualmente tienes
+               <b>{{ taskStore.pendingTasks.length }}</b> tareas activas, tienes
+               <b>{{ taskStore.inProcessTasks.length }}</b> tareas en proceso,
+               tienes <b>{{ taskStore.completedTasks.length }}</b> tareas
+               completadas
             </div>
          </div>
       </div>
