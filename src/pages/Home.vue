@@ -1,24 +1,200 @@
 <template>
-  <h1 class="text-center">Home Page</h1>
-  <h2>
-    Hola {{ username }}, bienvenido a TrackLab, aplicación web donde podra
-    gestionar sus tareas
-  </h2>
-  <div v-if="taskStore.tasks">
-    <p>
-      Actualmente tienes <b>{{ taskStore.pendingTasks.length }}</b> tareas
-      activas, tienes <b>{{ taskStore.inProcessTasks.length }}</b> tareas en
-      proceso, tienes <b>{{ taskStore.completedTasks.length }}</b> tareas
-      completadas
-    </p>
-  </div>
-  <div v-else>
-    <p>
-      Actualmente no tienes ninguna tarea creada, si deseas crear una, dirijete
-      a tu dashboard
-    </p>
-  </div>
-  <router-link to="/dashboard"> Ir a dashboard</router-link>
+   <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center">
+         <div
+            class="col-md-12 col-xl-10 d-flex flex-column flex-lg-row justify-content-center mt-5"
+         >
+            <div
+               class="col-sm-12 col-md-5 col-xl-5 p-2 justify-content-center text-center"
+            >
+               <h1
+                  class="text-center fw-bolder mb-3 p-2"
+                  style="color: #fff; background-color: #635e94ed"
+               >
+                  TrackLab
+               </h1>
+
+               <h2 v-if="taskStore.length === 0" class="mt-5">Welcome!></h2>
+               <h2 v-else class="mt-5">Welcome back, {{ username }}!</h2>
+
+               <p>
+                  Are you ready? Start managing your tasks easily through our
+                  customized dashboard.
+               </p>
+
+               <p class="text-center">
+                  <strong>Simpler</strong>, <strong>Easier</strong> and
+                  <strong>Faster</strong>!
+               </p>
+
+               <img
+                  src="../assets/img-tasks.svg"
+                  alt="ilustration of a man adding a task to a dashboard"
+                  style="height: 300px"
+               />
+            </div>
+
+            <div class="col-sm-12 col-md-7 col-xl-7 px-5 text-start p-2">
+               <div
+                  v-if="taskStore.tasks"
+                  class="d-flex flex-column align-items-center text-center"
+               >
+                  <h2 class="fw-bolder mb-3 p-2" style="font-size: 2.5em">
+                     Let's take a look!
+                  </h2>
+
+                  <p class="w-75">
+                     How's your assignments going? it looks like you've got
+                     everything under control, keep it up!
+                  </p>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon icon="fa-regular fa-clock" />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.pendingTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Pending Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-pen-to-square"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.inProcessTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">In Progress Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-circle-check"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.completedTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Closed Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <router-link to="/dashboard"
+                     ><button type="submit" class="btn btn-custom btn-lg mt-4">
+                        Go To Dashboard
+                     </button></router-link
+                  >
+               </div>
+
+               <div
+                  v-else
+                  class="d-flex flex-column align-items-center text-center"
+               >
+                  <h2 class="fw-bolder mb-3 p-2" style="font-size: 2.5em">
+                     Seems like a good start!
+                  </h2>
+
+                  <p class="w-75">
+                     It looks like you still have no tasks to take care of....
+                     How about creating your first task and increasing this
+                     counter? Follow the link at the end!
+                  </p>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon icon="fa-regular fa-clock" />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.pendingTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Pending Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-pen-to-square"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.inProcessTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">In Progress Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card home-card">
+                     <div class="card-content">
+                        <div class="card-body p-2">
+                           <div
+                              class="d-flex justify-content-between align-items-center"
+                           >
+                              <font-awesome-icon
+                                 icon="fa-regular fa-circle-check"
+                              />
+                              <div class="text-right">
+                                 <h3 class="fw-bolder">
+                                    {{ taskStore.completedTasks.length }}
+                                 </h3>
+                                 <p class="small mb-0">Closed Tasks</p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <router-link to="/dashboard"
+                     ><button type="submit" class="btn btn-custom btn-lg mt-4">
+                        Go To Dashboard
+                     </button></router-link
+                  >
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </template>
 
 <script>
@@ -28,45 +204,76 @@ import { ref } from "vue";
 import { supabase } from "../supabase";
 import useTasksStore from "../store/task";
 export default {
-  setup() {
-    const store = useUserStore();
-    const username = ref("");
-    const taskStore = useTasksStore();
+   setup() {
+      const store = useUserStore();
+      const username = ref("");
+      const taskStore = useTasksStore();
 
-    async function getProfile() {
-      try {
-        let { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username`)
-          .eq("id", store.user.id)
-          .single();
+      async function getProfile() {
+         try {
+            let { data, error, status } = await supabase
+               .from("profiles")
+               .select(`username`)
+               .eq("id", store.user.id)
+               .single();
 
-        if (error && status !== 406) throw error;
+            if (error && status !== 406) throw error;
 
-        if (data) {
-          username.value = data.username;
-        }
-      } catch (error) {
-        console.log(error);
+            if (data) {
+               username.value = data.username;
+            }
+         } catch (error) {
+            console.log(error);
+         }
       }
-    }
 
-    onMounted(() => {
-      getProfile();
-      taskStore.fetchTasks();
-    });
+      onMounted(() => {
+         getProfile();
+         taskStore.fetchTasks();
+      });
 
-    onUpdated(() => {
-      getProfile();
-    });
+      onUpdated(() => {
+         getProfile();
+      });
 
-    return {
-      store,
-      username,
-      taskStore,
-    };
-  },
+      return {
+         store,
+         username,
+         taskStore,
+      };
+   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.home-card {
+   max-width: 320px;
+   border-radius: 0.5em;
+   box-shadow: 0 10px 40px 0 rgb(62 57 107 / 7%),
+      0 2px 9px 0 rgb(62 57 107 / 6%);
+   border: 1px solid #00000012;
+   opacity: 0.8;
+   transition: all 0.8s ease;
+}
+
+.home-card:hover {
+   opacity: 1;
+}
+
+.home-card:not(:first-child) {
+   margin-top: 1em;
+}
+
+.home-card h3 {
+   color: #470abe;
+}
+
+.home-card .svg-inline--fa {
+   height: 3em;
+   padding: 0 1em;
+}
+
+:deep(path) {
+   fill: #470abe;
+}
+</style>

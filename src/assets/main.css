@@ -13,7 +13,7 @@ body {
    --custom-color-secondary: #090f32;
    --custon-color-tertiary: #3d5a80;
    --custom-border: 1px solid #333;
-   --custom-border-radius: 15px;
+   --custom-border-radius: 0.25em;
    --custom-spacing: 3px;
    padding: 0;
    margin: 0;
