@@ -69,7 +69,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent, onMounted, ref } from "@vue/runtime-core";
+import { defineComponent, onMounted, onUpdated, ref } from "@vue/runtime-core";
 import { supabase } from "../supabase";
 import { useUserStore } from "../store/user";
 
@@ -105,7 +105,7 @@ export default defineComponent({
           .single();
 
         if (error && status !== 406) throw error;
-        console.log(data);
+
         if (data) {
           username.value = data.username;
           website.value = data.website;
@@ -115,6 +115,10 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      getProfile();
+    });
+
+    onUpdated(() => {
       getProfile();
     });
 
