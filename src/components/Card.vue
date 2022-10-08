@@ -114,7 +114,6 @@ import { Draggable } from "vue3-smooth-dnd";
 import CardEdition from "./CardEdition.vue";
 import useTasksStore from "../store/task";
 import TaskStateEnum from "../enums/TaskStateEnum";
-
 export default {
    name: "Card",
    components: {
@@ -126,20 +125,15 @@ export default {
       const state = reactive({
          taskToEdit: null,
       });
-
       const store = useTasksStore();
-
       // const taskToEdit = ref(null);
-
       const editTask = () => {
          alert(state.task.title);
          task = state.taskToEdit;
       };
-
       const deleteTask = (taskId) => {
          store.deleteTask(taskId);
       };
-
       const saveTask = (task) => {
          store.updateTask(
             task.id,
@@ -149,15 +143,13 @@ export default {
             task.description
          );
       };
-
       const changeStatus = (task) => {
          store.markAs(TaskStateEnum.COMPLETED, task.id, task.position);
       };
-
       /*onUpdated(() => {
-      state.task = props.taskCard;
-    });
-  */
+       state.task = props.taskCard;
+     });
+   */
       return {
          state,
          store,
@@ -176,35 +168,28 @@ export default {
    white-space: break-spaces;
    line-height: 1.5em;
 }
-
 .check-input-card {
    padding: 6px;
    float: right;
 }
-
 .form-check-input:checked {
    background-color: #4e94fb;
    border-color: #4e94fb;
 }
-
 .text-bg-category {
    color: #000;
    background-color: var(--bg-color-coding);
 }
-
 .mr-auto {
    margin-right: auto;
 }
-
 .badge:hover {
    opacity: 1;
    transition: 0.5s ease-in-out 100ms;
 }
-
 .badge {
    opacity: 0.7;
 }
-
 .card-footer {
    border-bottom: none;
    background-color: var(--bs-card-bg);
@@ -212,21 +197,17 @@ export default {
    padding: 8px 16px;
    border: 0;
 }
-
 .card-title {
    font-size: 16px;
 }
-
 .text-bg-low {
    color: rgb(48, 94, 105);
    background-color: rgb(149, 208, 220);
 }
-
 .text-bg-medium {
    color: rgb(133, 100, 44);
    background-color: rgb(236, 206, 159);
 }
-
 .text-bg-high {
    color: rgb(133, 44, 44);
    background-color: rgb(236, 159, 159);
