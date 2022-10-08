@@ -5,7 +5,7 @@
             class="col-md-12 col-xl-10 d-flex flex-column flex-lg-row justify-content-center mt-5"
          >
             <div
-               class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-start"
+               class="col-sm-12 col-md-5 col-xl-5 p-2 justify-content-center text-center"
             >
                <h1
                   class="text-center fw-bolder mb-3 p-2"
@@ -27,10 +27,14 @@
                   <strong>Faster</strong>!
                </p>
 
-               <img src="../assets/img-tasks.svg" alt="" />
+               <img
+                  src="../assets/img-tasks.svg"
+                  alt="ilustration of a man adding a task to a dashboard"
+                  style="height: 300px"
+               />
             </div>
 
-            <div class="col-sm-12 col-md-8 col-xl-8 px-5 text-start p-2">
+            <div class="col-sm-12 col-md-7 col-xl-7 px-5 text-start p-2">
                <div
                   v-if="taskStore.tasks"
                   class="d-flex flex-column align-items-center text-center"
