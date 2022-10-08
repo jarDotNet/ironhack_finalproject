@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
-import { useAlertStore } from "./alert";
+//import { useAlertStore } from "./alert";
 import TaskStateEnum from "../enums/TaskStateEnum";
 
-const alertStore = useAlertStore();
+//const alertStore = useAlertStore();
 
 export default defineStore("tasks", {
   state: () => ({
@@ -25,7 +25,7 @@ export default defineStore("tasks", {
   },
   actions: {
     async fetchTasks() {
-      alertStore.clear();
+      //alertStore.clear();
       const { data: tasks, error } = await supabase
         .from("tasks")
         .select()
@@ -33,7 +33,7 @@ export default defineStore("tasks", {
       this.tasks = tasks;
       if (error) {
         console.log(error);
-        alertStore.error();
+        //alertStore.error();
       }
     },
     async createTask(newTask) {
@@ -43,10 +43,10 @@ export default defineStore("tasks", {
         .insert([newTask]);
       if (error) {
         console.log(error);
-        alertStore.error();
+        // alertStore.error();
       } else {
         this.tasks.push(taskCreated[0]);
-        alertStore.success(`Task ${taskCreated[0].id} created!`);
+        //alertStore.success(`Task ${taskCreated[0].id} created!`);
       }
     },
     async updateTask(taskId, title, state, priority, desc) {
@@ -65,7 +65,7 @@ export default defineStore("tasks", {
         alertStore.error();
       } else {
         this.updateStoredTask(data[0]);
-        alertStore.success(`Task ${taskId} updated!`);
+        //alertStore.success(`Task ${taskId} updated!`);
       }
     },
     async deleteTask(taskId) {
@@ -79,7 +79,7 @@ export default defineStore("tasks", {
         alertStore.error();
       } else {
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
-        alertStore.success(`Task ${taskId} deleted!`);
+        //alertStore.success(`Task ${taskId} deleted!`);
       }
     },
     async markAs(state, taskId, position) {
@@ -93,7 +93,7 @@ export default defineStore("tasks", {
         alertStore.error();
       } else {
         this.updateStoredTask(data[0]);
-        alertStore.success(`Task ${taskId} state updated!`);
+        //alertStore.success(`Task ${taskId} state updated!`);
       }
     },
     updateStoredTask(taskToUpdate) {
