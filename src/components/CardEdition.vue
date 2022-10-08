@@ -77,8 +77,7 @@
 
 <script>
 import { reactive, defineComponent, onUpdated } from "vue";
-import TaskStateEnum from "../enums/TaskStateEnum";
-import TaskPriorityEnum from "../enums/TaskPriorityEnum";
+import { TaskStateEnum, TaskPriorityEnum } from "../enums/";
 import ValidationConstants from "../utils/ValidationConstants";
 
 export default defineComponent({
