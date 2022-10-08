@@ -64,9 +64,7 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
+        this.updateStoredTask(data[0]);
         alertStore.success(`Task ${taskId} updated!`);
       }
     },
@@ -94,11 +92,14 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
+        this.updateStoredTask(data[0]);
         alertStore.success(`Task ${taskId} state updated!`);
       }
+    },
+    updateStoredTask(taskToUpdate) {
+      this.tasks = this.tasks.map((task) =>
+        task.id == taskToUpdate.id ? taskToUpdate : task
+      );
     },
   },
 });
