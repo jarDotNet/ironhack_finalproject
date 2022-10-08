@@ -31,9 +31,6 @@
               >Profile</router-link
             >
           </li>
-          <li class="nav-item">
-            <router-link to="/404" class="nav-link text-white">404</router-link>
-          </li>
         </ul>
 
         <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
