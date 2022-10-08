@@ -137,12 +137,10 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useTasksStore from "../store/task";
-import { useUserStore } from "../store/user";
+import { useTasksStore, useUserStore } from "../store/";
 import { CardEdition, CardList } from "../components/";
 import { TaskStateEnum, TaskPositionEnum } from "../enums/";
-import { cardPosition } from "../utils/CardPosition";
-import ValidationConstants from "../utils/ValidationConstants";
+import { cardPosition, ValidationConstants } from "../utils/";
 import { Container, Draggable } from "vue3-smooth-dnd";
 import { Modal } from "bootstrap";
 
