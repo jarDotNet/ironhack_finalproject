@@ -50,8 +50,7 @@
 
 <script>
 import { ref } from "vue";
-import { useUserStore } from "../store/user";
-import { useAlertStore } from "../store/alert";
+import { useUserStore, useAlertStore } from "../store/";
 import { togglePassword } from "../utils/TogglePassword";
 import ValidationConstants from "../utils/ValidationConstants";
 

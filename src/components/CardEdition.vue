@@ -53,6 +53,26 @@
         </option>
       </select>
     </div>
+    <label for="task-priority" class="label-text text-capitalize"
+      >Category:</label
+    >
+    <div class="inputfield">
+      <select
+        id="task-category"
+        name="task-category"
+        class="form-control"
+        v-model="state.task.category"
+      >
+        <option
+          v-for="category in TaskCategoryEnum"
+          :key="category.name"
+          :value="category.name"
+          style="color: black"
+        >
+          {{ capitalize(category.name) }}
+        </option>
+      </select>
+    </div>
     <label for="task-description" class="label-text text-capitalize"
       >Description:</label
     >
@@ -77,8 +97,7 @@
 
 <script>
 import { reactive, defineComponent, onUpdated } from "vue";
-import TaskStateEnum from "../enums/TaskStateEnum";
-import TaskPriorityEnum from "../enums/TaskPriorityEnum";
+import { TaskStateEnum, TaskPriorityEnum, TaskCategoryEnum } from "../enums/";
 import ValidationConstants from "../utils/ValidationConstants";
 
 export default defineComponent({
@@ -93,6 +112,7 @@ export default defineComponent({
   created() {
     this.TaskStateEnum = TaskStateEnum;
     this.TaskPriorityEnum = TaskPriorityEnum;
+    this.TaskCategoryEnum = TaskCategoryEnum;
     this.ValidationConstants = ValidationConstants;
   },
   setup(props, { emit }) {
@@ -101,6 +121,7 @@ export default defineComponent({
     });
 
     const capitalize = (text) => {
+      if (!text || text.length === 0) return "";
       return text[0].toUpperCase() + text.slice(1).toLowerCase();
     };
 
