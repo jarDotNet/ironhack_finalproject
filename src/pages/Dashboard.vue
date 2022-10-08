@@ -30,8 +30,9 @@
               type="text"
               id="task-name"
               class="inputField"
-              ref="taskName"
+              ref="newTaskName"
               placeholder="Enter task name"
+              :maxlength="ValidationConstants.NEW_TASK_MAX_LENGTH"
             />
           </div>
           <div class="d-grid gap-2">
@@ -42,6 +43,38 @@
               Add Task
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit Card -->
+  <div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4
+            class="modal-title m-3 text-dark text-center card-title-text"
+            style="font-weight: bold"
+            id="exampleModalLabel"
+          >
+            Modify Your Task
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body text-dark">
+          <CardEdition v-model:editTask="taskToEdit" @saveTask="saveTask" />
         </div>
       </div>
     </div>
@@ -74,80 +107,26 @@
     <div class="row mt-4">
       <div class="col-12">
         <div class="board">
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span> Backlog
-            </h3>
+          <CardList
+            :cards="tasksStore.pendingTasks"
+            :current_sate="TaskStateEnum.PENDING"
+            :title="'Backlog'"
+            @editTask="editTask"
+          />
 
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload1"
-                :drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.PENDING, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.pendingTasks"
-                  :task="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
-            </div>
-          </div>
+          <CardList
+            :cards="tasksStore.inProcessTasks"
+            :current_sate="TaskStateEnum.IN_PROGRESS"
+            :title="'In Progress'"
+            @editTask="editTask"
+          />
 
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span> In Progress
-            </h3>
-
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload2"
-                :drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.IN_PROGRESS, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.inProcessTasks"
-                  :task="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
-            </div>
-          </div>
-
-          <div class="board-col">
-            <h3 class="mt-0 board-header">
-              <span class="icon-back"></span>Done
-            </h3>
-
-            <div class="board-tasks">
-              <Container
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                group-name="1"
-                :get-child-payload="getChildPayload3"
-                :drop-placeholder="dropPlaceholderOptions"
-                @drop="handleDrop(TaskStateEnum.COMPLETED, $event)"
-                style="height: 300px"
-              >
-                <Card
-                  v-for="task in tasksStore.completedTasks"
-                  :task="task"
-                  :key="task.id"
-                >
-                </Card>
-              </Container>
-            </div>
-          </div>
+          <CardList
+            :cards="tasksStore.completedTasks"
+            :current_sate="TaskStateEnum.COMPLETED"
+            :title="'Done'"
+            @editTask="editTask"
+          />
         </div>
       </div>
     </div>
@@ -158,29 +137,30 @@
 import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
-import Card from "../components/Card.vue";
 import CardEdition from "../components/CardEdition.vue";
+import CardList from "../components/CardList.vue";
 import TaskStateEnum from "../enums/TaskStateEnum";
 import TaskPositionEnum from "../enums/TaskPositionEnum";
 import { cardPosition } from "../utils/CardPosition";
+import ValidationConstants from "../utils/ValidationConstants";
 import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
   name: "Dashboard",
   components: {
     CardEdition,
+    CardList,
     Container,
     Draggable,
-    Card,
   },
   created() {
     this.TaskStateEnum = TaskStateEnum;
     this.TaskPositionEnum = TaskPositionEnum;
+    this.ValidationConstants = ValidationConstants;
   },
   setup() {
-    const taskId = ref(null);
-    const taskName = ref(null);
-    const taskToEdit = ref(null);
+    const newTaskName = ref(null);
+    let taskToEdit = ref(null);
     const tasksStore = useTasksStore();
     const store = useUserStore();
 
@@ -197,67 +177,38 @@ export default {
       );
       const newTask = {
         user_id: store.user.id,
-        title: taskName.value.value,
+        title: newTaskName.value.value,
         pos: position,
       };
       tasksStore.createTask(newTask);
     };
 
-    const deleteTask = (taskId) => {
-      tasksStore.deleteTask(taskId);
+    const editTask = (task) => {
+      taskToEdit.value = task;
     };
 
-    const getChildPayload1 = (index) => {
-      return tasksStore.pendingTasks[index];
-    };
-    const getChildPayload2 = (index) => {
-      return tasksStore.inProcessTasks[index];
-    };
-    const getChildPayload3 = (index) => {
-      return tasksStore.completedTasks[index];
-    };
-
-    const handleDrop = (state, dropResult) => {
-      const { removedIndex, addedIndex, payload } = dropResult;
-      if (removedIndex === addedIndex) return;
-
-      if (addedIndex !== null) {
-        let tasks = null;
-        switch (state) {
-          case TaskStateEnum.COMPLETED:
-            tasks = tasksStore.completedTasks;
-            break;
-
-          case TaskStateEnum.IN_PROGRESS:
-            tasks = tasksStore.inProcessTasks;
-            break;
-
-          default:
-            tasks = tasksStore.pendingTasks;
-            break;
-        }
-        const position = cardPosition(tasks, addedIndex);
-        tasksStore.markAs(state, payload.id, position);
-      }
+    const saveTask = (task) => {
+      tasksStore.updateTask(
+        task.id,
+        task.title,
+        task.current_state,
+        task.priority,
+        task.description
+      );
     };
 
     onMounted(() => {
       tasksStore.fetchTasks();
-      if (tasksStore.tasks.length > 0) taskToEdit.value = tasksStore.tasks[0];
     });
 
     return {
-      taskId,
-      taskName,
+      newTaskName,
       tasksStore,
       taskToEdit,
       dropPlaceholderOptions,
       createNewTask,
-      deleteTask,
-      getChildPayload1,
-      getChildPayload2,
-      getChildPayload3,
-      handleDrop,
+      editTask,
+      saveTask,
     };
   },
 };

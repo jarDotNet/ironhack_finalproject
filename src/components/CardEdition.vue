@@ -9,6 +9,7 @@
         class="inputField"
         placeholder="Task name"
         v-model="state.task.title"
+        :maxlength="ValidationConstants.NEW_TASK_MAX_LENGTH"
         style="color: black"
       />
     </div>
@@ -78,6 +79,7 @@
 import { reactive, defineComponent, onUpdated } from "vue";
 import TaskStateEnum from "../enums/TaskStateEnum";
 import TaskPriorityEnum from "../enums/TaskPriorityEnum";
+import ValidationConstants from "../utils/ValidationConstants";
 
 export default defineComponent({
   name: "CardEdition",
@@ -91,6 +93,7 @@ export default defineComponent({
   created() {
     this.TaskStateEnum = TaskStateEnum;
     this.TaskPriorityEnum = TaskPriorityEnum;
+    this.ValidationConstants = ValidationConstants;
   },
   setup(props, { emit }) {
     const state = reactive({
