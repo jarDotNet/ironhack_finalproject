@@ -45,8 +45,8 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
-        alertStore.success(`Task ${taskCreated[0].id} created!`);
         this.tasks.push(taskCreated[0]);
+        alertStore.success(`Task ${taskCreated[0].id} created!`);
       }
     },
     async updateTask(taskId, title, state, priority, desc) {
@@ -64,10 +64,8 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
+        this.updateStoredTask(data[0]);
         alertStore.success(`Task ${taskId} updated!`);
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
       }
     },
     async deleteTask(taskId) {
@@ -80,8 +78,8 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
-        alertStore.success(`Task ${taskId} deleted!`);
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
+        alertStore.success(`Task ${taskId} deleted!`);
       }
     },
     async markAs(state, taskId, position) {
@@ -94,11 +92,14 @@ export default defineStore("tasks", {
         console.log(error);
         alertStore.error();
       } else {
+        this.updateStoredTask(data[0]);
         alertStore.success(`Task ${taskId} state updated!`);
-        this.tasks = this.tasks.map((task) =>
-          task.id == taskId ? data[0] : task
-        );
       }
+    },
+    updateStoredTask(taskToUpdate) {
+      this.tasks = this.tasks.map((task) =>
+        task.id == taskToUpdate.id ? taskToUpdate : task
+      );
     },
   },
 });
