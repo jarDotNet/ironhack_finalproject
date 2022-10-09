@@ -536,16 +536,17 @@ label {
    color: #fff;
    background: linear-gradient(
       45deg,
-      #09014bed,
-      #635e94ed,
-      #5349af,
+      #da94fb,
+      #af66d1,
+      #9647bb,
       #4739c5,
       #3222bb,
-      #160d6f
+      #160d6f,
+      #09014bed
    );
-   animation: gradient 10s linear infinite;
+   animation: gradient 12s linear infinite;
    animation-direction: alternate;
-   background-size: 400% 400%;
+   background-size: 400% 700%;
 }
 
 @keyframes gradient {
