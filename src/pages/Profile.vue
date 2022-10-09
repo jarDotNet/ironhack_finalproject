@@ -1,16 +1,21 @@
 <template>
    <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center">
-         <div class="col-md-12 col-xl-10">
+         <div class="col-md-12 col-xl-10 text-center">
             <h1
-               class="text-center fw-bolder mb-3 p-3"
+               class="fw-bolder mb-3 p-2"
                style="color: #fff; background-color: #635e94ed"
             >
                Profile Settings
             </h1>
+
+            <p class="w-100 mt-2">
+               Do you want to edit your personal data?
+               <strong>Fill in the fields</strong> and show us your potential!
+            </p>
             <form
                v-if="store.user"
-               class="form-widget d-flex flex-column flex-lg-row justify-content-center mt-5"
+               class="form-widget d-flex flex-column flex-lg-row justify-content-center mt-4"
                @submit.prevent="updateProfile"
             >
                <div
