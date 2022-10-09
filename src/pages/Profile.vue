@@ -3,8 +3,8 @@
       <div class="row d-flex justify-content-center align-items-center">
          <div class="col-md-12 col-xl-10 text-center">
             <h1
-               class="fw-bolder mb-3 p-2"
-               style="color: #fff; background-color: #635e94ed"
+               class="fw-bolder mb-3 p-3"
+               style="color: #fff; background-color: #635e94ed; border-radius: 5px"
             >
                Profile Settings
             </h1>
