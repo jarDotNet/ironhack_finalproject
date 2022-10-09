@@ -1,6 +1,6 @@
 <template>
   <div class="board-col">
-    <h3 class="mt-0 board-header">
+    <h3 class="mt-0 board-header bg-background">
       <span class="icon-back"></span> {{ state.title }}
     </h3>
 
@@ -205,8 +205,6 @@ export default defineComponent({
 .board-header {
   padding: 1rem;
   margin: 0 -1rem;
-  color: #fff;
-  background: #635e94ed;
   font-size: 1em;
 }
 

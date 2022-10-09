@@ -8,8 +8,7 @@
                class="col-sm-12 col-md-5 col-xl-5 p-2 justify-content-center text-center"
             >
                <h1
-                  class="text-center fw-bolder mb-3 p-2"
-                  style="color: #fff; background-color: #635e94ed"
+                  class="text-center fw-bolder mb-3 p-2 bg-background"
                >
                   TrackLab
                </h1>

@@ -531,3 +531,29 @@ label {
 .inputfield textarea:focus {
    border-color: #573b8a;
 }
+
+.bg-background {
+   color: #fff;
+   background: linear-gradient(
+      45deg,
+      #09014bed,
+      #635e94ed,
+      #5349af,
+      #4739c5,
+      #3222bb,
+      #160d6f
+   );
+   animation: gradient 10s linear infinite;
+   animation-direction: alternate;
+   background-size: 400% 400%;
+   border-radius: 5px;
+}
+
+@keyframes gradient {
+   0% {
+      background-position: 0%;
+   }
+   100% {
+      background-position: 100%;
+   }
+}
