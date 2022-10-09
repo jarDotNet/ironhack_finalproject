@@ -49,6 +49,7 @@
               alt="Profile
             photo"
               class="rounded-circle"
+              title="Profile"
               style="width: 30px; height: 30px; object-fit: contain"
               v-else
             />
