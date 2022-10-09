@@ -138,7 +138,6 @@ body,
 }
 
 @media only screen and (min-width: 45em) {
-
    /* 720px */
    .col-1 {
       width: 4.33%;
@@ -211,7 +210,7 @@ textarea,
    border: var(--custom-border);
    padding: 10px;
    font-size: 0.9rem;
-   background-color: #eee;
+   background-color: #eae9f282;
    justify-content: center;
    color: var(--custom-color);
    margin: 10px auto;
@@ -347,27 +346,26 @@ button.primary,
    width: 100%;
 }
 
-.footer div>img {
+.footer div > img {
    height: 20px;
    margin-left: 10px;
 }
 
-.footer>div:first-child {
+.footer > div:first-child {
    display: none;
 }
 
-.footer>div:nth-child(2) {
+.footer > div:nth-child(2) {
    justify-content: left;
 }
 
 @media only screen and (min-width: 60em) {
-
    /* 960px */
-   .footer>div:first-child {
+   .footer > div:first-child {
       display: flex;
    }
 
-   .footer>div:nth-child(2) {
+   .footer > div:nth-child(2) {
       justify-content: center;
    }
 }
@@ -405,7 +403,7 @@ button.primary,
    gap: 20px;
 }
 
-.form-widget>.button {
+.form-widget > .button {
    display: flex;
    align-items: center;
    justify-content: center;
@@ -419,7 +417,7 @@ button.primary,
    background-color: #2a2a2a;
 }
 
-.form-widget .button>.loader {
+.form-widget .button > .loader {
    width: 17px;
    animation: spin 1s linear infinite;
    filter: invert(1);
@@ -503,10 +501,12 @@ button.primary,
    width: 167px;
    bottom: -3px;
    border-radius: 5px;
-   background: linear-gradient(90deg,
-         rgba(15, 11, 59, 1) 0%,
-         rgba(47, 42, 100, 1) 48%,
-         rgba(86, 81, 142, 1) 100%);
+   background: linear-gradient(
+      90deg,
+      rgba(15, 11, 59, 1) 0%,
+      rgba(47, 42, 100, 1) 48%,
+      rgba(86, 81, 142, 1) 100%
+   );
 }
 
 label {
@@ -522,8 +522,7 @@ label {
    font-size: 16px;
    border: 1px solid #ccc;
    color: #000;
-   border-bottom-width: 4px;
-   border-right-width: 5px;
+   border-width: 0 0 4px 0;
    transition: border 0.5s ease-in-out;
 }
 
@@ -531,4 +530,30 @@ label {
 .inputfield select:focus,
 .inputfield textarea:focus {
    border-color: #573b8a;
+}
+
+.bg-background {
+   color: #fff;
+   background: linear-gradient(
+      45deg,
+      #da94fb,
+      #af66d1,
+      #9647bb,
+      #4739c5,
+      #3222bb,
+      #160d6f,
+      #09014bed
+   );
+   animation: gradient 12s linear infinite;
+   animation-direction: alternate;
+   background-size: 400% 700%;
+}
+
+@keyframes gradient {
+   0% {
+      background-position: 0%;
+   }
+   100% {
+      background-position: 100%;
+   }
 }

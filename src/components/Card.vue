@@ -59,7 +59,9 @@
 
          <div class="card-footer clearfix">
             <span class="float-left"
-               ><span class="badge text-bg-category">Coding</span></span
+               ><span class="badge text-bg-category">{{
+                  task.category
+               }}</span></span
             >
             <span class="float-left ms-3"
                ><span
