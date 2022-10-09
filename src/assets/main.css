@@ -546,7 +546,6 @@ label {
    animation: gradient 10s linear infinite;
    animation-direction: alternate;
    background-size: 400% 400%;
-   border-radius: 5px;
 }
 
 @keyframes gradient {

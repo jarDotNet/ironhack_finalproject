@@ -8,7 +8,8 @@
                class="col-sm-12 col-md-5 col-xl-5 p-2 justify-content-center text-center"
             >
                <h1
-                  class="text-center fw-bolder mb-3 p-2 bg-background"
+                  class="text-center fw-bolder mb-3 p-3 bg-background"
+                  style="border-radius: 5px"
                >
                   TrackLab
                </h1>
@@ -38,7 +39,7 @@
                   v-if="taskStore.tasks"
                   class="d-flex flex-column align-items-center text-center"
                >
-                  <h2 class="fw-bolder mb-3 p-2" style="font-size: 2.5em">
+                  <h2 class="fw-bolder mb-3 p-3" style="font-size: 2.5em">
                      Let's take a look!
                   </h2>
 
