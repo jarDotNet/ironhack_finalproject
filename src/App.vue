@@ -21,13 +21,12 @@ import { reactive, onUpdated } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "./supabase";
 import { useUserStore } from "./store/user";
-import Navbar from "./components/Navbar.vue";
-import Alert from "./components/Alert.vue";
+import { Alert, Navbar } from "./components/";
 
 export default {
   components: {
-    Navbar,
     Alert,
+    Navbar,
   },
   setup() {
     const router = useRouter();
