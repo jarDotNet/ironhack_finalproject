@@ -10,19 +10,20 @@ export const useUserStore = defineStore("user", {
     isAuthenticated: (state) => state.user !== null,
   },
   actions: {
-    async fetchUser() {
-      const user = await supabase.auth.user();
+    fetchUser() {
+      const user = supabase.auth.user();
       this.user = user;
     },
     async signUp(credentials) {
-      const { user, session, error } = await supabase.auth.signUp(credentials);
-      if (error) throw error;
-      else {
-        alert("Check your email");
+      const { error } = await supabase.auth.signUp(credentials);
+      if (error) {
+        throw error;
+      } else {
+        useAlertStore().success("Check your email");
       }
     },
     async singIn(credentials) {
-      const { user, session, error } = await supabase.auth.signIn(credentials);
+      const { user, error } = await supabase.auth.signIn(credentials);
       if (error) throw error;
       this.user = user;
     },

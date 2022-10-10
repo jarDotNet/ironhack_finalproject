@@ -37,7 +37,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "../store/user";
+import { useUserStore, useAlertStore } from "../store/";
 import { togglePassword } from "../utils/TogglePassword";
 import ValidationConstants from "../utils/ValidationConstants";
 
@@ -50,6 +50,7 @@ export default {
     const password = ref("");
     const router = useRouter();
     const store = useUserStore();
+    const alertStore = useAlertStore();
 
     const toggleSignInPassword = () => {
       const password = document.querySelector("#password");
@@ -68,14 +69,13 @@ export default {
 
         router.push("/");
       } catch (error) {
-        alert(error.error_description || error.message);
+        alertStore.error(error.message);
       }
     };
 
     return {
       email,
       password,
-      store,
       toggleSignInPassword,
       handleSignin,
     };

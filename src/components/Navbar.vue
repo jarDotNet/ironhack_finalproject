@@ -93,7 +93,7 @@ export default defineComponent({
         let { error } = await supabase.auth.signOut();
         if (error) throw error;
       } finally {
-        router.push("/");
+        router.push("/auth");
       }
     };
 

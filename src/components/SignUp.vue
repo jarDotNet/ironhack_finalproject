@@ -95,7 +95,7 @@ export default {
             password: password.value,
           });
         } catch (error) {
-          alert(error.error_description || error.message);
+          alertStore.error(error.message);
         }
       } else {
         alertStore.error("Password doesn't match, please try again");
