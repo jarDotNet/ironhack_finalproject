@@ -111,7 +111,6 @@ export default defineComponent({
           username.value = data.username;
           website.value = data.website;
           avatar_url.value = data.avatar_url;
-          console.log(avatar_url);
         }
       } catch {}
     }
