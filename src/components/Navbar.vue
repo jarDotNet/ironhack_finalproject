@@ -41,7 +41,7 @@
             photo"
               class="rounded-circle"
               style="width: 30px; height: 30px; object-fit: contain"
-              v-if="avatar_url.value === null"
+              v-if="avatar_url === ''"
             />
 
             <img
@@ -111,6 +111,7 @@ export default defineComponent({
           username.value = data.username;
           website.value = data.website;
           avatar_url.value = data.avatar_url;
+          console.log(avatar_url);
         }
       } catch {}
     }
