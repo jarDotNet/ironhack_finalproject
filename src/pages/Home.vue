@@ -14,10 +14,8 @@
                   TrackLab
                </h1>
 
-               <h2 v-if="taskStore.tasks.length === 0" class="mt-5">
-                  Welcome!
-               </h2>
-               <h2 v-else class="mt-5">Welcome back, {{ username }}!</h2>
+          <h2 v-if="username" class="mt-5">Welcome back, {{ username }}!</h2>
+          <h2 v-else class="mt-5">Welcome!</h2>
 
                <p>
                   Are you ready? Start managing your tasks easily through our
