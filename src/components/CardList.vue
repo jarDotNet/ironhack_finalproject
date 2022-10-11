@@ -4,38 +4,40 @@
          <span class="icon-back"></span> {{ state.title }}
       </h3>
 
-    <div class="board-tasks">
-      <Container
-        drag-class="card-ghost"
-        drop-class="card-ghost-drop"
-        group-name="tracklab"
-        :get-child-payload="getChildPayload"
-        @drop="handleDrop($event)"
-        orientation="vertical"
-        :drop-placeholder="{
-          className: `bg-secondary bg-opacity-10
+      <div class="board-tasks">
+         <Container
+            drag-class="card-ghost"
+            drop-class="card-ghost-drop"
+            group-name="tracklab"
+            :get-child-payload="getChildPayload"
+            @drop="handleDrop($event)"
+            orientation="vertical"
+            :drop-placeholder="{
+               className: `bg-secondary bg-opacity-10
           card border mt-3
           `,
-          animationDuration: '200',
-          showOnTop: true,
-        }"
-      >
-        <Draggable v-for="task in state.tasks" :key="task.id">
-          <div class="card border mt-3" style="width: 100%">
-            <div class="card-body d-flex justify-content-start pb-1">
-              <h4 class="card-title kanban-card-title mr-auto">
-                {{ task.title }}
-              </h4>
-              <input
-                class="form-check-input check-input-card m-0"
-                type="checkbox"
-                role="switch"
-                id="flexSwitchCheckDefault"
-                :checked="task.current_state == TaskStateEnum.COMPLETED"
-                :disabled="task.current_state == TaskStateEnum.COMPLETED"
-                @change="changeStatus(task)"
-              />
-            </div>
+               animationDuration: '200',
+               showOnTop: true,
+            }"
+         >
+            <Draggable v-for="task in state.tasks" :key="task.id">
+               <div class="card border mt-3" style="width: 100%">
+                  <div class="card-body d-flex justify-content-start pb-1">
+                     <h4 class="card-title kanban-card-title mr-auto">
+                        {{ task.title }}
+                     </h4>
+                     <input
+                        class="form-check-input check-input-card m-0"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        :checked="task.current_state == TaskStateEnum.COMPLETED"
+                        :disabled="
+                           task.current_state == TaskStateEnum.COMPLETED
+                        "
+                        @change="changeStatus(task)"
+                     />
+                  </div>
 
                   <div class="card-footer clearfix">
                      <span v-if="task.category" class="float-left"
@@ -52,10 +54,13 @@
                      >
 
                      <span :class="['float-left', { 'ms-3': task.category }]"
-                        ><span class="badge text-bg-warning">{{
-                           task.priority
-                        }}</span></span
-                     >
+                        ><span class="badge text-bg-warning"
+                           >{{ task.priority }}
+                           <span v-if="task.priority.toLowerCase() === 'high'"
+                              ><font-awesome-icon
+                                 icon="fa-solid fa-flag"
+                                 class="flag-bg" /></span></span
+                     ></span>
 
                      <span class="float-right d-flex gap-1"
                         ><button
@@ -65,7 +70,7 @@
                               --bs-btn-padding-y: 0.25rem;
                               --bs-btn-padding-x: 0.5rem;
                               --bs-btn-font-size: 0.75rem;
-                              opacity: 0.9
+                              opacity: 0.9;
                            "
                            data-bs-toggle="modal"
                            data-bs-target="#editModal"
@@ -82,7 +87,7 @@
                               --bs-btn-padding-y: 0.25rem;
                               --bs-btn-padding-x: 0.5rem;
                               --bs-btn-font-size: 0.75rem;
-                              opacity: 0.6
+                              opacity: 0.6;
                            "
                            @click="deleteTask(task.id)"
                         >
@@ -286,12 +291,16 @@ export default defineComponent({
    font-size: 16px;
 }
 
-.board-tasks .form-check-input{
-  border-radius: 1.25em;
+.board-tasks .form-check-input {
+   border-radius: 1.25em;
 }
 
-.board-tasks .form-check-input:checked{
-  background-color: #635e94ed;
-  border-color: #635e94ed;
+.board-tasks .form-check-input:checked {
+   background-color: #635e94ed;
+   border-color: #635e94ed;
+}
+
+.flag-bg :deep(path) {
+   color: #000;
 }
 </style>
