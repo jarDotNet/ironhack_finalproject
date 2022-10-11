@@ -4,32 +4,38 @@
          <span class="icon-back"></span> {{ state.title }}
       </h3>
 
-      <div class="board-tasks">
-         <Container
-            drag-class="card-ghost"
-            drop-class="card-ghost-drop"
-            group-name="tracklab"
-            :get-child-payload="getChildPayload"
-            @drop="handleDrop($event)"
-         >
-            <Draggable v-for="task in state.tasks" :key="task.id">
-               <div class="card border my-3" style="width: 100%">
-                  <div class="card-body d-flex justify-content-start pb-1">
-                     <h4 class="card-title kanban-card-title mr-auto">
-                        {{ task.title }}
-                     </h4>
-                     <input
-                        class="form-check-input check-input-card m-0"
-                        type="checkbox"
-                        role="switch"
-                        id="flexSwitchCheckDefault"
-                        :checked="task.current_state == TaskStateEnum.COMPLETED"
-                        :disabled="
-                           task.current_state == TaskStateEnum.COMPLETED
-                        "
-                        @change="changeStatus(task)"
-                     />
-                  </div>
+    <div class="board-tasks">
+      <Container
+        drag-class="card-ghost"
+        drop-class="card-ghost-drop"
+        group-name="tracklab"
+        :get-child-payload="getChildPayload"
+        @drop="handleDrop($event)"
+        orientation="vertical"
+        :drop-placeholder="{
+          className: `bg-secondary bg-opacity-10
+          card border mt-3
+          `,
+          animationDuration: '200',
+          showOnTop: true,
+        }"
+      >
+        <Draggable v-for="task in state.tasks" :key="task.id">
+          <div class="card border mt-3" style="width: 100%">
+            <div class="card-body d-flex justify-content-start pb-1">
+              <h4 class="card-title kanban-card-title mr-auto">
+                {{ task.title }}
+              </h4>
+              <input
+                class="form-check-input check-input-card m-0"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                :checked="task.current_state == TaskStateEnum.COMPLETED"
+                :disabled="task.current_state == TaskStateEnum.COMPLETED"
+                @change="changeStatus(task)"
+              />
+            </div>
 
                   <div class="card-footer clearfix">
                      <span v-if="task.category" class="float-left"
