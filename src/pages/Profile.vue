@@ -306,7 +306,7 @@ export default {
    border: none;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
    .form-widget {
       margin-top: 5em !important;
    }
