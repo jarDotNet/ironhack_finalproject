@@ -1,5 +1,5 @@
 <template>
-  <div class="container h-100">
+  <div v-if="store.isAuthenticated" class="container h-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div
         class="
@@ -26,10 +26,8 @@
             TrackLab
           </h1>
 
-               <h2 v-if="username" class="mt-5">
-                  Welcome back, {{ username }}!
-               </h2>
-               <h2 v-else class="mt-5">Welcome!</h2>
+          <h2 v-if="username" class="mt-5">Welcome back, {{ username }}!</h2>
+          <h2 v-else class="mt-5">Welcome!</h2>
 
           <p>
             Are you ready? Start managing your tasks easily through our
@@ -226,8 +224,8 @@ export default {
 }
 
 @media (min-width: 1400px) {
-   .home-box {
-      margin-top: 7em !important;
-   }
+  .home-box {
+    margin-top: 7em !important;
+  }
 }
 </style>
