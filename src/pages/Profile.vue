@@ -3,7 +3,7 @@
       <div class="row d-flex justify-content-center align-items-center">
          <div class="col-md-12 col-xl-10 text-center">
             <h1
-               class="fw-bolder mb-3 p-3"
+               class="fw-bolder mb-3 p-3 bg-background"
                style="
                   color: #fff;
                   background-color: #635e94ed;
