@@ -54,11 +54,12 @@
                      <span class="float-right d-flex gap-1"
                         ><button
                            type="button"
-                           class="btn btn-dark"
+                           class="btn btn-custom-secondary"
                            style="
                               --bs-btn-padding-y: 0.25rem;
                               --bs-btn-padding-x: 0.5rem;
                               --bs-btn-font-size: 0.75rem;
+                              opacity: 0.9
                            "
                            data-bs-toggle="modal"
                            data-bs-target="#editModal"
@@ -70,11 +71,12 @@
                         </button>
                         <button
                            type="button"
-                           class="btn btn-danger"
+                           class="btn btn-custom-secondary"
                            style="
                               --bs-btn-padding-y: 0.25rem;
                               --bs-btn-padding-x: 0.5rem;
                               --bs-btn-font-size: 0.75rem;
+                              opacity: 0.6
                            "
                            @click="deleteTask(task.id)"
                         >
@@ -285,5 +287,14 @@ export default defineComponent({
 
 .card-title {
    font-size: 16px;
+}
+
+.board-tasks .form-check-input{
+  border-radius: 1.25em;
+}
+
+.board-tasks .form-check-input:checked{
+  background-color: #635e94ed;
+  border-color: #635e94ed;
 }
 </style>
