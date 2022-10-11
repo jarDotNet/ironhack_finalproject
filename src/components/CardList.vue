@@ -11,9 +11,17 @@
         group-name="tracklab"
         :get-child-payload="getChildPayload"
         @drop="handleDrop($event)"
+        orientation="vertical"
+        :drop-placeholder="{
+          className: `bg-secondary bg-opacity-10
+          card border mt-3
+          `,
+          animationDuration: '200',
+          showOnTop: true,
+        }"
       >
         <Draggable v-for="task in state.tasks" :key="task.id">
-          <div class="card border my-3" style="width: 100%">
+          <div class="card border mt-3" style="width: 100%">
             <div class="card-body d-flex justify-content-start pb-1">
               <h4 class="card-title kanban-card-title mr-auto">
                 {{ task.title }}
