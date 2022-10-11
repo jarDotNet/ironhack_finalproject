@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div v-if="!store.isAuthenticated" class="main-container">
     <div class="main container-sm">
       <img
         src="../assets/Setup-Wizard-pana.svg"
@@ -28,15 +28,26 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useUserStore } from "../store/user";
 import { SignIn, SignUp } from "../components/";
 
 export default {
   components: { SignUp, SignIn },
   setup() {
     const isSignIn = ref(true);
+    const router = useRouter();
+    const store = useUserStore();
+
+    onMounted(() => {
+      if (store.isAuthenticated) {
+        router.go(-1);
+      }
+    });
 
     return {
+      store,
       isSignIn,
     };
   },
