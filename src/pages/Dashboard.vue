@@ -203,7 +203,9 @@ export default {
       var elements = document.getElementsByClassName(
         "modal-backdrop fade show"
       );
-      if (elements.length > 0) elements[0].parentNode.removeChild(elements[0]);
+      if (elements.length > 0) {
+        [...elements].forEach((elem) => elem.parentNode.removeChild(elem));
+      }
     };
 
     onMounted(() => {
