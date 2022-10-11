@@ -556,3 +556,8 @@ label {
       background-position: 100%;
    }
 }
+
+.mr-auto {
+   margin-right: auto;
+}
+

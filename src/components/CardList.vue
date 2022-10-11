@@ -260,18 +260,9 @@ export default defineComponent({
    float: right;
 }
 
-.form-check-input:checked {
-   background-color: #4e94fb;
-   border-color: #4e94fb;
-}
-
 .text-bg-category {
    color: #000;
    background-color: var(--bg-color-coding);
-}
-
-.mr-auto {
-   margin-right: auto;
 }
 
 .badge:hover {
