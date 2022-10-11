@@ -1,6 +1,6 @@
 <template>
   <div v-if="alert" class="container mx-auto">
-    <div class="position-fixed m-3" style="right: 30px">
+    <div class="position-fixed m-3" style="right: 30px; z-index: 1024">
       <div class="alert alert-dismissable" :class="alert.type">
         {{ alert.message }}
         <button

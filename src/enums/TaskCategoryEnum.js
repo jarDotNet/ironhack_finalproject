@@ -8,4 +8,3 @@ const TaskCategoryEnum = Object.freeze({
 });
 
 export default TaskCategoryEnum;
-
