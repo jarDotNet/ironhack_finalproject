@@ -75,7 +75,7 @@ export const useProfileStore = defineStore({
       try {
         const file = event.target.files[0];
         console.log(file);
-        const filePath = file.name;
+        const filePath = file.name + Math.random() * 100000000000;
 
         if (this.profile.avatar_url !== null) {
           const { data, error } = await supabase.storage
