@@ -97,6 +97,8 @@
               />
             </div>
 
+            {{ profileStore.profile }}
+
             <label for="website" class="label-text text-capitalize"
               >Website</label
             >
@@ -124,7 +126,7 @@
 </template>
 
 <script>
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, onUpdated, ref, watch } from "vue";
 import { useProfileStore } from "../store/profile";
 import ValidationConstants from "../utils/ValidationConstants";
 import { useUserStore, useAlertStore } from "../store/";
@@ -133,6 +135,7 @@ export default {
   created() {
     this.ValidationConstants = ValidationConstants;
   },
+
   setup() {
     const profileStore = useProfileStore();
     const store = useUserStore();
@@ -140,6 +143,13 @@ export default {
     const website = ref(profileStore.profile.website);
     const loading = ref(false);
 
+    watch(() => {
+      username.value = profileStore.profile.username;
+    });
+
+    onMounted(() => {
+      profileStore.getProfile();
+    });
     return {
       store,
       profileStore,

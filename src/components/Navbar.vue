@@ -97,6 +97,10 @@ export default defineComponent({
       }
     };
 
+    onMounted(() => {
+      profileStore.getProfile();
+    });
+
     return {
       signOut,
       username,

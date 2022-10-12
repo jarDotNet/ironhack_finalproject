@@ -35,7 +35,6 @@ export const useProfileStore = defineStore({
           this.profile.website = data.website;
           this.profile.avatar_url = data.avatar_url;
         }
-        console.log(this.profile);
       } catch (error) {
         handleError(error, error.message);
       } finally {
@@ -62,10 +61,10 @@ export const useProfileStore = defineStore({
 
         if (error) throw error;
 
-        alertStore.success("Profile updated!");
+        useAlertStore.success("Profile updated!");
       } catch (error) {
         console.log(error);
-        //handleError(error, error.message);
+        handleError(error, error.message);
       } finally {
         loading.value = false;
       }
@@ -96,7 +95,7 @@ export const useProfileStore = defineStore({
             .eq("id", store.user.id);
 
           this.profile.avatar_url = filePath;
-          error ? handleError(error) : alertStore.success("Avatar updated!");
+          error ? handleError(error) : useAlertStore.success("Avatar updated!");
         }
         return filePath;
       } catch (error) {
@@ -106,8 +105,7 @@ export const useProfileStore = defineStore({
     },
 
     handleError(error, message) {
-      console.log(error);
-      message ? alertStore.error(message) : alertStore.error();
+      message ? useAlertStore.error(message) : useAlertStore.error();
     },
   },
 });
