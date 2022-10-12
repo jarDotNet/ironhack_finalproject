@@ -1,5 +1,5 @@
 <template>
-  <div class="container h-100">
+  <div v-if="store.isAuthenticated" class="container h-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div
         class="
@@ -19,17 +19,12 @@
             text-center
           "
         >
-          <h1
-            class="text-center fw-bolder mb-3 p-3 bg-background"
-            style="border-radius: 5px"
-          >
+          <h1 class="text-center fw-bolder mb-3 p-3 bg-background rounded">
             TrackLab
           </h1>
 
-               <h2 v-if="username" class="mt-5">
-                  Welcome back, {{ username }}!
-               </h2>
-               <h2 v-else class="mt-5">Welcome!</h2>
+          <h2 v-if="profileStore.profile.username" class="mt-5">Welcome back, {{ profileStore.profile.username }}!</h2>
+          <h2 v-else class="mt-5">Welcome!</h2>
 
           <p>
             Are you ready? Start managing your tasks easily through our
@@ -44,7 +39,7 @@
           <img
             src="../assets/img-tasks.svg"
             alt="ilustration of a man adding a task to a dashboard"
-            style="height: 300px"
+            class="home-main-img"
           />
         </div>
 
@@ -54,14 +49,13 @@
             class="d-flex flex-column align-items-center text-center"
           >
             <h2
-              class="fw-bolder mb-3 p-3"
-              style="font-size: 2.5em"
               v-if="taskStore.tasks.length !== 0"
+              class="fw-bolder mb-3 p-3 board-header"
             >
               Let's take a look!
             </h2>
 
-            <h2 class="fw-bolder mb-3 p-3" style="font-size: 2.5em" v-else>
+            <h2 v-else class="fw-bolder mb-3 p-3 board-header">
               Seems like a good start!
             </h2>
 
@@ -150,6 +144,7 @@ import { ref } from "vue";
 import { onMounted, onUpdated } from "@vue/runtime-core";
 import { useUserStore, useTasksStore, useAlertStore } from "../store/";
 import { supabase } from "../supabase";
+import { useProfileStore } from "../store/profile";
 
 export default {
   setup() {
@@ -157,44 +152,28 @@ export default {
     const store = useUserStore();
     const taskStore = useTasksStore();
     const alertStore = useAlertStore();
-
-    async function getProfile() {
-      try {
-        let { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username`)
-          .eq("id", store.user.id)
-          .single();
-
-        if (error && status !== 406) throw error;
-
-        if (data) {
-          username.value = data.username;
-        }
-      } catch (error) {
-        alertStore.error(error.message);
-      }
-    }
+    const profileStore = useProfileStore();
 
     onMounted(() => {
-      getProfile();
+      profileStore.getProfile();
       taskStore.fetchTasks();
-    });
-
-    onUpdated(() => {
-      getProfile();
     });
 
     return {
       store,
       username,
       taskStore,
+      profileStore,
     };
   },
 };
 </script>
 
 <style scoped>
+.home-main-img {
+  height: 300px;
+}
+
 .home-card {
   max-width: 320px;
   border-radius: 0.5em;
@@ -221,13 +200,17 @@ export default {
   padding: 0 1em;
 }
 
+.board-header {
+  font-size: 2.5em;
+}
+
 :deep(path) {
   fill: #470abe;
 }
 
 @media (min-width: 1400px) {
-   .home-box {
-      margin-top: 7em !important;
-   }
+  .home-box {
+    margin-top: 7em !important;
+  }
 }
 </style>

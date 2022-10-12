@@ -21,7 +21,7 @@
         }"
       >
         <Draggable v-for="task in state.tasks" :key="task.id">
-          <div class="card border mt-3" style="width: 100%">
+          <div class="card border mt-3 w-100">
             <div class="card-body d-flex justify-content-start pb-1">
               <h4 class="card-title kanban-card-title mr-auto">
                 {{ task.title }}
@@ -61,13 +61,7 @@
               <span class="float-right d-flex gap-1"
                 ><button
                   type="button"
-                  class="btn btn-custom-secondary"
-                  style="
-                    --bs-btn-padding-y: 0.25rem;
-                    --bs-btn-padding-x: 0.5rem;
-                    --bs-btn-font-size: 0.75rem;
-                    opacity: 0.9;
-                  "
+                  class="btn btn-custom-secondary card-btn card-btn-edit"
                   data-bs-toggle="modal"
                   data-bs-target="#editModal"
                   @click="$emit('editTask', task)"
@@ -76,13 +70,7 @@
                 </button>
                 <button
                   type="button"
-                  class="btn btn-custom-secondary"
-                  style="
-                    --bs-btn-padding-y: 0.25rem;
-                    --bs-btn-padding-x: 0.5rem;
-                    --bs-btn-font-size: 0.75rem;
-                    opacity: 0.6;
-                  "
+                  class="btn btn-custom-secondary card-btn card-btn-delete"
                   @click="deleteTask(task.id)"
                 >
                   <font-awesome-icon icon="fa-solid fa-trash-can" /></button
@@ -228,12 +216,27 @@ export default defineComponent({
   line-height: 6em;
   text-align: center;
 }
+
 .icon-back:before {
   content: "\f0ae";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #fff;
   margin: 0.5em;
+}
+
+.card-btn {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-font-size: 0.75rem;
+}
+
+.card-btn-edit {
+  opacity: 0.9;
+}
+
+.card-btn-delete {
+  opacity: 0.6;
 }
 
 .card-ghost {
