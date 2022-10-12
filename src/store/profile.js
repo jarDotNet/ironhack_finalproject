@@ -87,7 +87,7 @@ export const useProfileStore = defineStore({
           .upload(filePath, file);
         console.log(data);
         if (error) {
-          handleError(error);
+          this.handleError(error);
         } else {
           const { error } = await supabase
             .from("profiles")
