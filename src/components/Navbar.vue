@@ -36,25 +36,22 @@
         <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
           <a href="/profile">
             <img
-              src="../assets/defaultAvatar.png"
-              alt="Profile
-            photo"
-              class="rounded-circle"
-              style="width: 30px; height: 30px; object-fit: contain"
               v-if="
                 profileStore.profile.avatar_url === null ||
                 profileStore.profile.avatar_url === ''
               "
+              alt="Profile photo"
+              title="Profile"
+              class="rounded-circle avatar-img"
+              src="../assets/defaultAvatar.png"
             />
 
             <img
-              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
-              alt="Profile
-            photo"
-              class="rounded-circle"
-              title="Profile"
-              style="width: 30px; height: 30px; object-fit: contain"
               v-else
+              alt="Profile photo"
+              title="Profile"
+              class="rounded-circle avatar-img"
+              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
             />
           </a>
 
@@ -110,7 +107,6 @@ export default defineComponent({
       avatar_url,
       website,
       profileStore,
-
     };
   },
 });
@@ -119,6 +115,12 @@ export default defineComponent({
 <style scoped>
 :deep(path) {
   color: #fff;
+}
+
+.avatar-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .avatar-img {
