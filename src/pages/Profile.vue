@@ -25,7 +25,10 @@
 
             <div class="position-relative">
               <img
-                v-if="profileStore.profile.avatar_url !== ''"
+                v-if="
+                  profileStore.profile.avatar_url !== null &&
+                  profileStore.profile.avatar_url !== ''
+                "
                 :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
                 alt="Profile photo"
                 class="rounded-circle"
@@ -97,8 +100,6 @@
               />
             </div>
 
-            {{ profileStore.profile }}
-
             <label for="website" class="label-text text-capitalize"
               >Website</label
             >
@@ -149,6 +150,7 @@ export default {
 
     onMounted(() => {
       profileStore.getProfile();
+      console.log(profileStore.profile.avatar_url);
     });
     return {
       store,

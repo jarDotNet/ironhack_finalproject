@@ -41,7 +41,10 @@
             photo"
               class="rounded-circle"
               style="width: 30px; height: 30px; object-fit: contain"
-              v-if="profileStore.profile.avatar_url === ''"
+              v-if="
+                profileStore.profile.avatar_url === null ||
+                profileStore.profile.avatar_url === ''
+              "
             />
 
             <img
