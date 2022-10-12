@@ -16,8 +16,6 @@
     </div>
 </div>
 
-<br>
-
 # TrackLab To-do app
 
 Ironhack Frontend final assignment project. The objective is to build and deploy a To-do app with Vue.js that allows users to create an account, record tasks, edit them and mark them as complete. The app is linked to a database, where all the user and task data is stored.
