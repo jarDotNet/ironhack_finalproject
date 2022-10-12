@@ -2,12 +2,7 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-12 col-xl-10 text-center">
-        <h1
-          class="fw-bolder mb-3 p-3"
-          style="color: #fff; background-color: #635e94ed; border-radius: 5px"
-        >
-          Profile Settings
-        </h1>
+        <h1 class="fw-bolder mb-3 p-3 profile-title">Profile Settings</h1>
 
         <p class="w-100 mt-2">
           Do you want to edit your personal data?
@@ -39,35 +34,16 @@
                 v-if="avatar_url !== ''"
                 :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
                 alt="Profile photo"
-                class="rounded-circle"
-                style="
-                  width: 250px;
-                  height: 250px;
-                  padding: 1px;
-                  object-fit: contain;
-                  border: 7px solid #3d2c5b;
-                  box-shadow: #895cdbc2 1px 2px 6px 0px;
-                "
+                class="rounded-circle profile-image profile-image-user"
               />
               <img
                 v-else
                 src="../assets/defaultAvatar.png"
                 alt="Profile photo"
-                class="rounded-circle"
-                style="
-                  width: 250px;
-                  height: 250px;
-                  padding: 1px;
-                  object-fit: contain;
-                  border: 7px solid #2f2a64;
-                  box-shadow: #895cdbc2 1px 2px 6px 0px;
-                "
+                class="rounded-circle profile-image profile-image-default"
               />
 
-              <div
-                class="position-absolute avatar-img"
-                style="right: 60px; top: 170px"
-              >
+              <div class="position-absolute avatar-img">
                 <input
                   type="file"
                   id="avatar"
@@ -126,8 +102,11 @@
 
             <input
               type="submit"
-              class="btn btn-custom btn-lg btn-block btn-profile w-100 mt-4"
-              style="margin-right: 8px"
+              class="
+                btn btn-custom btn-lg btn-block btn-profile btn-submit
+                w-100
+                mt-4
+              "
               :value="loading ? 'Loading ...' : 'Update'"
               :disabled="loading"
             />
@@ -268,6 +247,34 @@ export default {
 :deep(path) {
   fill: #fff;
 }
+
+.profile-title {
+  color: #fff;
+  background-color: #635e94ed;
+  border-radius: 5px;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  padding: 1px;
+  object-fit: contain;
+  box-shadow: #895cdbc2 1px 2px 6px 0px;
+}
+
+.profile-image-user {
+  border: 7px solid #3d2c5b;
+}
+
+.profile-image-default {
+  border: 7px solid #2f2a64;
+}
+
+.avatar-img {
+  right: 60px;
+  top: 170px;
+}
+
 .avatar-img input {
   display: none;
 }
@@ -279,9 +286,11 @@ export default {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
+
 .avatar-img label:hover {
   background: #79629f;
 }
+
 .avatar-img input + label:after {
   content: "\f382";
   font-family: "Font Awesome 5 Free";
@@ -308,6 +317,10 @@ export default {
 
 .btn-profile {
   margin: 0;
+}
+
+.btn-submit {
+  margin-right: 8px;
 }
 
 .settings-card {

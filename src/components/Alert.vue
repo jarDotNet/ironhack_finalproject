@@ -1,15 +1,14 @@
 <template>
   <div v-if="alert" class="container mx-auto">
-    <div class="position-fixed m-3" style="right: 30px; z-index: 1024">
+    <div class="position-fixed m-3 alert-container">
       <div class="alert alert-dismissable" :class="alert.type">
         {{ alert.message }}
         <button
           @click="alertStore.clear()"
           type="button"
-          class="close"
+          class="close close-button"
           data-dismiss="alert"
           aria-label="Close"
-          style="padding: 3px"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,6 +26,11 @@ const { alert } = storeToRefs(alertStore);
 </script>
 
 <style scoped>
+.alert-container {
+  right: 30px;
+  z-index: 1024;
+}
+
 .close {
   position: absolute;
   top: 0;
@@ -38,6 +42,10 @@ const { alert } = storeToRefs(alertStore);
   font-weight: 700;
   line-height: 1;
   opacity: 0.6;
+}
+
+.close-button {
+  padding: 3px;
 }
 
 .close:focus,

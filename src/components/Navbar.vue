@@ -36,22 +36,19 @@
         <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
           <a href="/profile">
             <img
-              src="../assets/defaultAvatar.png"
-              alt="Profile
-            photo"
-              class="rounded-circle"
-              style="width: 30px; height: 30px; object-fit: contain"
               v-if="avatar_url === ''"
+              src="../assets/defaultAvatar.png"
+              alt="Profile photo"
+              title="Profile"
+              class="rounded-circle avatar-img"
             />
 
             <img
-              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
-              alt="Profile
-            photo"
-              class="rounded-circle"
-              title="Profile"
-              style="width: 30px; height: 30px; object-fit: contain"
               v-else
+              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+              alt="Profile photo"
+              title="Profile"
+              class="rounded-circle avatar-img"
             />
           </a>
 
@@ -137,6 +134,13 @@ export default defineComponent({
 :deep(path) {
   color: #fff;
 }
+
+.avatar-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 .navbar-brand {
   font-weight: bold;
   color: #fff;

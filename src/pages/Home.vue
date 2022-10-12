@@ -19,10 +19,7 @@
             text-center
           "
         >
-          <h1
-            class="text-center fw-bolder mb-3 p-3 bg-background"
-            style="border-radius: 5px"
-          >
+          <h1 class="text-center fw-bolder mb-3 p-3 bg-background rounded">
             TrackLab
           </h1>
 
@@ -42,7 +39,7 @@
           <img
             src="../assets/img-tasks.svg"
             alt="ilustration of a man adding a task to a dashboard"
-            style="height: 300px"
+            class="home-main-img"
           />
         </div>
 
@@ -52,14 +49,13 @@
             class="d-flex flex-column align-items-center text-center"
           >
             <h2
-              class="fw-bolder mb-3 p-3"
-              style="font-size: 2.5em"
               v-if="taskStore.tasks.length !== 0"
+              class="fw-bolder mb-3 p-3 board-header"
             >
               Let's take a look!
             </h2>
 
-            <h2 class="fw-bolder mb-3 p-3" style="font-size: 2.5em" v-else>
+            <h2 v-else class="fw-bolder mb-3 p-3 board-header">
               Seems like a good start!
             </h2>
 
@@ -193,6 +189,10 @@ export default {
 </script>
 
 <style scoped>
+.home-main-img {
+  height: 300px;
+}
+
 .home-card {
   max-width: 320px;
   border-radius: 0.5em;
@@ -217,6 +217,10 @@ export default {
 .home-card .svg-inline--fa {
   height: 3em;
   padding: 0 1em;
+}
+
+.board-header {
+  font-size: 2.5em;
 }
 
 :deep(path) {
