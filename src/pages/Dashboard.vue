@@ -11,8 +11,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4
-            class="modal-title m-3 text-dark text-center card-title-text"
-            style="font-weight: bold"
+            class="
+              modal-title
+              m-3
+              text-dark text-center
+              card-title-text
+              fw-bold
+            "
             id="exampleModalLabel"
           >
             Add a New Task
@@ -61,8 +66,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4
-            class="modal-title m-3 text-dark text-center card-title-text"
-            style="font-weight: bold"
+            class="
+              modal-title
+              m-3
+              text-dark text-center
+              card-title-text
+              fw-bold
+            "
             id="exampleModalLabel"
           >
             Modify Your Task
@@ -84,12 +94,7 @@
 
   <div class="container">
     <div class="col-12 d-flex pt-5 gap-4 align-items-center">
-      <h1
-        class="text-center text-capitalize"
-        style="font-size: 1.5em; margin: 0"
-      >
-        To-Do Board
-      </h1>
+      <h1 class="text-center text-capitalize m-0 board-title">To-Do Board</h1>
 
       <!-- Button Add -->
       <button
@@ -98,10 +103,7 @@
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        <font-awesome-icon
-          icon="fa-solid fa-circle-plus"
-          style="margin-right: 8px"
-        />
+        <font-awesome-icon icon="fa-solid fa-circle-plus" class="plus-icon" />
         New Task
       </button>
     </div>
@@ -203,7 +205,9 @@ export default {
       var elements = document.getElementsByClassName(
         "modal-backdrop fade show"
       );
-      if (elements.length > 0) elements[0].parentNode.removeChild(elements[0]);
+      if (elements.length > 0) {
+        [...elements].forEach((elem) => elem.parentNode.removeChild(elem));
+      }
     };
 
     onMounted(() => {
@@ -228,14 +232,21 @@ export default {
 :deep(path) {
   color: #fff;
 }
+
+.board-title {
+  font-size: 1.5em;
+}
+
 .card-ghost {
   transition: transform 0.18s ease;
   transform: rotateZ(5deg);
 }
+
 .card-ghost-drop {
   transition: transform 0.18s ease-in-out;
   transform: rotateZ(0deg);
 }
+
 .drop-preview {
   background-color: rgba(blue);
   margin: 1rem 2rem 1rem 0.3rem;
@@ -271,6 +282,7 @@ export default {
   background: #635e94ed;
   font-size: 1em;
 }
+
 .board-tasks {
   position: relative;
 }
@@ -283,11 +295,16 @@ export default {
   line-height: 6em;
   text-align: center;
 }
+
 .icon-back:before {
   content: "\f0ae";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   color: #fff;
   margin: 0.5em;
+}
+
+.plus-icon {
+  margin-right: 8px;
 }
 </style>

@@ -1,15 +1,7 @@
 <template>
   <div class="background" :class="{ backgroundLog: isSignIn }">
     <Navbar :visible="state.isAuthenticated" />
-    <div
-      :class="{ cardBck: !isSignIn, cardErr: isErr }"
-      style="
-        width: 98%;
-        margin: auto;
-        border-top-left-radius: 2rem;
-        border-top-right-radius: 2rem;
-      "
-    >
+    <div class="round-corners" :class="{ cardBck: !isSignIn, cardErr: isErr }">
       <Alert />
       <router-view />
     </div>
@@ -88,9 +80,16 @@ export default {
 }
 
 .cardErr {
-  background-color: rgb(40, 69, 31);
+  background-color: #1c1842;
   min-height: calc(100vh - 72px);
   width: 100vh;
   position: relative;
+}
+
+.round-corners {
+  width: 98%;
+  margin: auto;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
 }
 </style>

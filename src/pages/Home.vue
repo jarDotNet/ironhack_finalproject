@@ -1,22 +1,29 @@
 <template>
-  <div class="container h-100">
+  <div v-if="store.isAuthenticated" class="container h-100">
     <div class="row d-flex justify-content-center align-items-center">
       <div
-        class="col-md-12 col-xl-10 d-flex flex-column flex-lg-row justify-content-center mt-5 home-box"
+        class="
+          col-md-12 col-xl-10
+          d-flex
+          flex-column flex-lg-row
+          justify-content-center
+          mt-5
+          home-box
+        "
       >
         <div
-          class="col-sm-12 col-md-5 col-xl-5 p-2 justify-content-center text-center"
+          class="
+            col-sm-12 col-md-5 col-xl-5
+            p-2
+            justify-content-center
+            text-center
+          "
         >
-          <h1
-            class="text-center fw-bolder mb-3 p-3 bg-background"
-            style="border-radius: 5px"
-          >
+          <h1 class="text-center fw-bolder mb-3 p-3 bg-background rounded">
             TrackLab
           </h1>
 
-          <h2 v-if="profileStore.profile.username" class="mt-5">
-            Welcome back, {{ profileStore.profile.username }}!
-          </h2>
+          <h2 v-if="profileStore.profile.username" class="mt-5">Welcome back, {{ profileStore.profile.username }}!</h2>
           <h2 v-else class="mt-5">Welcome!</h2>
 
           <p>
@@ -32,7 +39,7 @@
           <img
             src="../assets/img-tasks.svg"
             alt="ilustration of a man adding a task to a dashboard"
-            style="height: 300px"
+            class="home-main-img"
           />
         </div>
 
@@ -42,14 +49,13 @@
             class="d-flex flex-column align-items-center text-center"
           >
             <h2
-              class="fw-bolder mb-3 p-3"
-              style="font-size: 2.5em"
               v-if="taskStore.tasks.length !== 0"
+              class="fw-bolder mb-3 p-3 board-header"
             >
               Let's take a look!
             </h2>
 
-            <h2 class="fw-bolder mb-3 p-3" style="font-size: 2.5em" v-else>
+            <h2 v-else class="fw-bolder mb-3 p-3 board-header">
               Seems like a good start!
             </h2>
 
@@ -164,6 +170,10 @@ export default {
 </script>
 
 <style scoped>
+.home-main-img {
+  height: 300px;
+}
+
 .home-card {
   max-width: 320px;
   border-radius: 0.5em;
@@ -190,7 +200,17 @@ export default {
   padding: 0 1em;
 }
 
+.board-header {
+  font-size: 2.5em;
+}
+
 :deep(path) {
   fill: #470abe;
+}
+
+@media (min-width: 1400px) {
+  .home-box {
+    margin-top: 7em !important;
+  }
 }
 </style>

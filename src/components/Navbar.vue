@@ -110,6 +110,7 @@ export default defineComponent({
       avatar_url,
       website,
       profileStore,
+
     };
   },
 });
@@ -119,6 +120,13 @@ export default defineComponent({
 :deep(path) {
   color: #fff;
 }
+
+.avatar-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 .navbar-brand {
   font-weight: bold;
   color: #fff;
