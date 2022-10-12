@@ -36,19 +36,25 @@
         <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
           <a href="/profile">
             <img
-              v-if="avatar_url === ''"
               src="../assets/defaultAvatar.png"
-              alt="Profile photo"
-              title="Profile"
-              class="rounded-circle avatar-img"
+              alt="Profile
+            photo"
+              class="rounded-circle"
+              style="width: 30px; height: 30px; object-fit: contain"
+              v-if="
+                profileStore.profile.avatar_url === null ||
+                profileStore.profile.avatar_url === ''
+              "
             />
 
             <img
-              v-else
-              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
-              alt="Profile photo"
+              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
+              alt="Profile
+            photo"
+              class="rounded-circle"
               title="Profile"
-              class="rounded-circle avatar-img"
+              style="width: 30px; height: 30px; object-fit: contain"
+              v-else
             />
           </a>
 
@@ -69,7 +75,7 @@
 import { useRouter } from "vue-router";
 import { defineComponent, onMounted, onUpdated, ref } from "@vue/runtime-core";
 import { supabase } from "../supabase";
-import { useUserStore } from "../store/user";
+import { useProfileStore } from "../store/profile";
 
 export default defineComponent({
   name: "Navbar",
@@ -80,10 +86,10 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
-    const store = useUserStore();
     const username = ref(null);
     const website = ref(null);
     const avatar_url = ref("");
+    const profileStore = useProfileStore();
 
     const signOut = async () => {
       try {
@@ -94,30 +100,8 @@ export default defineComponent({
       }
     };
 
-    async function getProfile() {
-      try {
-        let { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username, website, avatar_url`)
-          .eq("id", store.user.id)
-          .single();
-
-        if (error && status !== 406) throw error;
-
-        if (data) {
-          username.value = data.username;
-          website.value = data.website;
-          avatar_url.value = data.avatar_url;
-        }
-      } catch {}
-    }
-
     onMounted(() => {
-      getProfile();
-    });
-
-    onUpdated(() => {
-      getProfile();
+      profileStore.getProfile();
     });
 
     return {
@@ -125,6 +109,8 @@ export default defineComponent({
       username,
       avatar_url,
       website,
+      profileStore,
+
     };
   },
 });

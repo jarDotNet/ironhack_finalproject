@@ -23,7 +23,7 @@
             TrackLab
           </h1>
 
-          <h2 v-if="username" class="mt-5">Welcome back, {{ username }}!</h2>
+          <h2 v-if="profileStore.profile.username" class="mt-5">Welcome back, {{ profileStore.profile.username }}!</h2>
           <h2 v-else class="mt-5">Welcome!</h2>
 
           <p>
@@ -144,6 +144,7 @@ import { ref } from "vue";
 import { onMounted, onUpdated } from "@vue/runtime-core";
 import { useUserStore, useTasksStore, useAlertStore } from "../store/";
 import { supabase } from "../supabase";
+import { useProfileStore } from "../store/profile";
 
 export default {
   setup() {
@@ -151,38 +152,18 @@ export default {
     const store = useUserStore();
     const taskStore = useTasksStore();
     const alertStore = useAlertStore();
-
-    async function getProfile() {
-      try {
-        let { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username`)
-          .eq("id", store.user.id)
-          .single();
-
-        if (error && status !== 406) throw error;
-
-        if (data) {
-          username.value = data.username;
-        }
-      } catch (error) {
-        alertStore.error(error.message);
-      }
-    }
+    const profileStore = useProfileStore();
 
     onMounted(() => {
-      getProfile();
+      profileStore.getProfile();
       taskStore.fetchTasks();
-    });
-
-    onUpdated(() => {
-      getProfile();
     });
 
     return {
       store,
       username,
       taskStore,
+      profileStore,
     };
   },
 };

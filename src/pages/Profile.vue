@@ -10,32 +10,25 @@
         </p>
         <form
           v-if="store.user"
-          class="
-            form-widget
-            d-flex
-            flex-column flex-lg-row
-            justify-content-center
-            mt-4
-          "
-          @submit.prevent="updateProfile"
+          class="form-widget d-flex flex-column flex-lg-row justify-content-center mt-4"
+          @submit.prevent="profileStore.updateProfile(username, website)"
         >
           <div
-            class="
-              col-sm-12 col-md-4 col-xl-4
-              p-2
-              justify-content-center
-              text-center
-            "
+            class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-center"
           >
             <h2 class="text-dark m-4">Hey, nice work!</h2>
 
             <div class="position-relative">
               <img
-                v-if="avatar_url !== ''"
-                :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+                v-if="
+                  profileStore.profile.avatar_url !== null &&
+                  profileStore.profile.avatar_url !== ''
+                "
+                :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
                 alt="Profile photo"
                 class="rounded-circle profile-image profile-image-user"
               />
+
               <img
                 v-else
                 src="../assets/defaultAvatar.png"
@@ -50,7 +43,7 @@
                   name="avatar"
                   accept="image/png,
                     image/jpeg"
-                  @change="updatePicture()"
+                  @change="profileStore.updatePicture"
                 />
                 <label
                   for="avatar"
@@ -62,12 +55,7 @@
           </div>
 
           <div
-            class="
-              col-sm-12 col-md-8 col-xl-8
-              px-5
-              align-self-center
-              text-start
-            "
+            class="col-sm-12 col-md-8 col-xl-8 px-5 align-self-center text-start"
           >
             <label for="username" class="label-text text-capitalize"
               >Name</label
@@ -118,126 +106,37 @@
 </template>
 
 <script>
-import { supabase } from "../supabase";
-import { useUserStore, useAlertStore } from "../store/";
-import { onMounted, onUpdated, ref } from "vue";
+import { onMounted, onUpdated, ref, watch } from "vue";
+import { useProfileStore } from "../store/profile";
 import ValidationConstants from "../utils/ValidationConstants";
+import { useUserStore, useAlertStore } from "../store/";
 
 export default {
   created() {
     this.ValidationConstants = ValidationConstants;
   },
+
   setup() {
-    const loading = ref(true);
-    const username = ref("");
-    const website = ref("");
-    const avatar_url = ref("");
+    const profileStore = useProfileStore();
     const store = useUserStore();
-    const alertStore = useAlertStore();
+    const username = ref(profileStore.profile.username);
+    const website = ref(profileStore.profile.website);
+    const loading = ref(false);
 
-    async function getProfile() {
-      try {
-        loading.value = true;
-
-        let { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username, website, avatar_url`)
-          .eq("id", store.user.id)
-          .single();
-
-        if (error && status !== 406) throw error;
-
-        if (data) {
-          username.value = data.username;
-          website.value = data.website;
-          avatar_url.value = data.avatar_url;
-        }
-      } catch (error) {
-        handleError(error, error.message);
-      } finally {
-        loading.value = false;
-      }
-    }
-
-    async function updateProfile() {
-      try {
-        loading.value = true;
-
-        const updates = {
-          id: store.user.id,
-          username: username.value,
-          website: website.value,
-          avatar_url: avatar_url.value,
-          updated_at: new Date(),
-        };
-
-        let { error } = await supabase.from("profiles").upsert(updates, {
-          returning: "minimal", // Don't return the value after inserting
-        });
-
-        if (error) throw error;
-
-        alertStore.success("Profile updated!");
-      } catch (error) {
-        handleError(error, error.message);
-      } finally {
-        loading.value = false;
-      }
-    }
-
-    async function updatePicture() {
-      try {
-        const file = event.target.files[0];
-        console.log(file);
-        const filePath = file.name;
-
-        if (avatar_url.value !== null) {
-          const { data, error } = await supabase.storage
-            .from("avatars")
-            .remove([`${avatar_url.value}`]);
-        }
-        const { error } = await supabase.storage
-          .from("avatars")
-          .upload(filePath, file);
-
-        if (error) {
-          handleError(error);
-        } else {
-          const { error } = await supabase
-            .from("profiles")
-            .update({ avatar_url: filePath })
-            .eq("id", store.user.id);
-
-          error ? handleError(error) : alertStore.success("Avatar updated!");
-        }
-        return filePath;
-      } catch (error) {
-        handleError(error, error.message);
-      }
-    }
-
-    function handleError(error, message) {
-      console.log(error);
-      message ? alertStore.error(message) : alertStore.error();
-    }
+    watch(() => {
+      username.value = profileStore.profile.username;
+    });
 
     onMounted(() => {
-      getProfile();
+      profileStore.getProfile();
+      console.log(profileStore.profile.avatar_url);
     });
-
-    onUpdated(() => {
-      getProfile();
-    });
-
     return {
       store,
-      loading,
+      profileStore,
       username,
       website,
-      avatar_url,
-
-      updateProfile,
-      updatePicture,
+      loading,
     };
   },
 };
