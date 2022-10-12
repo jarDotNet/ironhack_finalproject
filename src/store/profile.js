@@ -51,7 +51,7 @@ export const useProfileStore = defineStore({
           id: store.user.id,
           username: username,
           website: website,
-          avatar_url: "",
+          avatar_url: this.profile.avatar_url,
           updated_at: new Date(),
         };
 
@@ -89,11 +89,27 @@ export const useProfileStore = defineStore({
         if (error) {
           this.handleError(error);
         } else {
-          const { error } = await supabase
-            .from("profiles")
-            .update({ avatar_url: filePath })
-            .eq("id", store.user.id);
-
+          if (
+            this.profile.username === null &&
+            (this.profile.avatar_url === null || this.profile.avatar_url === "")
+          ) {
+            const updates = {
+              id: store.user.id,
+              username: null,
+              website: null,
+              avatar_url: filePath,
+              updated_at: new Date(),
+            };
+            let { error } = await supabase.from("profiles").upsert(updates, {
+              returning: "minimal", // Don't return the value after inserting
+            });
+            console.log(error);
+          } else {
+            const { error } = await supabase
+              .from("profiles")
+              .update({ avatar_url: filePath })
+              .eq("id", store.user.id);
+          }
           this.profile.avatar_url = filePath;
           error
             ? this.handleError(error)
