@@ -6,11 +6,10 @@
         type="text"
         id="task-name"
         name="task-name"
-        class="inputField"
+        class="inputField text-dark"
         placeholder="Task name"
         v-model="state.task.title"
         :maxlength="ValidationConstants.NEW_TASK_MAX_LENGTH"
-        style="color: black"
       />
     </div>
     <label for="task-state" class="label-text text-capitalize"
@@ -27,7 +26,7 @@
           v-for="state in TaskStateEnum"
           :key="state"
           :value="state"
-          style="color: black"
+          class="text-dark"
         >
           {{ capitalize(state) }}
         </option>
@@ -50,7 +49,7 @@
               v-for="priority in TaskPriorityEnum"
               :key="priority"
               :value="priority"
-              style="color: black"
+              class="text-dark"
             >
               {{ capitalize(priority) }}
             </option>
@@ -72,7 +71,7 @@
               v-for="category in TaskCategoryEnum"
               :key="category.name"
               :value="category.name"
-              style="color: black"
+              class="text-dark"
             >
               {{ capitalize(category.name) }}
             </option>
@@ -91,7 +90,7 @@
         v-model="state.task.description"
         rows="4"
         cols="50"
-        style="color: black; width: 100%"
+        class="text-dark w-100"
       />
     </div>
 
