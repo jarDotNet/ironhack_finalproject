@@ -12,9 +12,7 @@
     </div>
     <br />
     <div align="center">
-        <video width="800" controls>
-            <source src="./readme/TrackLab.mov" type="video/mp4">
-        </video>
+        <img src="./readme/TrackLab.gif" width="800" />
     </div>
 </div>
 
@@ -81,8 +79,6 @@ delete using (auth.uid() = user_id);
 ```
 </details>
 
-<br />
-
 <details>
   <summary>And for the <strong>profiles</strong> table:</summary>
 
@@ -134,8 +130,6 @@ create policy "Anyone can upload an avatar."
   with check ( bucket_id = 'avatars' );
 ```
 </details>
-
-<br />
 
 ### Compiles and hot-reloads for development
 
