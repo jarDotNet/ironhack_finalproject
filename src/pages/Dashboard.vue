@@ -102,7 +102,7 @@
       </div>
 
       <div class="row mt-4">
-         <div class="col-12">
+         <div class="col-12 col-dashboard">
             <div class="board">
                <CardList
                   :cards="tasksStore.pendingTasks"
@@ -267,6 +267,12 @@ export default {
 @media (min-width: 768px) {
    .board-col {
       width: 24em;
+   }
+}
+
+@media (max-width: 440px) {
+   .col-dashboard {
+      margin-bottom: 5em;
    }
 }
 
