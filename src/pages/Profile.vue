@@ -1,17 +1,13 @@
 <template>
-   <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center">
-         <div class="col-md-12 col-xl-10 text-center">
-            <h1
-               class="fw-bolder mb-3 p-3 bg-background"
-               style="
-                  color: #fff;
-                  background-color: #635e94ed;
-                  border-radius: 5px;
-               "
-            >
-               Profile Settings
-            </h1>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-12 col-xl-10 text-center">
+        <h1
+          class="fw-bolder mb-3 p-3 bg-background"
+          style="color: #fff; background-color: #635e94ed; border-radius: 5px"
+        >
+          Profile Settings
+        </h1>
 
         <p class="w-100 mt-2">
           Do you want to edit your personal data?
@@ -154,7 +150,6 @@ export default {
 
     onMounted(() => {
       profileStore.getProfile();
-      console.log(profileStore.profile.avatar_url);
     });
     return {
       store,
@@ -252,8 +247,8 @@ export default {
 }
 
 @media (min-width: 1600px) {
-   .form-widget {
-      margin-top: 5em !important;
-   }
+  .form-widget {
+    margin-top: 5em !important;
+  }
 }
 </style>
