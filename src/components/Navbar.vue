@@ -34,7 +34,7 @@
         </ul>
 
         <div class="navbar-nav ml-auto gap-3 flex-row justify-content-end">
-          <a href="/profile">
+          <router-link to="/profile">
             <img
               v-if="
                 profileStore.profile.avatar_url === null ||
@@ -53,7 +53,7 @@
               class="rounded-circle avatar-img"
               :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
             />
-          </a>
+          </router-link>
 
           <button
             class="btn btn-custom btn-sm btn-block btn-profile my-0"
