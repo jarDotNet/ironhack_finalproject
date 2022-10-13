@@ -1,7 +1,7 @@
 # Error page
 [[redirects]]
   from = "/*"
-  to = "./not/foud"
+  to = "./404"
   status = 404
 # Home page
 [[redirects]]
