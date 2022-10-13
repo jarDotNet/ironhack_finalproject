@@ -19,7 +19,6 @@ export const useProfileStore = defineStore({
       try {
         const store = useUserStore();
 
-        console.log(store);
         loading.value = true;
 
         let { data, error, status } = await supabase
@@ -74,7 +73,6 @@ export const useProfileStore = defineStore({
       const store = useUserStore();
       try {
         const file = event.target.files[0];
-        console.log(file);
         const filePath = file.name + Math.random() * 1000000000000000;
 
         if (this.profile.avatar_url !== null) {
@@ -85,7 +83,7 @@ export const useProfileStore = defineStore({
         const { data, error } = await supabase.storage
           .from("avatars")
           .upload(filePath, file);
-        console.log(data);
+
         if (error) {
           this.handleError(error);
         } else {
