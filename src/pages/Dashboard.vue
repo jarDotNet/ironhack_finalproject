@@ -270,12 +270,6 @@ export default {
    }
 }
 
-@media (max-width: 440px) {
-   .col-dashboard {
-      margin-bottom: 5em;
-   }
-}
-
 .board-col:not(:last-child) {
    margin-right: 2em;
 }
