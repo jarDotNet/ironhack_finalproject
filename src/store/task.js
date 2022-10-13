@@ -95,6 +95,7 @@ export default defineStore("tasks", {
         this.updateStoredTask(data[0]);
         useAlertStore().success(`Task ${taskId} state updated!`);
       }
+      return error;
     },
     updateStoredTask(taskToUpdate) {
       this.tasks = this.tasks.map((task) =>
