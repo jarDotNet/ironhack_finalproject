@@ -1,4 +1,5 @@
 # Error page
-ErrorDocument 404 ./not/foud
+ErrorDocument 404 ./404
+
 # Home page
 DirectoryIndex /index.html
