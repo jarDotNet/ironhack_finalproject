@@ -109,7 +109,7 @@
     </div>
 
     <div class="row mt-4">
-      <div class="col-12 col-dashboard">
+      <div class="col-12">
         <div class="board">
           <CardList
             :cards="tasksStore.pendingTasks"
