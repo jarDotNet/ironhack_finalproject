@@ -63,12 +63,9 @@ h4 {
 }
 
 #not-found-container {
-  position: absolute;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  top: 70px;
-  bottom: 0;
-  width: 98%;
+  border-top-left-radius: 1.8rem;
+  border-top-right-radius: 1.8rem;
+  min-height: calc(100vh - 72px);
 }
 
 .container {
