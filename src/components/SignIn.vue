@@ -5,6 +5,7 @@
       <input
         id="email"
         type="email"
+        autoComplete="email"
         v-model="email"
         placeholder="E-mail"
         required
@@ -15,6 +16,7 @@
       <input
         id="password"
         type="password"
+        autoComplete="current-password"
         v-model="password"
         placeholder="Password"
         required
@@ -27,9 +29,12 @@
     </div>
 
     <div class="d-grid">
-      <button type="submit" class="btn btn-custom btn-lg btn-block mb-5">
+      <button type="submit" class="btn btn-custom btn-lg btn-block mb-3">
         Sign in
       </button>
+      <router-link to="/auth/reset-password" class="mb-5"
+        >Forgot Password?</router-link
+      >
     </div>
   </form>
 </template>
@@ -62,11 +67,7 @@ export default {
     const handleSignin = async () => {
       try {
         // Use the Supabase provided method to handle the signin
-        await store.singIn({
-          email: email.value,
-          password: password.value,
-        });
-
+        await store.singIn(email.value, password.value);
         router.push("/");
       } catch (error) {
         alertStore.error(error.message);

@@ -1,7 +1,7 @@
 <template>
-  <div class="background" :class="{ backgroundLog: isSignIn }">
-    <Navbar :visible="state.isAuthenticated" />
-    <div class="round-corners" :class="{ cardBck: !isSignIn, cardErr: isErr }">
+  <div class="background" :class="{ backgroundLog: isAuth }">
+    <Navbar :visible="state.isAuthenticated && !isUpdatePassword" />
+    <div class="round-corners" :class="{ cardBck: !isAuth, cardErr: isErr }">
       <Alert />
       <router-view />
     </div>
@@ -30,11 +30,14 @@ export default {
 
     onUpdated(() => {
       store.user = supabase.auth.user();
+      supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event == "PASSWORD_RECOVERY") {
+          router.push("/auth/update-password");
+        } else {
+          store.user = supabase.auth.user();
+        }
+      });
       state.isAuthenticated = store.isAuthenticated;
-
-      if (!state.isAuthenticated) {
-        router.push("/auth");
-      }
     });
 
     return {
@@ -42,8 +45,11 @@ export default {
     };
   },
   computed: {
-    isSignIn() {
-      return this.$route.path === "/auth";
+    isAuth() {
+      return this.$route.path.includes("/auth");
+    },
+    isUpdatePassword() {
+      return this.$route.path.includes("/auth/update-password");
     },
     isErr() {
       return this.$route.path === "/404";

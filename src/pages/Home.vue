@@ -143,9 +143,8 @@
 
 <script>
 import { ref } from "vue";
-import { onMounted, onUpdated } from "@vue/runtime-core";
-import { useUserStore, useTasksStore, useAlertStore } from "../store/";
-import { supabase } from "../supabase";
+import { onMounted } from "@vue/runtime-core";
+import { useUserStore, useTasksStore } from "../store/";
 import { useProfileStore } from "../store/profile";
 
 export default {
@@ -153,7 +152,6 @@ export default {
     const username = ref("");
     const store = useUserStore();
     const taskStore = useTasksStore();
-    const alertStore = useAlertStore();
     const profileStore = useProfileStore();
 
     onMounted(() => {

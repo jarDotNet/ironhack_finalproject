@@ -1,7 +1,7 @@
+import { ref } from "vue";
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
 import { useUserStore, useAlertStore } from "../store/";
-import { ref } from "vue";
 
 const loading = ref(true);
 

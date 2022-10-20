@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
-import { useAlertStore } from "./alert";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -14,18 +13,37 @@ export const useUserStore = defineStore("user", {
       const user = supabase.auth.user();
       this.user = user;
     },
-    async signUp(credentials) {
-      const { error } = await supabase.auth.signUp(credentials);
-      if (error) {
-        throw error;
-      } else {
-        useAlertStore().success("Check your email");
-      }
+    async signUp(email, password) {
+      const { error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
+      if (error) throw error;
     },
-    async singIn(credentials) {
-      const { user, error } = await supabase.auth.signIn(credentials);
+    async singIn(email, password) {
+      const { user, error } = await supabase.auth.signIn({
+        email: email,
+        password: password,
+      });
       if (error) throw error;
       this.user = user;
+    },
+    async sendPasswordRestEmail(email) {
+      const host = window.location.protocol + "//" + window.location.host;
+      const { user, error } = await supabase.auth.api.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: `${host}/auth/update-password`,
+        }
+      );
+      if (error) throw error;
+      return user;
+    },
+    async updatePassword(newPassword) {
+      const { data, error } = await supabase.auth.update({
+        password: newPassword,
+      });
+      if (error) throw error;
     },
     persist: {
       enabled: true,

@@ -5,6 +5,7 @@
       <input
         id="email"
         type="email"
+        autoComplete="email"
         v-model="email"
         placeholder="E-mail"
         required
@@ -15,6 +16,7 @@
       <input
         id="password"
         type="password"
+        autoComplete="new-password"
         v-model="password"
         placeholder="Password"
         required
@@ -29,6 +31,7 @@
       <input
         id="passwordConfirmed"
         type="password"
+        autoComplete="new-password"
         v-model="passwordConfirmed"
         placeholder="Confirm password"
         required
@@ -79,21 +82,14 @@ export default {
       togglePassword(password, icon);
     };
 
-    const togglePassword = (password, togglePassword) => {
-      const type =
-        password.getAttribute("type") === "password" ? "text" : "password";
-      password.setAttribute("type", type);
-      togglePassword.classList.toggle("bi-eye");
-    };
-
     const handleSignup = async () => {
       if (password.value === passwordConfirmed.value) {
         try {
           // Use the Supabase provided method to handle the signup
-          await store.signUp({
-            email: email.value,
-            password: password.value,
-          });
+          await store.signUp(email.value, password.value);
+          useAlertStore().success(
+            `Confirm your email to finishing registering: ${email.value}`
+          );
         } catch (error) {
           alertStore.error(error.message);
         }

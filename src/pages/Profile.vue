@@ -40,7 +40,7 @@
                   profileStore.profile.avatar_url !== null &&
                   profileStore.profile.avatar_url !== ''
                 "
-                :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
+                :src="`${baseURL}/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
                 alt="Profile photo"
                 class="rounded-circle profile-image profile-image-user"
               />
@@ -127,10 +127,9 @@
 </template>
 
 <script>
-import { onMounted, onUpdated, ref, watch } from "vue";
-import { useProfileStore } from "../store/profile";
+import { ref, watchEffect, onMounted } from "vue";
+import { useProfileStore, useUserStore } from "../store/";
 import ValidationConstants from "../utils/ValidationConstants";
-import { useUserStore, useAlertStore } from "../store/";
 
 export default {
   created() {
@@ -144,16 +143,20 @@ export default {
     const website = ref(profileStore.profile.website);
     const loading = ref(false);
 
-    watch(() => {
+    const baseURL = import.meta.env.VITE_SUPABASE_URL;
+
+    watchEffect(() => {
       username.value = profileStore.profile.username;
     });
 
     onMounted(() => {
       profileStore.getProfile();
     });
+
     return {
       store,
       profileStore,
+      baseURL,
       username,
       website,
       loading,

@@ -51,7 +51,7 @@
               alt="Profile photo"
               title="Profile"
               class="rounded-circle avatar-img"
-              :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
+              :src="`${baseURL}/storage/v1/object/public/avatars/${profileStore.profile.avatar_url}`"
             />
           </router-link>
 
@@ -70,7 +70,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent, onMounted, onUpdated, ref } from "@vue/runtime-core";
+import { defineComponent, ref, onMounted } from "@vue/runtime-core";
 import { supabase } from "../supabase";
 import { useProfileStore } from "../store/profile";
 
@@ -85,8 +85,9 @@ export default defineComponent({
     const router = useRouter();
     const username = ref(null);
     const website = ref(null);
-    const avatar_url = ref("");
     const profileStore = useProfileStore();
+
+    const baseURL = import.meta.env.VITE_SUPABASE_URL;
 
     const signOut = async () => {
       try {
@@ -104,7 +105,7 @@ export default defineComponent({
     return {
       signOut,
       username,
-      avatar_url,
+      baseURL,
       website,
       profileStore,
     };

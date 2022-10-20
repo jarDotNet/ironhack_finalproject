@@ -129,6 +129,18 @@ create policy "Anyone can upload an avatar."
 ```
 </details>
 
+<details>
+  <summary>For the <strong>avatars</strong> bucket, in <strong>Storage</strong>:</summary>
+
+- Make the `avatars` bucket __public__. 
+- In the Configuration `Policies`, be sure you have these defined:
+  - DELETE: Anyone can delete an avatar.
+  - UPDATE: Anyone can update an avatar.
+  - INSERT: Anyone can upload an avatar.
+  - SELECT: Avatar images are publicly accessible.
+
+</details>
+
 ### Compiles and hot-reloads for development
 
 ```bash
@@ -181,7 +193,7 @@ This project includes the following functionalities and features:
 - Drag and Drop of tasks on the Kanban board
 - A store and a database that the app calls to request or update data
 - SPA using Vue components and Page routing
-- CSS animations (for the Avatar button, the Not Found error page, and the app logo at the Home page)
+- CSS animations (for the Avatar button, and the name of the app in the header of the Home page)
 - 404 Not Found error page
 - Form validation
 - Favicon
