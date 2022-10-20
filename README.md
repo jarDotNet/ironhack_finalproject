@@ -132,7 +132,10 @@ create policy "Anyone can upload an avatar."
 <details>
   <summary>For the <strong>avatars</strong> bucket, in <strong>Storage</strong>:</summary>
 
-- Make the `avatars` bucket __public__. 
+- Make the `avatars` bucket __public__.
+
+  ![Avatars bucket](./readme/avatars.png)
+
 - In the Configuration `Policies`, be sure you have these defined:
   - DELETE: Anyone can delete an avatar.
   - UPDATE: Anyone can update an avatar.
@@ -178,7 +181,7 @@ Netlify Live version Status:
 - __Cilent:__ [Vue.js](https://vuejs.org/), [Vite (dev server)](https://vitejs.dev/guide/)
 - __Router:__ [Vue Router](https://router.vuejs.org/)
 - __Store:__ [Pinia](https://pinia.vuejs.org/) and [Pinia Persist](https://seb-l.github.io/pinia-plugin-persist/) for persistent login and other shared stuff
-- __Database as a service:__ [`Supabase`](https://supabase.com/)
+- __Database as a service:__ [Supabase](https://supabase.com/)
 - __Drag and Drop:__ [vue3-smooth-dnd](https://github.com/gilnd/vue3-smooth-dnd) library (Vue 3 Wrapper of [smooth-dnd](https://github.com/kutlugsahin/smooth-dnd) library)
 - __UI libraries:__  [Bootstrap](https://getbootstrap.com/), [Fort Awesome](https://fortawesome.com/), [Heroicons](https://heroicons.com/), [Iconoir](https://iconoir.com/), [ress](https://github.com/filipelinhares/ress)
 
